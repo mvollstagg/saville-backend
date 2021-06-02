@@ -1,0 +1,130 @@
+﻿@model SeoCreateVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-12 my-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-header py-4">
+                @Model.Page Səhifəsinin SEO Parametrləri <a asp-area="CMS" asp-controller="Seo" asp-action="Index" class="float-right btn btn-outline-secondary">Geriyə get</a>
+                <hr>
+                <br>
+                <ul class="nav nav-pills nav-fill justify-content-center">
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary" onclick="langAZ()" >Azərbaycan dili</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary" onclick="langRU()" >русский</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary" onclick="langEN()" >English</button>
+                    </li>                    
+                </ul>
+            </div>
+            <div class="tab-content" id="pills-tabContent">
+                <div id="test" class="card-body">
+                    <form asp-area="CMS" asp-controller="Seo" asp-action="Update" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label class="control-label">Sayfa</label>
+                            <input asp-for="Page" type="text" class="form-control" />
+                            <span asp-validation-for="Page"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div id="seoAZ">
+                            <div class="form-group">
+                                <label class="control-label">Başlıq (AZ)</label>
+                                <input asp-for="TitleAZ" type="text" class="form-control" />
+                                <span asp-validation-for="TitleAZ"></span>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Keywords (AZ)</label>
+                                <input asp-for="KeysAZ" type="text" class="form-control" />
+                                <span asp-validation-for="KeysAZ"></span>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Description (AZ)</label>
+                                <input asp-for="DescAZ" type="text" class="form-control" />
+                                <span asp-validation-for="DescAZ"></span>
+                                <span class="text-danger"></span>
+                            </div>  
+                        </div>
+                        <div id="seoRU" style="display: none;">
+                            <div class="form-group">
+                                <label class="control-label">Başlıq (RU)</label>
+                                <input asp-for="TitleRU" type="text" class="form-control" />
+                                <span asp-validation-for="TitleRU"></span>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Keywords (RU)</label>
+                                <input asp-for="KeysRU" type="text" class="form-control" />
+                                <span asp-validation-for="KeysRU"></span>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Description (RU)</label>
+                                <input asp-for="DescRU" type="text" class="form-control" />
+                                <span asp-validation-for="DescRU"></span>
+                                <span class="text-danger"></span>
+                            </div>  
+                        </div>
+                        <div id="seoEN" style="display: none;">
+                            <div class="form-group">
+                                <label class="control-label">Başlıq (EN)</label>
+                                <input asp-for="TitleEN" type="text" class="form-control" />
+                                <span asp-validation-for="TitleEN"></span>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Keywords (EN)</label>
+                                <input asp-for="KeysEN" type="text" class="form-control" />
+                                <span asp-validation-for="KeysEN"></span>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Description (EN)</label>
+                                <input asp-for="DescEN" type="text" class="form-control" />
+                                <span asp-validation-for="DescEN"></span>
+                                <span class="text-danger"></span>
+                            </div>  
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Təsdiq et" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<script>
+    var seoAZ = document.getElementById("seoAZ");
+    var seoRU = document.getElementById("seoRU");
+    var seoEN = document.getElementById("seoEN");
+    function langAZ() {     
+        seoAZ.style.display = "block";
+        seoRU.style.display = "none";
+        seoEN.style.display = "none";
+    }
+    function langRU() {     
+        seoAZ.style.display = "none";
+        seoRU.style.display = "block";
+        seoEN.style.display = "none";
+    }
+    function langEN() {     
+        seoAZ.style.display = "none";
+        seoRU.style.display = "none";
+        seoEN.style.display = "block";
+    }
+    
+
+</script>
+@section validation{
+    <partial name="_ValidationScriptsPW" />
+}

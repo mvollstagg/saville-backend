@@ -1,0 +1,75 @@
+﻿@model IEnumerable<FAQ>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12 my-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                Sık Sorulan Sorular Bölümü
+            </div>  
+            <div class="card-body">
+                <div class="d-flex justify-content-end my-3">
+                    <a asp-area="CMS" asp-controller="FAQ" asp-action="Create" class="btn btn-outline-dark"><i class="fas fa-fw fa-plus"></i>Soru Cevap Ekle</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table dataTables table-bordered table-striped table-shorting" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>Soru</th>
+                                <th>Cevap</th>
+                                <th>Tarix</th>
+                                <th>Url Id</th>
+                                <th>Status</th>
+                                <th>Əməliyyatlar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model == null || Model.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        Eklenmiş bir kayıt yok
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var faq in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @(faq.FAQLangs.FirstOrDefault(x => x.Lang.Code == "az").Question.Length > 100 ? faq.FAQLangs.FirstOrDefault(x => x.Lang.Code == "az").Question.Substring(0, 100) : faq.FAQLangs.FirstOrDefault(x => x.Lang.Code == "az").Question)
+                                        </td>
+                                        <td>
+                                            @(faq.FAQLangs.FirstOrDefault(x => x.Lang.Code == "az").Answer.Length > 100 ? faq.FAQLangs.FirstOrDefault(x => x.Lang.Code == "az").Answer.Substring(0, 100) : faq.FAQLangs.FirstOrDefault(x => x.Lang.Code == "az").Answer)
+                                        </td>
+                                        <td>
+                                            @faq.RecordedAtDate.ToString("dd/MM/yyyy HH:mm:ss")
+                                        </td>
+                                        <td>
+                                            @faq.UrlId
+                                        </td>
+                                        <td>
+                                            @(faq.IsActive ? "Evet" : "Hayır")
+                                        </td>
+                                        <td>
+                                            <a asp-area="CMS" asp-controller="FAQ" asp-action="Update" asp-route-id="@faq.Id" class="btn text-primary"><i class="fas fa-fw fa-pencil-alt"></i></a>
+                                            <a asp-area="CMS" asp-controller="FAQ" asp-action="Delete" asp-route-id="@faq.Id" class="btn text-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    
+}

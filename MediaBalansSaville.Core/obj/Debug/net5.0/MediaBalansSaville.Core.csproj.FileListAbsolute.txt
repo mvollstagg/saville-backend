@@ -1,0 +1,15 @@
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/bin/Debug/net5.0/MediaBalansSaville.Core.deps.json
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/bin/Debug/net5.0/MediaBalansSaville.Core.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/bin/Debug/net5.0/ref/MediaBalansSaville.Core.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/bin/Debug/net5.0/MediaBalansSaville.Core.pdb
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/bin/Debug/net5.0/MediaBalansSaville.Entities.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/bin/Debug/net5.0/MediaBalansSaville.Entities.pdb
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/obj/Debug/net5.0/MediaBalansSaville.Core.csprojAssemblyReference.cache
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/obj/Debug/net5.0/MediaBalansSaville.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/obj/Debug/net5.0/MediaBalansSaville.Core.AssemblyInfoInputs.cache
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/obj/Debug/net5.0/MediaBalansSaville.Core.AssemblyInfo.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/obj/Debug/net5.0/MediaBalansSaville.Core.csproj.CoreCompileInputs.cache
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/obj/Debug/net5.0/MediaBalansSaville.Core.csproj.CopyComplete
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/obj/Debug/net5.0/MediaBalansSaville.Core.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/obj/Debug/net5.0/ref/MediaBalansSaville.Core.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/obj/Debug/net5.0/MediaBalansSaville.Core.pdb

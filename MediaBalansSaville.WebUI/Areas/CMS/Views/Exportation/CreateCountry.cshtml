@@ -1,0 +1,35 @@
+﻿@model CountryCreateVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-12 my-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-header py-4">
+                Ülke Əlavə et <a asp-area="CMS" asp-controller="Exportation" asp-action="Index" class="float-right btn btn-outline-secondary">Geriyə get</a>
+            </div>
+            <div class="card-body">
+                <form asp-area="CMS" asp-controller="Exportation" asp-action="CreateCountry" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>                    
+                    <div class="form-group">
+                        <label class="control-label">Kod</label>
+                        <input asp-for="Code" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Ad</label>
+                        <input asp-for="Name" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Təsdiq et" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section validation{
+    <partial name="_ValidationScriptsPW" />
+}

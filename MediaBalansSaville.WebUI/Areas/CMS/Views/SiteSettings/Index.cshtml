@@ -1,0 +1,185 @@
+﻿@model SiteSettingsVM
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="row">
+    <div class="col-12 my-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                Sayt parametrləri bölümü 
+                <hr>
+                <br>
+                <ul class="nav nav-pills nav-fill justify-content-center">
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary" onclick="langAZ()" >Azərbaycan dili</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary" onclick="langRU()" >русский</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary" onclick="langEN()" >English</button>
+                    </li>                    
+                </ul>  
+            </div>
+            <div class="card-body"> 
+                <form asp-area="CMS" asp-controller="SiteSettings" asp-action="Save" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div> 
+                    <div id="settingsAZ">
+                        <div class="form-group">
+                            <label class="control-label">Haqqında Başlıq (AZ)</label>
+                            <input asp-for="AboutTitleAZ" type="text" class="form-control" />
+                            <span asp-validation-for="AboutTitleAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Haqqında Yazısı (AZ)</label>
+                            <textarea id="texteditor" asp-for="AboutDetailAZ" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="AboutDetailAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ünvan (AZ)</label>
+                            <input asp-for="AddressAZ" type="text" class="form-control" />
+                            <span asp-validation-for="AddressAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Reqlam Yazısı (AZ)</label>
+                            <input asp-for="AdDetailAZ" type="text" class="form-control" />
+                            <span asp-validation-for="AdDetailAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div id="settingsRU" style="display: none;">
+                        <div class="form-group">
+                            <label class="control-label">Haqqında Başlıq (RU)</label>
+                            <input asp-for="AboutTitleRU" type="text" class="form-control" />
+                            <span asp-validation-for="AboutTitleRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Haqqında Yazısı (RU)</label>
+                            <textarea id="texteditor" asp-for="AboutDetailRU" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="AboutDetailRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ünvan (RU)</label>
+                            <input asp-for="AddressRU" type="text" class="form-control" />
+                            <span asp-validation-for="AddressRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Reqlam Yazısı (RU)</label>
+                            <input asp-for="AdDetailRU" type="text" class="form-control" />
+                            <span asp-validation-for="AdDetailRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div id="settingsEN" style="display: none;">
+                        <div class="form-group">
+                            <label class="control-label">Haqqında Başlıq (EN)</label>
+                            <input asp-for="AboutTitleEN" type="text" class="form-control" />
+                            <span asp-validation-for="AboutTitleEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Haqqında Yazısı (EN)</label>
+                            <textarea id="texteditor" asp-for="AboutDetailEN" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="AboutDetailEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ünvan (EN)</label>
+                            <input asp-for="AddressEN" type="text" class="form-control" />
+                            <span asp-validation-for="AddressEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Reqlam Yazısı (EN)</label>
+                            <input asp-for="AdDetailEN" type="text" class="form-control" />
+                            <span asp-validation-for="AdDetailEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Reklam URL</label>
+                        <input asp-for="AdVideoURL" type="text" class="form-control" />
+                        <span asp-validation-for="AdVideoURL"></span>
+                        <span class="text-danger"></span>
+                    </div>   
+                    <div class="form-group">
+                        <label class="control-label">Facebook URL</label>
+                        <input asp-for="FacebookURL" type="text" class="form-control" />
+                        <span asp-validation-for="FacebookURL"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Instagram URL</label>
+                        <input asp-for="InstagramURL" type="text" class="form-control" />
+                        <span asp-validation-for="InstagramURL"></span>
+                        <span class="text-danger"></span>
+                    </div>     
+                    <div class="form-group">
+                        <label class="control-label">Twitter URL</label>
+                        <input asp-for="TwitterURL" type="text" class="form-control" />
+                        <span asp-validation-for="TwitterURL"></span>
+                        <span class="text-danger"></span>
+                    </div>       
+                    <div class="form-group">
+                        <label class="control-label">Telefon nömresi</label>
+                        <input asp-for="PhoneNumber" type="text" class="form-control" />
+                        <span asp-validation-for="PhoneNumber"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+                        <input asp-for="Email" type="text" class="form-control" />
+                        <span asp-validation-for="Email"></span>
+                        <span class="text-danger"></span>
+                    </div>                                    
+                    <div class="form-group">
+                        <label class="control-label">Google Analytics Code</label>
+                        <input asp-for="GoogleAnalyticsCode" type="text" class="form-control" />
+                        <span asp-validation-for="GoogleAnalyticsCode"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Facebook Pixel Code</label>
+                        <input asp-for="FacebookPixel" type="text" class="form-control" />
+                        <span asp-validation-for="FacebookPixel"></span>
+                        <span class="text-danger"></span>
+                    </div>             
+                    <div class="form-group">
+                        <input type="submit" value="Təsdiq et" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var settingsAZ = document.getElementById("settingsAZ");
+    var settingsRU = document.getElementById("settingsRU");
+    var settingsEN = document.getElementById("settingsEN");
+    function langAZ() {     
+        settingsAZ.style.display = "block";
+        settingsRU.style.display = "none";
+        settingsEN.style.display = "none";
+    }
+    function langRU() {     
+        settingsAZ.style.display = "none";
+        settingsRU.style.display = "block";
+        settingsEN.style.display = "none";
+    }
+    function langEN() {     
+        settingsAZ.style.display = "none";
+        settingsRU.style.display = "none";
+        settingsEN.style.display = "block";
+    }    
+</script>
+@section validation{
+    <partial name="_ValidationScriptsPW" />
+}

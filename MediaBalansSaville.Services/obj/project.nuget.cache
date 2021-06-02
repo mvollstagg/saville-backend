@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "03CW3Mj59JAjl2lr9jHSPhJE502x7Tg9L+VubXzLY6E9xoPovPMVEVu6ZBAHsP5UduB2DRXeVTOwy0T+CRGZkg==",
+  "success": true,
+  "projectFilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/MediaBalansSaville.Services.csproj",
+  "expectedPackageFiles": [
+    "/Users/matthieuvollstagg/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "/Users/matthieuvollstagg/.nuget/packages/microsoft.aspnetcore.http.features/5.0.3/microsoft.aspnetcore.http.features.5.0.3.nupkg.sha512",
+    "/Users/matthieuvollstagg/.nuget/packages/microsoft.aspnetcore.jsonpatch/5.0.3/microsoft.aspnetcore.jsonpatch.5.0.3.nupkg.sha512",
+    "/Users/matthieuvollstagg/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/5.0.3/microsoft.aspnetcore.mvc.newtonsoftjson.5.0.3.nupkg.sha512",
+    "/Users/matthieuvollstagg/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
+    "/Users/matthieuvollstagg/.nuget/packages/microsoft.extensions.configuration.abstractions/5.0.0/microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+    "/Users/matthieuvollstagg/.nuget/packages/microsoft.extensions.primitives/5.0.0/microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+    "/Users/matthieuvollstagg/.nuget/packages/newtonsoft.json/12.0.2/newtonsoft.json.12.0.2.nupkg.sha512",
+    "/Users/matthieuvollstagg/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "/Users/matthieuvollstagg/.nuget/packages/system.io.pipelines/5.0.1/system.io.pipelines.5.0.1.nupkg.sha512",
+    "/Users/matthieuvollstagg/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

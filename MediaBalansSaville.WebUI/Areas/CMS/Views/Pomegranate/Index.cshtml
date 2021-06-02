@@ -1,0 +1,209 @@
+﻿@model PomegranateVM
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="row">
+    <div class="col-12 my-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                Narın faydaları bölümü 
+                <hr>
+                <br>
+                <ul class="nav nav-pills nav-fill justify-content-center">
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary" onclick="langAZ()" >Azərbaycan dili</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary" onclick="langRU()" >Pусский</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary" onclick="langEN()" >English</button>
+                    </li>                    
+                </ul>  
+            </div>
+            <div class="card-body"> 
+                <form asp-area="CMS" asp-controller="Pomegranate" asp-action="Save" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div> 
+                    <div id="settingsAZ">
+                        <div class="form-group">
+                            <label class="control-label">Ana Başlıq (AZ)</label>
+                            <input asp-for="MainTitleAZ" type="text" class="form-control" />
+                            <span asp-validation-for="MainTitleAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ana Detay (AZ)</label>
+                            <textarea asp-for="MainDetailsAZ" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="MainDetailsAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ritm Başlıq (AZ)</label>
+                            <input asp-for="RhythmTitleAZ" type="text" class="form-control" />
+                            <span asp-validation-for="RhythmTitleAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ritm Detay (AZ)</label>
+                            <textarea id="texteditor" asp-for="RhythmDetailsAZ" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="RhythmDetailsAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Boost Başlıq (AZ)</label>
+                            <input asp-for="BoostTitleAZ" type="text" class="form-control" />
+                            <span asp-validation-for="BoostTitleAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Boost Detay (AZ)</label>
+                            <textarea id="texteditor" asp-for="BoostDetailsAZ" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="BoostDetailsAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Boost Başlıq (AZ)</label>
+                            <input asp-for="HealthInsuranceTitleAZ" type="text" class="form-control" />
+                            <span asp-validation-for="HealthInsuranceTitleAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Boost Detay (AZ)</label>
+                            <textarea id="texteditor" asp-for="HealthInsuranceDetailsAZ" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="HealthInsuranceDetailsAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div id="settingsRU" style="display: none;">
+                        <div class="form-group">
+                            <label class="control-label">Ana Başlıq (RU)</label>
+                            <input asp-for="MainTitleRU" type="text" class="form-control" />
+                            <span asp-validation-for="MainTitleRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ana Detay (RU)</label>
+                            <textarea asp-for="MainDetailsRU" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="MainDetailsRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ritm Başlıq (RU)</label>
+                            <input asp-for="RhythmTitleRU" type="text" class="form-control" />
+                            <span asp-validation-for="RhythmTitleRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ritm Detay (RU)</label>
+                            <textarea id="texteditor" asp-for="RhythmDetailsRU" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="RhythmDetailsRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Boost Başlıq (RU)</label>
+                            <input asp-for="BoostTitleRU" type="text" class="form-control" />
+                            <span asp-validation-for="BoostTitleRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Boost Detay (RU)</label>
+                            <textarea id="texteditor" asp-for="BoostDetailsRU" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="BoostDetailsRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Boost Başlıq (RU)</label>
+                            <input asp-for="HealthInsuranceTitleRU" type="text" class="form-control" />
+                            <span asp-validation-for="HealthInsuranceTitleRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Boost Detay (RU)</label>
+                            <textarea id="texteditor" asp-for="HealthInsuranceDetailsRU" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="HealthInsuranceDetailsRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div id="settingsEN" style="display: none;">
+                        <div class="form-group">
+                            <label class="control-label">Ana Başlıq (EN)</label>
+                            <input asp-for="MainTitleEN" type="text" class="form-control" />
+                            <span asp-validation-for="MainTitleEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ana Detay (EN)</label>
+                            <textarea asp-for="MainDetailsEN" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="MainDetailsEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ritm Başlıq (EN)</label>
+                            <input asp-for="RhythmTitleEN" type="text" class="form-control" />
+                            <span asp-validation-for="RhythmTitleEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ritm Detay (EN)</label>
+                            <textarea id="texteditor" asp-for="RhythmDetailsEN" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="RhythmDetailsEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Boost Başlıq (EN)</label>
+                            <input asp-for="BoostTitleEN" type="text" class="form-control" />
+                            <span asp-validation-for="BoostTitleEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Boost Detay (EN)</label>
+                            <textarea id="texteditor" asp-for="BoostDetailsEN" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="BoostDetailsEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Boost Başlıq (EN)</label>
+                            <input asp-for="HealthInsuranceTitleEN" type="text" class="form-control" />
+                            <span asp-validation-for="HealthInsuranceTitleEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Boost Detay (EN)</label>
+                            <textarea id="texteditor" asp-for="HealthInsuranceDetailsEN" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="HealthInsuranceDetailsEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>          
+                    <div class="form-group">
+                        <input type="submit" value="Təsdiq et" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var settingsAZ = document.getElementById("settingsAZ");
+    var settingsRU = document.getElementById("settingsRU");
+    var settingsEN = document.getElementById("settingsEN");
+    function langAZ() {     
+        settingsAZ.style.display = "block";
+        settingsRU.style.display = "none";
+        settingsEN.style.display = "none";
+    }
+    function langRU() {     
+        settingsAZ.style.display = "none";
+        settingsRU.style.display = "block";
+        settingsEN.style.display = "none";
+    }
+    function langEN() {     
+        settingsAZ.style.display = "none";
+        settingsRU.style.display = "none";
+        settingsEN.style.display = "block";
+    }    
+</script>
+@section validation{
+    <partial name="_ValidationScriptsPW" />
+}

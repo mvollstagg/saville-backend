@@ -1,0 +1,12 @@
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/bin/Debug/net5.0/MediaBalansSaville.Entities.deps.json
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/bin/Debug/net5.0/MediaBalansSaville.Entities.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/bin/Debug/net5.0/ref/MediaBalansSaville.Entities.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/bin/Debug/net5.0/MediaBalansSaville.Entities.pdb
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/obj/Debug/net5.0/MediaBalansSaville.Entities.csprojAssemblyReference.cache
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/obj/Debug/net5.0/MediaBalansSaville.Entities.GeneratedMSBuildEditorConfig.editorconfig
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/obj/Debug/net5.0/MediaBalansSaville.Entities.AssemblyInfoInputs.cache
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/obj/Debug/net5.0/MediaBalansSaville.Entities.AssemblyInfo.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/obj/Debug/net5.0/MediaBalansSaville.Entities.csproj.CoreCompileInputs.cache
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/obj/Debug/net5.0/MediaBalansSaville.Entities.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/obj/Debug/net5.0/ref/MediaBalansSaville.Entities.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/obj/Debug/net5.0/MediaBalansSaville.Entities.pdb

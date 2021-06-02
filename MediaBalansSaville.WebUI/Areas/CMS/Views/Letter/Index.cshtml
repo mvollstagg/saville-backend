@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Letter>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12 my-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                Məktub bölümü
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-shorting" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Ad və soyad</th>
+                                <th>Telefon nömresi</th>
+                                <th>Email</th>
+                                <th>Ölke</th>
+                                <th>Şeher</th>
+                                <th>Məktub</th>
+                                <th>Tarix</th>
+                                <th>Əməliyyatlar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model == null || Model.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        Siyahı boşdur
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var letter in Model)
+                                {
+                                    <tr data-id="">
+                                        <td>
+                                            @letter.FullName
+                                        </td>
+                                        <td>
+                                            @letter.PhoneNumber
+                                        </td>
+                                        <td>
+                                            @letter.Email
+                                        </td>
+                                        <td>
+                                            @letter.Country
+                                        </td>
+                                        <td>
+                                            @letter.City
+                                        </td>
+                                        <td>
+                                            @letter.Message
+                                        </td>
+                                        <td>
+                                            @letter.RecordedAtDate.ToString("dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            <a asp-area="CMS" asp-controller="Letter" asp-action="Delete" asp-route-id="@letter.Id" class="btn text-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+       
+    </script>
+}

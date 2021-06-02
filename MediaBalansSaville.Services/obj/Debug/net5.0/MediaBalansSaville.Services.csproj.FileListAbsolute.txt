@@ -1,0 +1,17 @@
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/bin/Debug/net5.0/MediaBalansSaville.Services.deps.json
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/bin/Debug/net5.0/MediaBalansSaville.Services.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/bin/Debug/net5.0/ref/MediaBalansSaville.Services.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/bin/Debug/net5.0/MediaBalansSaville.Services.pdb
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/bin/Debug/net5.0/MediaBalansSaville.Core.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/bin/Debug/net5.0/MediaBalansSaville.Entities.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/bin/Debug/net5.0/MediaBalansSaville.Core.pdb
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/bin/Debug/net5.0/MediaBalansSaville.Entities.pdb
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/obj/Debug/net5.0/MediaBalansSaville.Services.csprojAssemblyReference.cache
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/obj/Debug/net5.0/MediaBalansSaville.Services.GeneratedMSBuildEditorConfig.editorconfig
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/obj/Debug/net5.0/MediaBalansSaville.Services.AssemblyInfoInputs.cache
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/obj/Debug/net5.0/MediaBalansSaville.Services.AssemblyInfo.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/obj/Debug/net5.0/MediaBalansSaville.Services.csproj.CoreCompileInputs.cache
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/obj/Debug/net5.0/MediaBalansSaville.Services.csproj.CopyComplete
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/obj/Debug/net5.0/MediaBalansSaville.Services.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/obj/Debug/net5.0/ref/MediaBalansSaville.Services.dll
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Services/obj/Debug/net5.0/MediaBalansSaville.Services.pdb

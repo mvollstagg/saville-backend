@@ -1,0 +1,88 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0": {
+      "MediaBalansSaville.Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/MediaBalansSaville.Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MediaBalansSaville.Entities.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MediaBalansSaville.Entities/1.0.0": {
+      "type": "project",
+      "path": "../MediaBalansSaville.Entities/MediaBalansSaville.Entities.csproj",
+      "msbuildProject": "../MediaBalansSaville.Entities/MediaBalansSaville.Entities.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net5.0": [
+      "MediaBalansSaville.Entities >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/matthieuvollstagg/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/MediaBalansSaville.Core.csproj",
+      "projectName": "MediaBalansSaville.Core",
+      "projectPath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/MediaBalansSaville.Core.csproj",
+      "packagesPath": "/Users/matthieuvollstagg/.nuget/packages/",
+      "outputPath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Core/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/matthieuvollstagg/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "projectReferences": {
+            "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/MediaBalansSaville.Entities.csproj": {
+              "projectPath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/MediaBalansSaville.Entities.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net5.0": {
+        "targetAlias": "net5.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.202/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

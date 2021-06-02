@@ -1,0 +1,79 @@
+﻿@model SliderUpdateVM
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="row">
+    <div class="col-12 my-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-header py-4">
+               Düzəliş et <a asp-area="CMS" asp-controller="Slider" asp-action="Index" class="float-right btn btn-outline-secondary">Geriyə get</a>
+            </div>
+            <div class="card-body">
+                <form asp-area="CMS" asp-controller="Slider" asp-action="Update" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="control-label">Başlıq (AZ)</label>
+                        <input asp-for="TitleAZ" type="text" class="form-control" />
+                        <span asp-validation-for="TitleAZ"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Başlıq (RU)</label>
+                        <input asp-for="TitleRU" type="text" class="form-control" />
+                        <span asp-validation-for="TitleRU"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Başlıq (EN)</label>
+                        <input asp-for="TitleEN" type="text" class="form-control" />
+                        <span asp-validation-for="TitleEN"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Metn (AZ)</label>
+                        <input asp-for="DetailsAZ" type="text" class="form-control" />
+                        <span asp-validation-for="DetailsAZ"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Metn (RU)</label>
+                        <input asp-for="DetailsRU" type="text" class="form-control" />
+                        <span asp-validation-for="DetailsRU"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Metn (EN)</label>
+                        <input asp-for="DetailsEN" type="text" class="form-control" />
+                        <span asp-validation-for="DetailsEN"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <strong class="control-label">Şəkil</strong>
+                        <img src="~/files/slider/@Model.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input asp-for="MainPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
+                            <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                        </div>
+                        <span asp-validation-for="MainPhotoFile"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Status</label>
+                        <input asp-for="IsActive" type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Təsdiq et" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section validation{
+    <partial name="_ValidationScriptsPW" />
+}

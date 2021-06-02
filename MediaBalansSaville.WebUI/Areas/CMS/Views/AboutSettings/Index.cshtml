@@ -1,0 +1,253 @@
+﻿@model AboutSettingsVM
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="row">
+    <div class="col-12 my-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                Sayt parametrləri bölümü 
+                <hr>
+                <br>
+                <ul class="nav nav-pills nav-fill justify-content-center">
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary" onclick="langAZ()" >Azərbaycan dili</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary" onclick="langRU()" >русский</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary" onclick="langEN()" >English</button>
+                    </li>                    
+                </ul>  
+            </div>
+            <div class="card-body"> 
+                <form asp-area="CMS" asp-controller="AboutSettings" asp-action="Save" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div> 
+                    <div id="settingsAZ">
+                        <div class="form-group">
+                            <label class="control-label">Hikayemiz (AZ)</label>
+                            <textarea asp-for="OurStoryAZ" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="OurStoryAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Misyonumuz (AZ)</label>
+                            <textarea asp-for="OurMissionAZ" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="OurMissionAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Vizyonumuz (AZ)</label>
+                            <textarea asp-for="OurVisionAZ" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="OurVisionAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Neden Saville? (AZ)</label>
+                            <textarea asp-for="WhySavilleAZ" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="WhySavilleAZ"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div id="settingsRU" style="display: none;">
+                        <div class="form-group">
+                            <label class="control-label">Hikayemiz (RU)</label>
+                            <textarea asp-for="OurStoryRU" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="OurStoryRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Misyonumuz (RU)</label>
+                            <textarea asp-for="OurMissionRU" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="OurMissionRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Vizyonumuz (RU)</label>
+                            <textarea asp-for="OurVisionRU" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="OurVisionRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Neden Saville? (RU)</label>
+                            <textarea asp-for="WhySavilleRU" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="WhySavilleRU"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div id="settingsEN" style="display: none;">
+                        <div class="form-group">
+                            <label class="control-label">Hikayemiz (EN)</label>
+                            <textarea asp-for="OurStoryEN" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="OurStoryEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Misyonumuz (EN)</label>
+                            <textarea asp-for="OurMissionEN" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="OurMissionEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Vizyonumuz (EN)</label>
+                            <textarea asp-for="OurVisionEN" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="OurVisionEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Neden Saville? (EN)</label>
+                            <textarea asp-for="WhySavilleEN" class="form-control texteditor"></textarea>
+                            <span asp-validation-for="WhySavilleEN"></span>
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Təsdiq et" class="btn btn-primary" />
+                    </div>
+                </form>
+                <div id="certificates">
+                    <div class="row">
+                    <div class="col-12 my-4 mx-auto">
+                        <div class="card shadow mb-4">
+                            <div class="card-header">
+                                Sertifikalar
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-end my-3">
+                                    <a asp-area="CMS" asp-controller="AboutSettings" asp-action="CreateCertificate" class="btn btn-outline-dark"><i class="fas fa-fw fa-plus"></i>Sertifika Ekle</a>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table dataTables table-bordered table-striped table-shorting" id="dataTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Şekil</th>
+                                                <th>Status</th>
+                                                <th>Əməliyyatlar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.Certificates == null)
+                                            {
+                                                <tr>
+                                                    <td colspan="8" class="text-center">
+                                                        Eklenmiş bir kayıt yok
+                                                    </td>
+                                                </tr>
+                                            }
+                                            else
+                                            {
+                                                @foreach (var certificate in Model.Certificates)
+                                                {
+                                                    <tr id="@certificate.Id" data-id="">
+                                                        <td>
+                                                            <img src="~/files/aboutsettings/@certificate.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
+                                                        </td>
+                                                        <td>
+                                                            @(certificate.IsActive ? "Gösteriliyor" : "Gösterilmiyor")
+                                                        </td>
+                                                        <td >
+                                                            <a asp-area="CMS" asp-controller="AboutSettings" asp-action="UpdateCertificate" asp-route-id="@certificate.Id" class="btn text-primary"><i class="fas fa-fw fa-pencil-alt"></i></a>
+                                                            <a asp-area="CMS" asp-controller="AboutSettings" asp-action="DeleteCertificate" asp-route-id="@certificate.Id" class="btn text-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="items">
+                    <div class="row">
+                    <div class="col-12 my-4 mx-auto">
+                        <div class="card shadow mb-4">
+                            <div class="card-header">
+                                Parametrler
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-end my-3">
+                                    <a asp-area="CMS" asp-controller="AboutSettings" asp-action="CreateItem" class="btn btn-outline-dark"><i class="fas fa-fw fa-plus"></i>Parametr Ekle</a>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table dataTables table-bordered table-striped table-shorting" id="dataTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Şekil</th>
+                                                <th>Başlıq</th>
+                                                <th>Detay</th>
+                                                <th>Status</th>
+                                                <th>Əməliyyatlar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.Certificates == null)
+                                            {
+                                                <tr>
+                                                    <td colspan="8" class="text-center">
+                                                        Eklenmiş bir kayıt yok
+                                                    </td>
+                                                </tr>
+                                            }
+                                            else
+                                            {
+                                                @foreach (var item in Model.Items)
+                                                {
+                                                    <tr id="@item.Id" data-id="">
+                                                        <td>
+                                                            <img src="~/files/aboutsettings/@item.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
+                                                        </td>
+                                                        <td>
+                                                            @item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Title
+                                                        </td>
+                                                        <td>
+                                                            @(item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Details.Length > 60 ? item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Details.Substring(0, 30) : item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Details)
+                                                        </td>     
+                                                        <td>
+                                                            @(item.IsActive ? "aktiv" : "deaktiv")
+                                                        </td>
+                                                        <td >
+                                                            <a asp-area="CMS" asp-controller="AboutSettings" asp-action="UpdateItem" asp-route-id="@item.Id" class="btn text-primary"><i class="fas fa-fw fa-pencil-alt"></i></a>
+                                                            <a asp-area="CMS" asp-controller="AboutSettings" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn text-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var settingsAZ = document.getElementById("settingsAZ");
+    var settingsRU = document.getElementById("settingsRU");
+    var settingsEN = document.getElementById("settingsEN");
+    function langAZ() {     
+        settingsAZ.style.display = "block";
+        settingsRU.style.display = "none";
+        settingsEN.style.display = "none";
+    }
+    function langRU() {     
+        settingsAZ.style.display = "none";
+        settingsRU.style.display = "block";
+        settingsEN.style.display = "none";
+    }
+    function langEN() {     
+        settingsAZ.style.display = "none";
+        settingsRU.style.display = "none";
+        settingsEN.style.display = "block";
+    }    
+</script>
+@section validation{
+    <partial name="_ValidationScriptsPW" />
+}

@@ -1,0 +1,67 @@
+﻿@model FAQCreateVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-12 my-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-header py-4">
+                Soru Cevap Ekle <a asp-area="CMS" asp-controller="FAQ" asp-action="Index" class="float-right btn btn-outline-secondary">Geriye Git</a>
+            </div>
+            <div class="card-body">
+                <form asp-area="CMS" asp-controller="FAQ" asp-action="Create" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="control-label">Soru (AZ)</label>
+                        <input asp-for="QuestionAZ" type="text" class="form-control" />
+                        <span asp-validation-for="QuestionAZ"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Cevap (AZ)</label>
+                        <textarea asp-for="AnswerAZ" type="text" class="form-control" ></textarea>
+                        <span asp-validation-for="AnswerAZ"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Soru (RU)</label>
+                        <input asp-for="QuestionRU" type="text" class="form-control" />
+                        <span asp-validation-for="QuestionRU"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Cevap (RU)</label>
+                        <textarea asp-for="AnswerRU" type="text" class="form-control" ></textarea>
+                        <span asp-validation-for="AnswerRU"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Soru (EN)</label>
+                        <input asp-for="QuestionEN" type="text" class="form-control" />
+                        <span asp-validation-for="QuestionEN"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Cevap (EN)</label>
+                        <textarea asp-for="AnswerEN" type="text" class="form-control" ></textarea>
+                        <span asp-validation-for="AnswerEN"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Status</label>
+                        <input checked asp-for="IsActive" type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
+                    </div>                    
+                    <div class="form-group">
+                        <input type="submit" value="Kaydet!" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section validation{
+    <partial name="_ValidationScriptsPW" />
+}

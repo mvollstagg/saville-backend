@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12 my-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                Kateqoriya bölümü
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-end my-3">
+                    <a asp-area="CMS" asp-controller="Category" asp-action="Create" class="btn btn-outline-dark"><i class="fas fa-fw fa-plus"></i>Əlavə et</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-shorting" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Ad (AZ)</th>
+                                <th>Ad (RU)</th>
+                                <th>Ad (EN)</th>
+                                <th>Tarix</th>
+                                <th>Slug Url</th>
+                                <th>Url Id</th>
+                                <th>Status</th>
+                                <th>Əməliyyatlar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model == null || Model.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        Siyahı boşdur
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var category in Model)
+                                {
+                                    <tr data-id="">
+                                        <td>
+                                            @(category.CategoryLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Name.Length > 30 ? category.CategoryLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Name.Substring(0, 30) : category.CategoryLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Name)
+                                        </td>
+                                        <td>
+                                            @(category.CategoryLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Name.Length > 30 ? category.CategoryLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Name.Substring(0, 30) : category.CategoryLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Name)
+                                        </td>
+                                        <td>
+                                            @(category.CategoryLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Name.Length > 30 ? category.CategoryLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Name.Substring(0, 30) : category.CategoryLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Name)
+                                        </td>
+                                        <td>
+                                            @category.RecordedAtDate.ToString("dd/MM/yyyy HH:mm:ss")
+                                        </td>
+                                        <td>
+                                            @category.SlugUrl
+                                        </td>
+                                        <td>
+                                            @category.UrlId
+                                        </td>
+                                        <td>
+                                            @(category.IsActive ? "aktiv" : "deaktiv")
+                                        </td>
+                                        <td>
+                                            <a asp-area="CMS" asp-controller="Category" asp-action="Update" asp-route-id="@category.Id" class="btn text-primary"><i class="fas fa-fw fa-pencil-alt"></i></a>
+                                            <a asp-area="CMS" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" class="btn text-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).on("change", ".custom-select", function () {
+            var count = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: "/cms/kateqoriya?count=" + count,
+            });
+        })
+    </script>
+}
