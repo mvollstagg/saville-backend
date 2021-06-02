@@ -162,7 +162,7 @@ namespace MediaBalansSaville.Services.Helpers
                 new Claim("IsActive", user.IsActive.ToString()),
                 new Claim(ClaimTypes.Role, roleName),
             };
-            ClaimsIdentity identity = new ClaimsIdentity(claims, "BizimSufre");
+            ClaimsIdentity identity = new ClaimsIdentity(claims, "Saville");
             ClaimsPrincipal principal = new ClaimsPrincipal(identity);
             return principal;
         }

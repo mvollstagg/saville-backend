@@ -8,34 +8,24 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Harun OZBILGI\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/Users/matthieuvollstagg/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\projeler\\saville-backend\\MediaBalansSaville.Entities\\MediaBalansSaville.Entities.csproj",
+      "projectUniqueName": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/MediaBalansSaville.Entities.csproj",
       "projectName": "MediaBalansSaville.Entities",
-      "projectPath": "D:\\projeler\\saville-backend\\MediaBalansSaville.Entities\\MediaBalansSaville.Entities.csproj",
-      "packagesPath": "C:\\Users\\Harun OZBILGI\\.nuget\\packages\\",
-      "outputPath": "D:\\projeler\\saville-backend\\MediaBalansSaville.Entities\\obj\\",
+      "projectPath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/MediaBalansSaville.Entities.csproj",
+      "packagesPath": "/Users/matthieuvollstagg/.nuget/packages/",
+      "outputPath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Harun OZBILGI\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "/Users/matthieuvollstagg/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://aka.ms/maui-preview/index.json": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -68,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.4.21255.9\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.202/RuntimeIdentifierGraph.json"
       }
     }
   }
