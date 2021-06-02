@@ -9,11 +9,11 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Models
     public class ProductUpdateVM
     {
         public string NameAZ { get; set; }
-        public string NameRU { get; set; } 
+        public string NameRU { get; set; }
         public string NameEN { get; set; }
         public bool IsActive { get; set; }
         public string PhotoUrl { get; set; }
-        public string NutritionFactsPhotoUrl { get; set; }  
+        public string NutritionFactsPhotoUrl { get; set; }
         public string SeoTitleAZ { get; set; }
         public string SeoKeysAZ { get; set; }
         public string SeoDescAZ { get; set; }
@@ -29,5 +29,6 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Models
         public List<IFormFile> PhotoFiles { get; set; }
         public int CategoryId { get; set; }
         public IEnumerable<CategoryLang> Categories { get; set; }
+        public IEnumerable<ProductLang> ProductLangs { get; set; }
     }
 }

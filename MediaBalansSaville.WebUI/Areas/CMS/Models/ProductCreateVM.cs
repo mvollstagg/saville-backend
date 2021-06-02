@@ -8,12 +8,12 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Models
 {
     public class ProductCreateVM
     {
-        [Required(ErrorMessage = "Doldurulmalıdır")]
-        public string NameAZ { get; set; }
-        [Required(ErrorMessage = "Doldurulmalıdır")]
-        public string NameRU { get; set; }
-        [Required(ErrorMessage = "Doldurulmalıdır")]
-        public string NameEN { get; set; }
+        //[Required(ErrorMessage = "Doldurulmalıdır")]
+        //public string NameAZ { get; set; }
+        //[Required(ErrorMessage = "Doldurulmalıdır")]
+        //public string NameRU { get; set; }
+        //[Required(ErrorMessage = "Doldurulmalıdır")]
+        //public string NameEN { get; set; }
         [Required(ErrorMessage = "Doldurulmalıdır")]
         public IFormFile MainPhotoFile { get; set; }
         [Required(ErrorMessage = "Doldurulmalıdır")]

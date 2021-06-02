@@ -10,3 +10,14 @@
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/obj/Debug/net5.0/MediaBalansSaville.Entities.dll
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/obj/Debug/net5.0/ref/MediaBalansSaville.Entities.dll
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.Entities/obj/Debug/net5.0/MediaBalansSaville.Entities.pdb
+D:\projeler\saville-backend\MediaBalansSaville.Entities\bin\Debug\net5.0\MediaBalansSaville.Entities.deps.json
+D:\projeler\saville-backend\MediaBalansSaville.Entities\bin\Debug\net5.0\MediaBalansSaville.Entities.dll
+D:\projeler\saville-backend\MediaBalansSaville.Entities\bin\Debug\net5.0\ref\MediaBalansSaville.Entities.dll
+D:\projeler\saville-backend\MediaBalansSaville.Entities\bin\Debug\net5.0\MediaBalansSaville.Entities.pdb
+D:\projeler\saville-backend\MediaBalansSaville.Entities\obj\Debug\net5.0\MediaBalansSaville.Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\projeler\saville-backend\MediaBalansSaville.Entities\obj\Debug\net5.0\MediaBalansSaville.Entities.AssemblyInfoInputs.cache
+D:\projeler\saville-backend\MediaBalansSaville.Entities\obj\Debug\net5.0\MediaBalansSaville.Entities.AssemblyInfo.cs
+D:\projeler\saville-backend\MediaBalansSaville.Entities\obj\Debug\net5.0\MediaBalansSaville.Entities.csproj.CoreCompileInputs.cache
+D:\projeler\saville-backend\MediaBalansSaville.Entities\obj\Debug\net5.0\MediaBalansSaville.Entities.dll
+D:\projeler\saville-backend\MediaBalansSaville.Entities\obj\Debug\net5.0\ref\MediaBalansSaville.Entities.dll
+D:\projeler\saville-backend\MediaBalansSaville.Entities\obj\Debug\net5.0\MediaBalansSaville.Entities.pdb

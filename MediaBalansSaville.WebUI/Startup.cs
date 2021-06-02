@@ -57,8 +57,9 @@ namespace MediaBalansSaville.WebUI
                     .AllowAnyHeader()
                     .AllowCredentials());
             });
+            services.AddDbContext<ApplicationDbContext>(options => options.ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.DetachedLazyLoadingWarning))
+                                                                          .UseSqlServer(Configuration.GetConnectionString("Connect")));
 
-            
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IUserService, UserService>();
@@ -74,17 +75,17 @@ namespace MediaBalansSaville.WebUI
             services.AddTransient<ICategoryLangService, CategoryLangService>();
             services.AddTransient<IFAQService, FAQService>();
             services.AddTransient<IPomegranateService, PomegranateSettingsService>();
-            services.AddTransient<IImage, Image>();
+            services.AddTransient<IImage, Image>();                 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => { 
+                options.AccessDeniedPath = "/cms/hesab/giris"; 
+                options.LoginPath = "/cms/hesab/giris"; 
+                options.ExpireTimeSpan = TimeSpan.FromHours(1); 
+            });
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromHours(24);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
-            });        
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => { 
-                options.AccessDeniedPath = "/cms/hesab/giris"; 
-                options.LoginPath = "/cms/hesab/giris"; 
-                options.ExpireTimeSpan = TimeSpan.FromHours(1); 
             });
             services.AddHttpContextAccessor();
             services.AddMvc().AddNewtonsoftJson(options =>

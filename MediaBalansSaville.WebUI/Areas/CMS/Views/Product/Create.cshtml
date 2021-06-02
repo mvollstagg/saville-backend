@@ -8,292 +8,112 @@
     <div class="col-12 my-4 mx-auto">
         <div class="card shadow mb-4">
             <div class="card-header py-4">
-                Əlavə et <a asp-area="CMS" asp-controller="Product" asp-action="Index" class="float-right btn btn-outline-secondary">Geriyə get</a>
-                <hr>
-                <br>
-                @* <ul class="nav nav-pills nav-fill justify-content-center">
-                        <li class="nav-item">
-                            <button class="btn btn-outline-secondary" onclick="langAZ()" >Azərbaycan dili</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-outline-secondary" onclick="langRU()" >русский</a>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-outline-secondary" onclick="langEN()" >English</button>
-                        </li>                    
-                    </ul> *@
+                Əlavə et 
+                <a asp-area="CMS" asp-controller="Product" asp-action="Index" class="float-right btn btn-outline-secondary">Geriyə get</a>
             </div>
             <div class="card-body">
                 <form asp-area="CMS" asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    @* <div id="productAZ">
-                            <div class="form-group">
-                                <label class="control-label">Ad (AZ)</label>
-                                <input asp-for="NameAZ" type="text" class="form-control" />
-                                <span asp-validation-for="NameAZ"></span>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="kategoriSelect" class="form-group">
+                                <label class="control-label">Kateqoriya</label>
+                                <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control"></select>
+                                <span asp-validation-for="CategoryId"></span>
                                 <span class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">Məlumat (AZ)</label>
-                                <input asp-for="DetailsAZ" type="text" class="form-control" />
-                                <span asp-validation-for="DetailsAZ"></span>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="addnae">Əsas şəkil</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input asp-for="MainPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".png, .jpeg, .jpg">
+                                    <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                                </div>
+                                <span asp-validation-for="MainPhotoFile"></span>
                                 <span class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">Tərkib (AZ)</label>
-                                <input asp-for="IngredientsAZ" type="text" class="form-control" />
-                                <span asp-validation-for="IngredientsAZ"></span>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="addnae">Nutrition Fact şəkil</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input asp-for="NutritionFactPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".png, .jpeg, .jpg">
+                                    <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                                </div>
+                                <span asp-validation-for="NutritionFactPhotoFile"></span>
                                 <span class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">Qeyd (AZ)</label>
-                                <input asp-for="NoteAZ" type="text" class="form-control" />
-                                <span asp-validation-for="NoteAZ"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <hr>
-                            <div class="form-group">
-                                <label class="control-label">Seo Başlıq (AZ)</label>
-                                <input asp-for="SeoTitleAZ" type="text" class="form-control" />
-                                <span asp-validation-for="SeoTitleAZ"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Seo Keys (AZ)</label>
-                                <input asp-for="SeoKeysAZ" type="text" class="form-control" />
-                                <span asp-validation-for="SeoKeysAZ"></span>
-                                <span class="text-danger"></span>
+                            <div id="digerSekiller">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addnae">Digər şəkillər</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input asp-for="PhotoFiles" type="file" multiple class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
+                                        <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                                    </div>
+                                    <span asp-validation-for="PhotoFiles"></span>
+                                    <span class="text-danger"></span>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Seo Desc (AZ)</label>
-                                <input asp-for="SeoDescAZ" type="text" class="form-control" />
-                                <span asp-validation-for="SeoDescAZ"></span>
-                                <span class="text-danger"></span>
+                                <label class="control-label">Status</label>
+                                <input asp-for="IsActive" type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
                             </div>
                         </div>
-                        <div id="productRU" style="display: none;">
-                            <div class="form-group">
-                                <label class="control-label">Ad (RU)</label>
-                                <input asp-for="NameRU" type="text" class="form-control" />
-                                <span asp-validation-for="NameRU"></span>
-                                <span class="text-danger"></span>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    Tərcümə olunacaq dillər
+                                </div>
+                                <div class="card-body">
+                                    <ul class="nav nav-pills mb-3 text-center" id="pills-tab" role="tablist">
+                                        @{
+                                            int b = 0;
+                                        }
+                                        @foreach (var item in await lang.GetAllLangs())
+                                        {
+                                            <li style="width:32%" class="nav-item ml-2 bg-secondary ">
+                                                <a class="nav-link @(b==0 ? "active" : "") text-white" id="pills-@item.Code-tab" data-toggle="pill" href="#pills-@item.Code" role="tab" aria-controls="pills-home" aria-selected="true">@item.Name</a>
+                                            </li>
+                                            b++;
+                                        }
+                                    </ul>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6 col-6">
+                                            <div class="tab-content" id="pills-tabContent ">
+                                                @{
+                                                    int count = 0;
+                                                }
+                                                @foreach (var item in await lang.GetAllLangs())
+                                                {
+                                                    <div class="col-md-12 col-12 tab-pane fade @(count == 0 ? "show active" : "")" id="pills-@item.Code" role="tabpanel">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Ad (@item.Code)</label>
+                                                            <input name="ProductLangs[@count].Name" type="text" class="form-control" />
+                                                            <input type="hidden" name="ProductLangs[@count].LangId" value="@item.Id" />
+                                                        </div>
+                                                    </div>
+                                                    count++;
+                                                } 
+                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">Məlumat (RU)</label>
-                                <input asp-for="DetailsRU" type="text" class="form-control" />
-                                <span asp-validation-for="DetailsRU"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Tərkib (RU)</label>
-                                <input asp-for="IngredientsRU" type="text" class="form-control" />
-                                <span asp-validation-for="IngredientsRU"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Qeyd (RU)</label>
-                                <input asp-for="NoteRU" type="text" class="form-control" />
-                                <span asp-validation-for="NoteRU"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <hr>
-                            <div class="form-group">
-                                <label class="control-label">Seo Başlıq (RU)</label>
-                                <input asp-for="SeoTitleRU" type="text" class="form-control" />
-                                <span asp-validation-for="SeoTitleRU"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Seo Keys (RU)</label>
-                                <input asp-for="SeoKeysRU" type="text" class="form-control" />
-                                <span asp-validation-for="SeoKeysRU"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Seo Desc (RU)</label>
-                                <input asp-for="SeoDescRU" type="text" class="form-control" />
-                                <span asp-validation-for="SeoDescRU"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div id="productEN" style="display: none;">
-                            <div class="form-group">
-                                <label class="control-label">Ad (EN)</label>
-                                <input asp-for="NameEN" type="text" class="form-control" />
-                                <span asp-validation-for="NameEN"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Məlumat (EN)</label>
-                                <input asp-for="DetailsEN" type="text" class="form-control" />
-                                <span asp-validation-for="DetailsEN"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Tərkib (EN)</label>
-                                <input asp-for="IngredientsEN" type="text" class="form-control" />
-                                <span asp-validation-for="IngredientsEN"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Qeyd (EN)</label>
-                                <input asp-for="NoteEN" type="text" class="form-control" />
-                                <span asp-validation-for="NoteEN"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <hr>
-                            <div class="form-group">
-                                <label class="control-label">Seo Başlıq (EN)</label>
-                                <input asp-for="SeoTitleEN" type="text" class="form-control" />
-                                <span asp-validation-for="SeoTitleEN"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Seo Keys (EN)</label>
-                                <input asp-for="SeoKeysEN" type="text" class="form-control" />
-                                <span asp-validation-for="SeoKeysEN"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Seo Desc (EN)</label>
-                                <input asp-for="SeoDescEN" type="text" class="form-control" />
-                                <span asp-validation-for="SeoDescEN"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                        </div>   *@
-
-                    @{
-                        int count = 0;
-                    }
-                    @foreach (var item in await lang.GetAllAsync())
-                    {
-                        <div class="form-group">
-                            <label class="control-label">Ad (@item.Code)</label>
-                            <input name="ProductLangs[@count].Name"  type="text" class="form-control" />
-                            <span asp-validation-for="NameAZ"></span>
-                            <input type="hidden" name="ProductLangs[@count].LangId" value="@item.Id" />
-                        </div>
-
-                        count++;
-                    }
-                
-                    <div id="kategoriSelect" class="form-group">
-                        <label class="control-label">Kateqoriya</label>
-                        <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control"></select>
-                        <span asp-validation-for="CategoryId"></span>
-                        <span class="text-danger"></span>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="addnae">Əsas şəkil</span>
-                        </div>
-                        <div class="custom-file">
-                            <input asp-for="MainPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".png, .jpeg, .jpg">
-                            <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
-                        </div>
-                        <span asp-validation-for="MainPhotoFile"></span>
-                        <span class="text-danger"></span>
-                    </div>     
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="addnae">Nutrition Fact şəkil</span>
-                        </div>
-                        <div class="custom-file">
-                            <input asp-for="NutritionFactPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".png, .jpeg, .jpg">
-                            <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
-                        </div>
-                        <span asp-validation-for="NutritionFactPhotoFile"></span>
-                        <span class="text-danger"></span>
-                    </div>
-                    <div id="digerSekiller">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="addnae">Digər şəkillər</span>
-                            </div>
-                            <div class="custom-file">
-                                <input asp-for="PhotoFiles" type="file" multiple class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
-                                <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
-                            </div>
-                            <span asp-validation-for="PhotoFiles"></span>
-                            <span class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Status</label>
-                        <input asp-for="IsActive" type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
-                    </div>  
-                    <div class="form-group">
-                        <input type="submit" value="Təsdiq et" class="btn btn-primary" />
+                        <input type="submit" value="Təsdiq et" class="btn btn-primary my-3" />
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script>
-    @* var sayi = 1;
-
-        function productRemove (input) {
-        document.getElementById('productItems').removeChild(input.parentNode);
-        }
-
-        function productAdd(){
-        document.querySelector('#productItems').insertAdjacentHTML(
-        'beforeend',            
-        `   
-        <div id="ProductItem`+sayi+`">
-        <label class="control-label">Məhsul Paketi</label>
-        <input type="button" onclick="productRemove(this)" value="Məhsul Paketi Yok Ət" class="btn btn-danger" />   
-        <div class="form-group">
-        <label class="control-label">Değer</label>
-        <input required id="ProductItem[`+sayi+`].UnitValue" name="ProductItem[`+sayi+`].UnitValue" type="text" class="form-control" />
-        </div>
-        <div class="form-group">
-        <label class="control-label">Ikon Çeşidi:  </label>
-        <div class="form-check form-check-inline">
-        <input id="ProductItem[`+sayi+`].UnitType" name="ProductItem[`+sayi+`].UnitType" required class="form-check-input" type="radio" value="Piece">
-        <label class="form-check-label" id="ProductItem[`+sayi+`].UnitType" name="ProductItem[`+sayi+`].UnitType">Ədəd <img src="/images/mb_poset_icon.png" alt="Poşet Icon"/></label>
-        </div>
-        <div class="form-check form-check-inline">
-        <input id="ProductItem[`+sayi+`].UnitType" name="ProductItem[`+sayi+`].UnitType" required class="form-check-input" type="radio" value="Weight">
-        <label class="form-check-label" id="ProductItem[`+sayi+`].UnitType" name="ProductItem[`+sayi+`].UnitType">Çəki <img src="/images/mb_cicek_icon.png" class="flower" alt="Flower Icon"/></label>
-        </div>
-        <span class="text-danger"></span>
-        </div>
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-        <span class="input-group-text" id="addnae">Əsas şəkil</span>
-        </div>
-        <div class="custom-file">
-        <input id="ProductItem[`+sayi+`].PhotoFile" name="ProductItem[`+sayi+`].PhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
-        <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
-        </div>
-        <span class="text-danger"></span>
-        </div>
-        </div> `     
-        )
-        sayi++;
-        } *@
-
-    var productAZ = document.getElementById("productAZ");
-    var productRU = document.getElementById("productRU");
-    var productEN = document.getElementById("productEN");
-    function langAZ() {     
-        productAZ.style.display = "block";
-        productRU.style.display = "none";
-        productEN.style.display = "none";
-    }
-    function langRU() {     
-        productAZ.style.display = "none";
-        productRU.style.display = "block";
-        productEN.style.display = "none";
-    }
-    function langEN() {     
-        productAZ.style.display = "none";
-        productRU.style.display = "none";
-        productEN.style.display = "block";
-    }    
-</script>
 @section validation{
     <partial name="_ValidationScriptsPW" />
 }

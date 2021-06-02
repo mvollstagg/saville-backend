@@ -84,11 +84,11 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 return View(productCreateVM);
             }
             Category category = await _categoryService.GetCategoryByCategoryLangId(productCreateVM.CategoryId);
-            Product newProduct = new Product
+            Product newProduct = new()
             {
                 CategoryId = category.Id,
                 Category = category,
-                SlugUrl = UrlSeoHelper.UrlSeo(productCreateVM.NameAZ.Trim()),
+                SlugUrl = "asdasd",
                 IsActive = productCreateVM.IsActive
             };
             List<ProductPhoto> productPhotos = new List<ProductPhoto>();
@@ -110,10 +110,10 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
             if (productCreateVM.PhotoFiles != null)
             {
-                for (int i = 0; i < productCreateVM.PhotoFiles.Count(); i++)
+                for (int i = 0; i < productCreateVM.PhotoFiles.Count; i++)
                 {
                     var item = productCreateVM.PhotoFiles.ElementAtOrDefault(i);
-                    ProductPhoto newProductPhoto = new ProductPhoto
+                    ProductPhoto newProductPhoto = new()
                     {
                         PhotoUrl = await _image.UploadAsync(item, "files", "product"),
                         ProductId = newProduct.Id
@@ -124,46 +124,45 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             newProduct.ProductPhotos = productPhotos;
 
 
-            Seo newProductSeo = new Seo
-            {
-                SlugUrl = UrlSeoHelper.UrlSeo(productCreateVM.NameAZ.Trim()),
-                IsActive = true,
-                UniqueId = Guid.NewGuid().ToString().Replace("-", "").GetHashCode(),
-                Page = productCreateVM.NameAZ.Trim(),
-                IsBlog = true
-            };
-            List<SeoLang> seoLangs = new List<SeoLang>();
-            SeoLang newSeoLangAZ = new SeoLang
-            {
-                SeoId = newProductSeo.Id,
-                Title = productCreateVM.SeoTitleAZ,
-                Keys = productCreateVM.SeoKeysAZ,
-                Desc = productCreateVM.SeoDescAZ,
-                LangId = azLang.Id
-            };
-            SeoLang newSeoLangRU = new SeoLang
-            {
-                SeoId = newProductSeo.Id,
-                Title = productCreateVM.SeoTitleRU,
-                Keys = productCreateVM.SeoKeysRU,
-                Desc = productCreateVM.SeoDescRU,
-                LangId = ruLang.Id
-            };
-            SeoLang newSeoLangEN = new SeoLang
-            {
-                SeoId = newProductSeo.Id,
-                Title = productCreateVM.SeoTitleEN,
-                Keys = productCreateVM.SeoKeysEN,
-                Desc = productCreateVM.SeoDescEN,
-                LangId = enLang.Id
-            };
-            newProduct.UniqueId = newProductSeo.UniqueId;
-            seoLangs.Add(newSeoLangAZ);
-            seoLangs.Add(newSeoLangRU);
-            seoLangs.Add(newSeoLangEN);
-            newProductSeo.SeoLangs = seoLangs;
-            newProduct.ProductSeo = newProductSeo;
-
+            //Seo newProductSeo = new Seo
+            //{
+            //    SlugUrl = UrlSeoHelper.UrlSeo(productCreateVM.NameAZ.Trim()),
+            //    IsActive = true,
+            //    UniqueId = Guid.NewGuid().ToString().Replace("-", "").GetHashCode(),
+            //    Page = productCreateVM.NameAZ.Trim(),
+            //    IsBlog = true
+            //};
+            //List<SeoLang> seoLangs = new List<SeoLang>();
+            //SeoLang newSeoLangAZ = new SeoLang
+            //{
+            //    SeoId = newProductSeo.Id,
+            //    Title = productCreateVM.SeoTitleAZ,
+            //    Keys = productCreateVM.SeoKeysAZ,
+            //    Desc = productCreateVM.SeoDescAZ,
+            //    LangId = azLang.Id
+            //};
+            //SeoLang newSeoLangRU = new SeoLang
+            //{
+            //    SeoId = newProductSeo.Id,
+            //    Title = productCreateVM.SeoTitleRU,
+            //    Keys = productCreateVM.SeoKeysRU,
+            //    Desc = productCreateVM.SeoDescRU,
+            //    LangId = ruLang.Id
+            //};
+            //SeoLang newSeoLangEN = new SeoLang
+            //{
+            //    SeoId = newProductSeo.Id,
+            //    Title = productCreateVM.SeoTitleEN,
+            //    Keys = productCreateVM.SeoKeysEN,
+            //    Desc = productCreateVM.SeoDescEN,
+            //    LangId = enLang.Id
+            //};
+            //newProduct.UniqueId = newProductSeo.UniqueId;
+            //seoLangs.Add(newSeoLangAZ);
+            //seoLangs.Add(newSeoLangRU);
+            //seoLangs.Add(newSeoLangEN);
+            //newProductSeo.SeoLangs = seoLangs;
+            //newProduct.ProductSeo = newProductSeo;
 
             foreach (var item in ProductLangs)
             {
@@ -187,27 +186,15 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             Seo seoFromDb = productFromDb.ProductSeo;
             if (productFromDb == null) return NotFound();
 
-            ProductUpdateVM productUpdateVM = new ProductUpdateVM
+            ProductUpdateVM productUpdateVM = new()
             {
-                NameAZ = productFromDb.ProductLangs.FirstOrDefault(x => x.Lang.Code == "az").Name,
-                NameRU = productFromDb.ProductLangs.FirstOrDefault(x => x.Lang.Code == "ru").Name,
-                NameEN = productFromDb.ProductLangs.FirstOrDefault(x => x.Lang.Code == "en").Name,
-                SeoTitleAZ = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Title,
-                SeoKeysAZ = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Keys,
-                SeoDescAZ = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Desc,
-                SeoTitleRU = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Title,
-                SeoKeysRU = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Keys,
-                SeoDescRU = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Desc,
-                SeoTitleEN = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Title,
-                SeoKeysEN = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Keys,
-                SeoDescEN = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Desc,
                 PhotoUrl = productFromDb.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl,
                 NutritionFactsPhotoUrl = productFromDb.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl,
                 IsActive = productFromDb.IsActive
             };
             productUpdateVM.Categories = await _categoyrLangService.GetAllCategoryLangsFor("product");
-
-            return View();
+            productUpdateVM.ProductLangs = productFromDb.ProductLangs.ToList();
+            return View(productUpdateVM);
         }
 
 
