@@ -43,7 +43,7 @@ namespace MediaBalansSaville.Services
         {
             sliderToBeUpdated.PhotoUrl = slider.PhotoUrl;
             sliderToBeUpdated.IsActive = slider.IsActive;
-            sliderToBeUpdated.SliderLangs = slider.SliderLangs;
+            // sliderToBeUpdated.SliderLangs = slider.SliderLangs;
 
             await _unitOfWork.CommitAsync();
         }

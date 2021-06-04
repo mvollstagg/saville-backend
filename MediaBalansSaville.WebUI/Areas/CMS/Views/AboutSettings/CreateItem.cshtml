@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    int count = 0;
 }
 
 <div class="row">
@@ -12,42 +13,49 @@
             </div>
             <div class="card-body">
                 <form asp-area="CMS" asp-controller="AboutSettings" asp-action="CreateItem" method="post" enctype="multipart/form-data">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>   
-                    <div class="form-group">
-                        <label class="control-label">Başlıq (AZ)</label>
-                        <input asp-for="TitleAZ" type="text" class="form-control" />
-                        <span asp-validation-for="TitleAZ"></span>
-                        <span class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">İçerik (AZ)</label>
-                        <input asp-for="DetailsAZ" type="text" class="form-control" />
-                        <span asp-validation-for="DetailsAZ"></span>
-                        <span class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Başlıq (RU)</label>
-                        <input asp-for="TitleRU" type="text" class="form-control" />
-                        <span asp-validation-for="TitleRU"></span>
-                        <span class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">İçerik (RU)</label>
-                        <input asp-for="DetailsRU" type="text" class="form-control" />
-                        <span asp-validation-for="DetailsRU"></span>
-                        <span class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Başlıq (EN)</label>
-                        <input asp-for="TitleEN" type="text" class="form-control" />
-                        <span asp-validation-for="TitleEN"></span>
-                        <span class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">İçerik (EN)</label>
-                        <input asp-for="DetailsEN" type="text" class="form-control" />
-                        <span asp-validation-for="DetailsEN"></span>
-                        <span class="text-danger"></span>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div> 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    Tərcümə olunacaq dillər
+                                </div>
+                                <div class="card-body">
+                                    <ul class="nav nav-pills mb-3 text-center" id="pills-tab" role="tablist">
+                                        @{
+                                            int b = 0;
+                                        }
+                                        @foreach (var item in await lang.GetAllLangs())
+                                        {
+                                            <li style="width:32%" class="nav-item ml-2 bg-secondary ">
+                                                <a class="nav-link @(b==0 ? "active" : "") text-white" id="pills-@item.Code-tab" data-toggle="pill" href="#pills-@item.Code" role="tab" aria-controls="pills-home" aria-selected="true">@item.Name</a>
+                                            </li>
+                                            b++;
+                                        }
+                                    </ul>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6 col-6">
+                                            <div class="tab-content" id="pills-tabContent ">
+                                                @foreach (var item in await lang.GetAllLangs())
+                                                {
+                                                    <div class="col-md-12 col-12 tab-pane fade @(count == 0 ? "show active" : "")" id="pills-@item.Code" role="tabpanel">
+                                                        <div class="form-group">
+                                                            <input type="hidden" name="ItemLangs[@count].LangId" value="@item.Id" />
+
+                                                            <label class="control-label">Başlıq (@item.Code.ToUpper())</label>
+                                                            <input name="ItemLangs[@count].Title" type="text" class="form-control" />
+                                                            <label class="control-label">Detay (@item.Code.ToUpper())</label>
+                                                            <input name="ItemLangs[@count].Details" type="text" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    count++;
+                                                } 
+                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                                      
                     <div class="input-group mb-3">

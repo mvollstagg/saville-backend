@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Update";
+    int productCount = 0;
 }
 
 <div class="row">
@@ -21,48 +22,7 @@
                                 <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control"></select>
                                 <span asp-validation-for="CategoryId"></span>
                                 <span class="text-danger"></span>
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="addnae">Əsas şəkil</span>
-                                </div>
-                                <div class="custom-file">
-                                    <input asp-for="MainPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".png, .jpeg, .jpg">
-                                    <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
-                                </div>
-                                <span asp-validation-for="MainPhotoFile"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="addnae">Nutrition Fact şəkil</span>
-                                </div>
-                                <div class="custom-file">
-                                    <input asp-for="NutritionFactPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".png, .jpeg, .jpg">
-                                    <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
-                                </div>
-                                <span asp-validation-for="NutritionFactPhotoFile"></span>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div id="digerSekiller">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="addnae">Digər şəkillər</span>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input asp-for="PhotoFiles" type="file" multiple class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
-                                        <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
-                                    </div>
-                                    <span asp-validation-for="PhotoFiles"></span>
-                                    <span class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div id="kategoriSelect" class="form-group">
-                                <label class="control-label">Kateqoriya</label>
-                                <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control"></select>
-                                <span asp-validation-for="CategoryId"></span>
-                                <span class="text-danger"></span>
-                            </div>
+                            </div>                            
                             <div class="form-group">
                                 <strong class="control-label">Əsas şəkil</strong>
                                 <img src="~/files/product/@Model.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
@@ -77,6 +37,19 @@
                                 <strong class="control-label">Nutrition Fact şəkil</strong>
                                 <img src="~/files/product/@Model.NutritionFactsPhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
                             </div>
+                            <div id="digerSekiller">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addnae">Digər şəkillər</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input asp-for="PhotoFiles" type="file" multiple class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
+                                        <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                                    </div>
+                                    <span asp-validation-for="PhotoFiles"></span>
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
                             <div class="input-group mb-3">
                                 <div class="custom-file">
                                     <input asp-for="NutritionFactPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
@@ -88,7 +61,7 @@
                                 <input asp-for="IsActive" type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
                             </div>
                         </div>
-                    </div>               
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -111,20 +84,32 @@
                                     <div class="row justify-content-center">
                                         <div class="col-md-6 col-6">
                                             <div class="tab-content" id="pills-tabContent ">
-                                                @{
-                                                    int count = 0;
-                                                }
                                                 @foreach (var item in Model.ProductLangs.ToList())
                                                 {
-                                                    <div class="col-md-12 col-12 tab-pane fade @(count == 0 ? "show active" : "")" id="pills-@item.Lang.Code" role="tabpanel">
+                                                    <div class="col-md-12 col-12 tab-pane fade @(productCount == 0 ? "show active" : "")" id="pills-@item.Lang.Code" role="tabpanel">
                                                         <div class="form-group">
+                                                            <input type="hidden" name="ProductLangs[@productCount].LangId" value="@item.LangId" />
+                                                            <input type="hidden" name="ProductLangs[@productCount].ProductId" value="@item.ProductId" />
+
                                                             <label class="control-label">Ad (@item.Lang.Code)</label>
-                                                            <input name="ProductLangs[@count].Name" value="@item.Name" type="text" class="form-control" />
-                                                            <input type="hidden" name="ProductLangs[@count].LangId" value="@item.LangId" />
-                                                            <input type="hidden" name="ProductLangs[@count].ProductId" value="@item.ProductId" />
+                                                            <input name="ProductLangs[@productCount].Name" value="@item.Name" type="text" class="form-control" />
                                                         </div>
+                                                        @foreach (var seo in Model.SeoLangs.Where(x => x.LangId == item.LangId))
+                                                        {
+                                                            <div class="form-group">                                                            
+                                                                <input type="hidden" name="SeoLangs[@productCount].LangId" value="@seo.LangId" />
+                                                                <input type="hidden" name="SeoLangs[@productCount].SeoId" value="@seo.SeoId" />
+
+                                                                <label class="control-label">Seo Başlıq (@item.Lang.Code)</label>
+                                                                <input name="SeoLangs[@productCount].Title" value="@seo.Title" type="text" class="form-control" />
+                                                                <label class="control-label">Seo Keywords (@item.Lang.Code)</label>
+                                                                <input name="SeoLangs[@productCount].Keys" value="@seo.Keys" type="text" class="form-control" />
+                                                                <label class="control-label">Seo Description (@item.Lang.Code)</label>
+                                                                <input name="SeoLangs[@productCount].Desc" value="@seo.Desc" type="text" class="form-control" />
+                                                            </div>
+                                                        }
                                                     </div>
-                                                    count++;
+                                                    productCount++;
                                                 }
                                             </div>
                                         </div>

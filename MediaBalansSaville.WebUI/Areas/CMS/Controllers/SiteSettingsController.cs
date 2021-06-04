@@ -57,30 +57,19 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 SiteSettingsFromDb.SiteSettingsLangs.Add(newSiteSettingsLangEN);
                 await _SiteSettingsService.CreateSiteSettings(SiteSettingsFromDb);
                 
-                return View(SiteSettingsUpdateVM);
+                return RedirectToAction("Index", "SiteSettings");
             }
             else
             {
                 SiteSettingsVM settingsVM = new SiteSettingsVM
                 {
+                    SiteSettingsLangs = SiteSettingsFromDb.SiteSettingsLangs.ToList(),
                     FacebookURL = SiteSettingsFromDb.FacebookURL,
                     InstagramURL = SiteSettingsFromDb.InstagramURL,
                     TwitterURL = SiteSettingsFromDb.TwitterURL,
                     AdVideoURL = SiteSettingsFromDb.AdVideoURL,
                     PhoneNumber = SiteSettingsFromDb.PhoneNumber,
-                    Email = SiteSettingsFromDb.Email,
-                    AddressAZ = SiteSettingsFromDb.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == "az").Adress,
-                    AddressRU = SiteSettingsFromDb.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == "ru").Adress,
-                    AddressEN = SiteSettingsFromDb.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == "en").Adress,
-                    AboutTitleAZ = SiteSettingsFromDb.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == "az").AboutTitle,
-                    AboutTitleRU = SiteSettingsFromDb.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == "ru").AboutTitle,
-                    AboutTitleEN = SiteSettingsFromDb.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == "en").AboutTitle,
-                    AboutDetailAZ = SiteSettingsFromDb.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == "az").AboutDetail,
-                    AboutDetailRU = SiteSettingsFromDb.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == "ru").AboutDetail,
-                    AboutDetailEN = SiteSettingsFromDb.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == "en").AboutDetail,
-                    AdDetailAZ = SiteSettingsFromDb.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == "az").AdDetail,
-                    AdDetailRU = SiteSettingsFromDb.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == "ru").AdDetail,
-                    AdDetailEN = SiteSettingsFromDb.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == "en").AdDetail,
+                    Email = SiteSettingsFromDb.Email,                    
                     GoogleAnalyticsCode = SiteSettingsFromDb.GoogleAnalyticsCode,
                     FacebookPixel = SiteSettingsFromDb.FacebookPixel,
                 };
@@ -106,19 +95,15 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             SiteSettingsFromVm.GoogleAnalyticsCode = SiteSettingsUpdateVM.GoogleAnalyticsCode;
             SiteSettingsFromVm.FacebookPixel = SiteSettingsUpdateVM.FacebookPixel;
             
-            
-            SiteSettingsFromVm.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Adress = SiteSettingsUpdateVM.AddressAZ;
-            SiteSettingsFromVm.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Adress = SiteSettingsUpdateVM.AddressRU;
-            SiteSettingsFromVm.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Adress = SiteSettingsUpdateVM.AddressEN;
-            SiteSettingsFromVm.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").AboutTitle = SiteSettingsUpdateVM.AboutTitleAZ;
-            SiteSettingsFromVm.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").AboutTitle = SiteSettingsUpdateVM.AboutTitleRU;
-            SiteSettingsFromVm.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").AboutTitle = SiteSettingsUpdateVM.AboutTitleEN;
-            SiteSettingsFromVm.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").AboutDetail = SiteSettingsUpdateVM.AboutDetailAZ;
-            SiteSettingsFromVm.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").AboutDetail = SiteSettingsUpdateVM.AboutDetailRU;
-            SiteSettingsFromVm.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").AboutDetail = SiteSettingsUpdateVM.AboutDetailEN;
-            SiteSettingsFromVm.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").AdDetail = SiteSettingsUpdateVM.AdDetailAZ;
-            SiteSettingsFromVm.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").AdDetail = SiteSettingsUpdateVM.AdDetailRU;
-            SiteSettingsFromVm.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").AdDetail = SiteSettingsUpdateVM.AdDetailEN;
+            int count = 0;
+            foreach (var item in SiteSettingsFromVm.SiteSettingsLangs)
+            {                
+                item.Adress = SiteSettingsUpdateVM.SiteSettingsLangs.ElementAt(count).Adress;
+                item.AboutTitle = SiteSettingsUpdateVM.SiteSettingsLangs.ElementAt(count).AboutTitle;
+                item.AboutDetail = SiteSettingsUpdateVM.SiteSettingsLangs.ElementAt(count).AboutDetail;
+                item.AdDetail = SiteSettingsUpdateVM.SiteSettingsLangs.ElementAt(count).AdDetail;
+                count++;
+            }
 
             await _SiteSettingsService.UpdateSiteSettings(SiteSettingsFromDb, SiteSettingsFromVm);
             return RedirectToAction("Index", "SiteSettings");             

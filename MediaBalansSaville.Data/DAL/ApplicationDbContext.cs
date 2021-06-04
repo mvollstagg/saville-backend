@@ -54,7 +54,7 @@ namespace MediaBalansSaville.Data.DAL
         public DbSet<SiteSettings> SiteSettings { get; set; }
         public DbSet<SiteSettingsLang> SiteSettingsLangs { get; set; }
         public DbSet<Slider> Sliders { get; set; }
-        public DbSet<SliderLang> SliderLangs { get; set; }
+        // public DbSet<SliderLang> SliderLangs { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         

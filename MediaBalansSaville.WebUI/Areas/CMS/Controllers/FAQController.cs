@@ -6,6 +6,7 @@ using MediaBalansSaville.Entities;
 using MediaBalansSaville.WebUI.Areas.CMS.Models;
 using MediaBalansSaville.Core.Services;
 using MediaBalansSaville.Services;
+using System.Collections.Generic;
 
 namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 {
@@ -37,41 +38,24 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
         [Route("/cms/sorucevap/olustur")]
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(FAQCreateVM FAQCreateVM)
+        public async Task<IActionResult> Create(FAQCreateVM FAQCreateVM, List<FAQLang> FAQLangs)
         {
             if (!ModelState.IsValid) return View(FAQCreateVM); 
-            Lang azLang = await _langService.GetLangWithCode("az");
-            Lang ruLang = await _langService.GetLangWithCode("ru");
-            Lang enLang = await _langService.GetLangWithCode("en");
             
             FAQ newFAQ = new FAQ()
             {
                 IsActive = FAQCreateVM.IsActive
             };
-            FAQLang newFAQLangAZ = new FAQLang()
+            foreach (var item in FAQLangs)
             {
-                FAQId = newFAQ.Id,
-                LangId = azLang.Id,
-                Question = FAQCreateVM.QuestionAZ,
-                Answer = FAQCreateVM.AnswerAZ
-            };
-            FAQLang newFAQLangRU = new FAQLang()
-            {
-                FAQId = newFAQ.Id,
-                LangId = ruLang.Id,
-                Question = FAQCreateVM.QuestionRU,
-                Answer = FAQCreateVM.AnswerRU
-            };
-            FAQLang newFAQLangEN = new FAQLang()
-            {
-                FAQId = newFAQ.Id,
-                LangId = enLang.Id,
-                Question = FAQCreateVM.QuestionEN,
-                Answer = FAQCreateVM.AnswerEN
-            };
-            newFAQ.FAQLangs.Add(newFAQLangAZ);
-            newFAQ.FAQLangs.Add(newFAQLangRU);
-            newFAQ.FAQLangs.Add(newFAQLangEN);
+                newFAQ.FAQLangs.Add(new FAQLang()
+                {
+                    Question = item.Question,
+                    Answer = item.Answer,
+                    FAQId = newFAQ.Id,
+                    LangId = item.LangId
+                });
+            }
             await _FAQService.CreateFAQ(newFAQ);
 
             return RedirectToAction("Index", "FAQ");
@@ -86,12 +70,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
             FAQUpdateVM faqUpdateVM = new FAQUpdateVM
             {
-                QuestionAZ = faqFromDb.FAQLangs.FirstOrDefault(x => x.Lang.Code == "az").Question,
-                AnswerAZ = faqFromDb.FAQLangs.FirstOrDefault(x => x.Lang.Code == "az").Answer,
-                QuestionRU = faqFromDb.FAQLangs.FirstOrDefault(x => x.Lang.Code == "ru").Question,
-                AnswerRU = faqFromDb.FAQLangs.FirstOrDefault(x => x.Lang.Code == "ru").Answer,
-                QuestionEN = faqFromDb.FAQLangs.FirstOrDefault(x => x.Lang.Code == "en").Question,
-                AnswerEN = faqFromDb.FAQLangs.FirstOrDefault(x => x.Lang.Code == "en").Answer,
+                Langs = faqFromDb.FAQLangs.ToList(),
                 IsActive = faqFromDb.IsActive
             };
 
@@ -108,13 +87,14 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             if (faqFromDb == null) return NotFound();
             if (!ModelState.IsValid) return View(faqUpdateVM);
                        
+            int count = 0;
+            foreach (var item in faqFromVm.FAQLangs)
+            {                
+                item.Question = faqUpdateVM.Langs.ElementAt(count).Question;
+                item.Answer = faqUpdateVM.Langs.ElementAt(count).Answer;
+                count++;
+            }
             faqFromVm.IsActive = faqUpdateVM.IsActive;
-            faqFromVm.FAQLangs.FirstOrDefault(x => x.Lang.Code == "az").Question = faqUpdateVM.QuestionAZ;
-            faqFromVm.FAQLangs.FirstOrDefault(x => x.Lang.Code == "az").Answer = faqUpdateVM.AnswerAZ;
-            faqFromVm.FAQLangs.FirstOrDefault(x => x.Lang.Code == "ru").Question = faqUpdateVM.QuestionRU;
-            faqFromVm.FAQLangs.FirstOrDefault(x => x.Lang.Code == "ru").Answer = faqUpdateVM.AnswerRU;
-            faqFromVm.FAQLangs.FirstOrDefault(x => x.Lang.Code == "en").Question = faqUpdateVM.QuestionEN;
-            faqFromVm.FAQLangs.FirstOrDefault(x => x.Lang.Code == "en").Answer = faqUpdateVM.AnswerEN;
             
             await _FAQService.UpdateFAQ(faqFromDb, faqFromVm);
 

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
+using MediaBalansSaville.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace MediaBalansSaville.WebUI.Areas.CMS.Models
 {
@@ -13,17 +15,6 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Models
         public string GoogleAnalyticsCode { get; set; }
         public string FacebookPixel { get; set; }
 
-        public string AddressAZ { get; set; }
-        public string AddressRU { get; set; }
-        public string AddressEN { get; set; }
-        public string AboutTitleAZ { get; set; }
-        public string AboutTitleRU { get; set; }
-        public string AboutTitleEN { get; set; }
-        public string AboutDetailAZ { get; set; }
-        public string AboutDetailRU { get; set; }
-        public string AboutDetailEN { get; set; }
-        public string AdDetailAZ { get; set; }
-        public string AdDetailRU { get; set; }
-        public string AdDetailEN { get; set; }
+        public IEnumerable<SiteSettingsLang> SiteSettingsLangs { get; set; }
     }
 }

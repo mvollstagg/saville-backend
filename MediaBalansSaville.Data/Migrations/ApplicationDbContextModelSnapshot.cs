@@ -249,17 +249,101 @@ namespace MediaBalansSaville.Data.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ExportationId")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExportationId");
-
                     b.ToTable("ExportationCountries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "",
+                            IsActive = false,
+                            Name = "Afghanistan"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "",
+                            IsActive = false,
+                            Name = "Albania"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "",
+                            IsActive = false,
+                            Name = "Algeria"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Code = "",
+                            IsActive = false,
+                            Name = "Andorra"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Code = "",
+                            IsActive = false,
+                            Name = "Angola"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Code = "",
+                            IsActive = false,
+                            Name = "Antigua and Barbuda"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Code = "",
+                            IsActive = false,
+                            Name = "Argentina"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Code = "",
+                            IsActive = false,
+                            Name = "Armenia"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Code = "",
+                            IsActive = false,
+                            Name = "Aruba"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Code = "",
+                            IsActive = false,
+                            Name = "Australia"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Code = "",
+                            IsActive = false,
+                            Name = "Austria"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Code = "",
+                            IsActive = false,
+                            Name = "Azerbaijan"
+                        });
                 });
 
             modelBuilder.Entity("MediaBalansSaville.Entities.ExportationLang", b =>
@@ -401,7 +485,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Azərbaycan",
-                            RecordedAtDate = new DateTime(2021, 6, 2, 0, 31, 43, 375, DateTimeKind.Local).AddTicks(7590),
+                            RecordedAtDate = new DateTime(2021, 6, 4, 23, 2, 44, 775, DateTimeKind.Local).AddTicks(2740),
                             SlugUrl = "az",
                             UrlId = 1
                         },
@@ -412,7 +496,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Rusiya",
-                            RecordedAtDate = new DateTime(2021, 6, 2, 0, 31, 43, 388, DateTimeKind.Local).AddTicks(3200),
+                            RecordedAtDate = new DateTime(2021, 6, 4, 23, 2, 44, 784, DateTimeKind.Local).AddTicks(4970),
                             SlugUrl = "ru",
                             UrlId = 2
                         },
@@ -423,7 +507,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "İngiltərə",
-                            RecordedAtDate = new DateTime(2021, 6, 2, 0, 31, 43, 388, DateTimeKind.Local).AddTicks(3270),
+                            RecordedAtDate = new DateTime(2021, 6, 4, 23, 2, 44, 784, DateTimeKind.Local).AddTicks(5000),
                             SlugUrl = "en",
                             UrlId = 3
                         });
@@ -654,8 +738,14 @@ namespace MediaBalansSaville.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsBlog")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ProductValues")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ReceiptSeoId")
                         .HasColumnType("int");
@@ -774,7 +864,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "admin",
-                            RecordedAtDate = new DateTime(2021, 6, 2, 0, 31, 43, 396, DateTimeKind.Local).AddTicks(920),
+                            RecordedAtDate = new DateTime(2021, 6, 4, 23, 2, 44, 796, DateTimeKind.Local).AddTicks(4070),
                             SlugUrl = "admin",
                             UrlId = 1
                         },
@@ -784,7 +874,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "user",
-                            RecordedAtDate = new DateTime(2021, 6, 2, 0, 31, 43, 396, DateTimeKind.Local).AddTicks(1550),
+                            RecordedAtDate = new DateTime(2021, 6, 4, 23, 2, 44, 796, DateTimeKind.Local).AddTicks(4970),
                             SlugUrl = "user",
                             UrlId = 2
                         });
@@ -978,34 +1068,6 @@ namespace MediaBalansSaville.Data.Migrations
                     b.ToTable("Sliders");
                 });
 
-            modelBuilder.Entity("MediaBalansSaville.Entities.SliderLang", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Details")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LangId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SliderId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LangId");
-
-                    b.HasIndex("SliderId");
-
-                    b.ToTable("SliderLangs");
-                });
-
             modelBuilder.Entity("MediaBalansSaville.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -1067,10 +1129,10 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             LastName = "Admin",
-                            PasswordHash = "f41765ee449bb57f831e00678392fb5fbe0706c0c893e79f2c46e2599c8fc00b87d2e461eab7485a4bd54472b4fb5cb396d73314dd226c00f215db6796ffef0c",
+                            PasswordHash = "ffccc997422fa1581a5ad7bd9716a33238dcc685400c9f6f150c2d47ce02ea6bc865efdd2758483701c170af95ca620f040cff70a73f59a658ef486698a386d1",
                             PhoneNumber = "0534 895 22 84",
-                            RecordedAtDate = new DateTime(2021, 6, 2, 0, 31, 43, 390, DateTimeKind.Local).AddTicks(9750),
-                            SecretKey = "4cf9ce1829204ee2880bac103bf401b26/2/2021123143AM",
+                            RecordedAtDate = new DateTime(2021, 6, 4, 23, 2, 44, 788, DateTimeKind.Local).AddTicks(1790),
+                            SecretKey = "b620ee62da4547c99856fde50b8dc2d26/4/2021110244PM",
                             UrlId = 0
                         });
                 });
@@ -1182,17 +1244,6 @@ namespace MediaBalansSaville.Data.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Lang");
-                });
-
-            modelBuilder.Entity("MediaBalansSaville.Entities.ExportationCountry", b =>
-                {
-                    b.HasOne("MediaBalansSaville.Entities.Exportation", "Exportation")
-                        .WithMany("ExportationCountries")
-                        .HasForeignKey("ExportationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Exportation");
                 });
 
             modelBuilder.Entity("MediaBalansSaville.Entities.ExportationLang", b =>
@@ -1384,25 +1435,6 @@ namespace MediaBalansSaville.Data.Migrations
                     b.Navigation("SiteSettings");
                 });
 
-            modelBuilder.Entity("MediaBalansSaville.Entities.SliderLang", b =>
-                {
-                    b.HasOne("MediaBalansSaville.Entities.Lang", "Lang")
-                        .WithMany()
-                        .HasForeignKey("LangId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MediaBalansSaville.Entities.Slider", "Slider")
-                        .WithMany("SliderLangs")
-                        .HasForeignKey("SliderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Lang");
-
-                    b.Navigation("Slider");
-                });
-
             modelBuilder.Entity("MediaBalansSaville.Entities.UserRole", b =>
                 {
                     b.HasOne("MediaBalansSaville.Entities.Role", "Role")
@@ -1447,8 +1479,6 @@ namespace MediaBalansSaville.Data.Migrations
 
             modelBuilder.Entity("MediaBalansSaville.Entities.Exportation", b =>
                 {
-                    b.Navigation("ExportationCountries");
-
                     b.Navigation("ExportationLangs");
                 });
 
@@ -1489,11 +1519,6 @@ namespace MediaBalansSaville.Data.Migrations
             modelBuilder.Entity("MediaBalansSaville.Entities.SiteSettings", b =>
                 {
                     b.Navigation("SiteSettingsLangs");
-                });
-
-            modelBuilder.Entity("MediaBalansSaville.Entities.Slider", b =>
-                {
-                    b.Navigation("SliderLangs");
                 });
 
             modelBuilder.Entity("MediaBalansSaville.Entities.User", b =>

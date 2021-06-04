@@ -18,6 +18,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
     {
         private readonly ILangService _langService;
         private readonly ICategoryService _categoryService;
+        private readonly IProductService _productService;
         private readonly ICategoryLangService _categoyrLangService;
         private readonly IReceiptService _receiptService;
         private readonly IReceiptPhotoService _receiptPhotoService;
@@ -28,7 +29,8 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                                 IImage image,
                                 IReceiptService receiptService,
                                 ICategoryLangService categoyrLangService,
-                                IReceiptPhotoService receiptPhotoService)
+                                IReceiptPhotoService receiptPhotoService,
+                                IProductService productService)
         {
             this._categoryService = categoryService;
             this._langService = langService;
@@ -36,6 +38,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             this._receiptService = receiptService;
             this._categoyrLangService = categoyrLangService;
             this._receiptPhotoService = receiptPhotoService;
+            _productService = productService;
         }
         [Route("/cms/Receipt")]
         public async Task<IActionResult> Index(int count = 100)
@@ -46,15 +49,21 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
         [Route("/cms/Receipt/yarat")]
         public async Task<IActionResult> Create()
         {
+            List<string> products = new List<string>();
+            products.Add("1111");
+            products.Add("2222");
+            products.Remove("1111");
+
             ReceiptCreateVM receiptCreateVM = new ReceiptCreateVM
             {
+                Products = await _productService.GetAllProducts(),
                 Categories = await _categoyrLangService.GetAllCategoryLangsFor("receipt")                
             };
             return View(receiptCreateVM);
         }
         [Route("/cms/Receipt/yarat")]
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ReceiptCreateVM receiptCreateVM)
+        public async Task<IActionResult> Create(ReceiptCreateVM receiptCreateVM, List<ReceiptLang> receiptLangs, List<SeoLang> seoLangs)
         {
             if (!ModelState.IsValid) return View(receiptCreateVM);
             if (!_image.IsImageValid(receiptCreateVM.MainPhotoFile))
@@ -72,25 +81,18 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                         return View(receiptCreateVM);
                     }
                 }
-            }            
-
-            Lang azLang = await _langService.GetLangWithCode("az");
-            Lang ruLang = await _langService.GetLangWithCode("ru");
-            Lang enLang = await _langService.GetLangWithCode("en");
-
-            if (azLang == null && ruLang == null && enLang == null)
-            {
-                ModelState.AddModelError("", "Öncə məlumat bazasına dillər əlavə edilməlidir !");
-                return View(receiptCreateVM);
-            }            
+            }
+            
             Category category = await _categoryService.GetCategoryByCategoryLangId(receiptCreateVM.CategoryId);
             Receipt newReceipt = new Receipt
             {         
+                ProductValues = receiptCreateVM.ProductValues,
                 CategoryId = category.Id,
                 Category = category, 
+                IsBlog = receiptCreateVM.IsBlog,
                 IsActive = receiptCreateVM.IsActive                
             };
-            newReceipt.SlugUrl = UrlSeoHelper.UrlSeo(receiptCreateVM.TitleAZ.Trim());
+            newReceipt.SlugUrl = UrlSeoHelper.UrlSeo(receiptLangs.FirstOrDefault(x => x.LangId == 1).Title.Trim());
             List<ReceiptPhoto> receiptPhotos = new List<ReceiptPhoto>();
             ReceiptPhoto newMainReceiptPhoto = new ReceiptPhoto
             {
@@ -115,76 +117,42 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             }
             newReceipt.ReceiptPhotos = receiptPhotos;
             
-            ReceiptLang newReceiptLangAZ = new ReceiptLang
-            {                               
-                ReceiptId = newReceipt.Id,
-                LangId = azLang.Id
-            };
-
-            ReceiptLang newReceiptLangRU = new ReceiptLang
-            {             
-                ReceiptId = newReceipt.Id,
-                LangId = ruLang.Id
-            };
-
-            ReceiptLang newReceiptLangEN = new ReceiptLang
-            {            
-                ReceiptId = newReceipt.Id,
-                LangId = enLang.Id
-            };
-           
-            newReceiptLangAZ.Title = receiptCreateVM.TitleAZ.Trim();
-            newReceiptLangRU.Title = receiptCreateVM.TitleRU.Trim();
-            newReceiptLangEN.Title = receiptCreateVM.TitleEN.Trim();
-            newReceiptLangAZ.Preparation = receiptCreateVM.PreparationAZ.Trim();
-            newReceiptLangRU.Preparation = receiptCreateVM.PreparationRU.Trim();
-            newReceiptLangEN.Preparation = receiptCreateVM.PreparationEN.Trim();
-            newReceiptLangAZ.Ingredients = receiptCreateVM.IngredientsAZ.Trim();
-            newReceiptLangRU.Ingredients = receiptCreateVM.IngredientsRU.Trim();
-            newReceiptLangEN.Ingredients = receiptCreateVM.IngredientsRU.Trim();
             Seo newReceiptSeo = new Seo
             {
-                SlugUrl = UrlSeoHelper.UrlSeo(receiptCreateVM.TitleAZ.Trim()),
-                IsActive = true,
-                UniqueId = Guid.NewGuid().ToString().Replace("-", "").GetHashCode(),
-                Page = receiptCreateVM.TitleAZ.Trim(),
-                IsReceipt = true
+               SlugUrl = newReceipt.SlugUrl,
+               IsActive = true,
+               UniqueId = Guid.NewGuid().ToString().Replace("-", "").GetHashCode(),
+               Page = "Receipt",
+               IsReceipt = true
             };
-            List<SeoLang> seoLangs = new List<SeoLang>();
-            SeoLang newSeoLangAZ = new SeoLang
+
+            List<SeoLang> newReceiptSeoLangs = new List<SeoLang>();
+            foreach (var item in seoLangs)
             {
-                SeoId = newReceiptSeo.Id,
-                Title = receiptCreateVM.SeoTitleAZ,
-                Keys = receiptCreateVM.SeoKeysAZ,
-                Desc = receiptCreateVM.SeoDescAZ,
-                LangId = azLang.Id           
-            };
-            SeoLang newSeoLangRU = new SeoLang
-            {
-                SeoId = newReceiptSeo.Id,
-                Title = receiptCreateVM.SeoTitleRU,
-                Keys = receiptCreateVM.SeoKeysRU,
-                Desc = receiptCreateVM.SeoDescRU,
-                LangId = ruLang.Id             
-            };
-            SeoLang newSeoLangEN = new SeoLang
-            {
-                SeoId = newReceiptSeo.Id,
-                Title = receiptCreateVM.SeoTitleEN,
-                Keys = receiptCreateVM.SeoKeysEN,
-                Desc = receiptCreateVM.SeoDescEN,
-                LangId = enLang.Id        
-            };
+                newReceiptSeoLangs.Add(new SeoLang()
+                {
+                    Title = item.Title,
+                    Keys = item.Keys,
+                    Desc = item.Desc,
+                    SeoId = newReceiptSeo.Id,
+                    LangId = item.LangId
+                });
+            }
+            newReceiptSeo.SeoLangs = newReceiptSeoLangs;  
             newReceipt.UniqueId = newReceiptSeo.UniqueId;
-            seoLangs.Add(newSeoLangAZ);
-            seoLangs.Add(newSeoLangRU);
-            seoLangs.Add(newSeoLangEN);
-            newReceiptSeo.SeoLangs = seoLangs;                
             newReceipt.ReceiptSeo = newReceiptSeo;
-            
-            newReceipt.ReceiptLangs.Add(newReceiptLangAZ);
-            newReceipt.ReceiptLangs.Add(newReceiptLangRU);
-            newReceipt.ReceiptLangs.Add(newReceiptLangEN);
+
+            foreach (var item in receiptLangs)
+            {
+                newReceipt.ReceiptLangs.Add(new ReceiptLang()
+                {
+                    Title = item.Title,
+                    Preparation = item.Preparation,
+                    Ingredients = item.Ingredients,
+                    ReceiptId = newReceipt.Id,
+                    LangId = item.LangId
+                });
+            }            
             
             await _receiptService.CreateReceipt(newReceipt);
             return RedirectToAction("Index", "Receipt");
@@ -195,36 +163,25 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
         {
             if (id == 0) return BadRequest();
             Receipt receiptFromDb = await _receiptService.GetReceiptById(id);
-            ReceiptUpdateVM receiptUpdateVM = new ReceiptUpdateVM();
-            
-            Seo seoFromDb = receiptFromDb.ReceiptSeo;
-            if (receiptFromDb == null && seoFromDb == null) return NotFound();
+            if (receiptFromDb == null) return NotFound();
 
-            receiptUpdateVM = new ReceiptUpdateVM
+            ReceiptUpdateVM receiptUpdateVM = new ReceiptUpdateVM
             {
-                TitleAZ = receiptFromDb.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Title,
-                TitleRU = receiptFromDb.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Title,
-                TitleEN = receiptFromDb.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Title,
-                PreparationAZ = receiptFromDb.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Preparation,
-                PreparationRU = receiptFromDb.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Preparation,
-                PreparationEN = receiptFromDb.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Preparation,
-                IngredientsAZ = receiptFromDb.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Ingredients,
-                IngredientsRU = receiptFromDb.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Ingredients,
-                IngredientsEN = receiptFromDb.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Ingredients,
-                SeoTitleAZ = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Title,
-                SeoKeysAZ = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Keys,
-                SeoDescAZ = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Desc,
-                SeoTitleRU = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Title,
-                SeoKeysRU = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Keys,
-                SeoDescRU = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Desc,
-                SeoTitleEN = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Title,
-                SeoKeysEN = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Keys,
-                SeoDescEN = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Desc,
+                ProductValuesLine = receiptFromDb.ProductValues,
+                Products = await _productService.GetAllProducts(),
+                ReceiptLangs = receiptFromDb.ReceiptLangs.ToList(),
+                SeoLangs = receiptFromDb.ReceiptSeo.SeoLangs.ToList(),
                 PhotoUrl = receiptFromDb.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl,
                 CategoryId = receiptFromDb.CategoryId,
                 IsActive = receiptFromDb.IsActive,
             };
             receiptUpdateVM.Categories = await _categoyrLangService.GetAllCategoryLangsFor("receipt");
+
+            if(receiptFromDb.ProductValues != null)
+            {
+                string[] words = receiptFromDb.ProductValues.Split(',');
+                receiptUpdateVM.ProductValues = words;
+            }            
 
             foreach (var item in receiptFromDb.ReceiptPhotos.Where(x => x.IsMain == false).ToList())
                 receiptUpdateVM.PhotoUrls.Add(item.PhotoUrl);
@@ -247,12 +204,11 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                     ModelState.AddModelError("", "Fayl .jpg/jpeg formatında və maksimum 3MB həcmində olmalıdır !");
                     return View(receiptUpdateVM);
                 }
-            }
-            if (receiptUpdateVM.MainPhotoFile != null)
-            {
-                _image.Delete("files", "receipt", receiptFromVm.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl);
-
-                receiptFromVm.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl = await _image.UploadAsync(receiptUpdateVM.MainPhotoFile, "files", "receipt");                
+                else
+                {
+                    _image.Delete("files", "receipt", receiptFromVm.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl);
+                    receiptFromVm.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl = await _image.UploadAsync(receiptUpdateVM.MainPhotoFile, "files", "receipt");
+                }
             }
             
             Seo seoFromDb = receiptFromVm.ReceiptSeo;
@@ -269,29 +225,16 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                         return View(receiptUpdateVM);
                     }
                 }
-            }
-
-            receiptFromVm.SlugUrl = UrlSeoHelper.UrlSeo(receiptUpdateVM.TitleAZ.Trim());
-            receiptFromVm.IsActive = receiptUpdateVM.IsActive;
-            Category category = await _categoryService.GetCategoryByCategoryLangId(receiptUpdateVM.CategoryId);
-            receiptFromVm.Category = category;
-            receiptFromVm.CategoryId = category.Id;
-
-            if (receiptUpdateVM.PhotoFiles != null)
-            {
                 foreach (var item in receiptFromVm.ReceiptPhotos.Where(x => x.IsMain == false))
                 {
                     await _receiptPhotoService.DeleteReceiptPhoto(item);
                     _image.Delete("files", "receipt", item.PhotoUrl);                        
                 }
-
-                for (int i = 0; i < receiptUpdateVM.PhotoFiles.Count(); i++)
+                foreach (var photoFile in receiptUpdateVM.PhotoFiles)
                 {
-                    var item = receiptUpdateVM.PhotoFiles.ElementAtOrDefault(i);
-
                     ReceiptPhoto newReceiptPhoto = new ReceiptPhoto
                     {
-                        PhotoUrl = await _image.UploadAsync(item, "files", "receipt"),
+                        PhotoUrl = await _image.UploadAsync(photoFile, "files", "receipt"),
                         IsMain = false,
                         ReceiptId = receiptFromVm.Id
                     };
@@ -299,29 +242,30 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 }
             }
 
-            SeoLang azReceiptSeoFromDb = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az");  
-            SeoLang ruReceiptSeoFromDb = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru"); 
-            SeoLang enReceiptSeoFromDb = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en");   
-            azReceiptSeoFromDb.Title = receiptUpdateVM.SeoTitleAZ;
-            azReceiptSeoFromDb.Keys = receiptUpdateVM.SeoKeysAZ;
-            azReceiptSeoFromDb.Desc = receiptUpdateVM.SeoDescAZ;
-            ruReceiptSeoFromDb.Title = receiptUpdateVM.SeoTitleRU;
-            ruReceiptSeoFromDb.Keys = receiptUpdateVM.SeoKeysRU;
-            ruReceiptSeoFromDb.Desc = receiptUpdateVM.SeoDescRU;
-            enReceiptSeoFromDb.Title = receiptUpdateVM.SeoTitleEN;
-            enReceiptSeoFromDb.Keys = receiptUpdateVM.SeoKeysEN;
-            enReceiptSeoFromDb.Desc = receiptUpdateVM.SeoDescEN;
+            receiptFromVm.ProductValues = receiptUpdateVM.ProductValuesLine;
+            receiptFromVm.SlugUrl = UrlSeoHelper.UrlSeo(receiptUpdateVM.ReceiptLangs.FirstOrDefault(x => x.LangId == 1).Title.Trim());
+            receiptFromVm.IsActive = receiptUpdateVM.IsActive;
+            Category category = await _categoryService.GetCategoryByCategoryLangId(receiptUpdateVM.CategoryId);
+            receiptFromVm.Category = category;
+            receiptFromVm.CategoryId = category.Id;
 
-            receiptFromVm.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == "az").Title = receiptUpdateVM.TitleAZ.Trim();
-            receiptFromVm.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == "az").Preparation = receiptUpdateVM.PreparationAZ.Trim();
-            receiptFromVm.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == "az").Ingredients = receiptUpdateVM.IngredientsAZ.Trim();
-            receiptFromVm.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == "ru").Title = receiptUpdateVM.TitleRU.Trim();
-            receiptFromVm.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == "ru").Preparation = receiptUpdateVM.PreparationRU.Trim();
-            receiptFromVm.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == "ru").Ingredients = receiptUpdateVM.IngredientsRU.Trim();
-            receiptFromVm.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == "en").Title = receiptUpdateVM.TitleEN.Trim();
-            receiptFromVm.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == "en").Preparation = receiptUpdateVM.PreparationEN.Trim();
-            receiptFromVm.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == "en").Ingredients = receiptUpdateVM.IngredientsEN.Trim();
-        
+            int count = 0;
+            foreach (var item in receiptFromVm.ReceiptSeo.SeoLangs)
+            {                
+                item.Title = receiptUpdateVM.SeoLangs.ElementAt(count).Title;
+                item.Keys = receiptUpdateVM.SeoLangs.ElementAt(count).Keys;
+                item.Desc = receiptUpdateVM.SeoLangs.ElementAt(count).Desc;
+                count++;
+            }
+
+            count = 0;
+            foreach (var item in receiptFromVm.ReceiptLangs)
+            {
+                item.Title = receiptUpdateVM.ReceiptLangs.ElementAt(count).Title;
+                item.Preparation = receiptUpdateVM.ReceiptLangs.ElementAt(count).Preparation;
+                item.Ingredients = receiptUpdateVM.ReceiptLangs.ElementAt(count).Ingredients;
+                count++;
+            }        
 
             await _receiptService.UpdateReceipt(receiptFromDb, receiptFromVm);
 

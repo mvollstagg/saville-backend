@@ -25,6 +25,7 @@ namespace MediaBalansSaville.Services
 
         public async Task DeleteProduct(Product product)
         {
+            _unitOfWork.Seos.Remove(product.ProductSeo);
             _unitOfWork.Products.Remove(product);
 
             await _unitOfWork.CommitAsync();

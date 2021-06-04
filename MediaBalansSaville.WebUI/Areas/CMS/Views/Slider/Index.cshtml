@@ -18,9 +18,6 @@
                     <table class="table table-striped table-bordered dataTable" id="tablom">
                         <thead>
                             <tr>
-                                <th>Başlıq (AZ)</th>
-                                <th>Başlıq (RU)</th>
-                                <th>Başlıq (EN)</th>
                                 <th>Şəkil</th>
                                 <th>Tarix</th>
                                 <th>Slug Url</th>
@@ -43,15 +40,6 @@
                                 @foreach (var slider in Model)
                                 {
                                     <tr data-id="">
-                                        <td>
-                                            @(slider.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Title.Length > 30 ? slider.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Title.Substring(0, 30) : slider.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Title)
-                                        </td>
-                                        <td>
-                                            @(slider.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Title.Length > 30 ? slider.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Title.Substring(0, 30) : slider.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Title)
-                                        </td>
-                                        <td>
-                                            @(slider.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Title.Length > 30 ? slider.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Title.Substring(0, 30) : slider.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Title)
-                                        </td>
                                         <td>
                                             <img src="~/files/slider/@slider.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
                                         </td>

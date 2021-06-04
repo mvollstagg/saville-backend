@@ -2,6 +2,7 @@ using MediaBalansSaville.Core;
 using MediaBalansSaville.Entities;
 using MediaBalansSaville.Core.Services;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace MediaBalansSaville.Services
 {
@@ -34,6 +35,11 @@ namespace MediaBalansSaville.Services
             await _unitOfWork.CommitAsync();
         }
 
+        public async Task<IEnumerable<ExportationCountry>> GetAllCountries()
+        {
+            return await _unitOfWork.ExportationsCountries.GetAllAsync();
+        }
+
         public async Task<ExportationCountry> GetCountryById(int id)
         {
             return await _unitOfWork.ExportationsCountries.GetByIdAsync(id);
@@ -53,7 +59,7 @@ namespace MediaBalansSaville.Services
         public async Task UpdateExportations(Exportation ExportationToBeUpdated, Exportation Exportation)
         {
             ExportationToBeUpdated = Exportation;
-            ExportationToBeUpdated.ExportationCountries = Exportation.ExportationCountries;
+            // ExportationToBeUpdated.ExportationCountries = Exportation.ExportationCountries;
             ExportationToBeUpdated.ExportationLangs = Exportation.ExportationLangs;
 
             await _unitOfWork.CommitAsync();

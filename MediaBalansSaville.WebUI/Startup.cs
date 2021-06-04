@@ -66,6 +66,8 @@ namespace MediaBalansSaville.WebUI
             services.AddTransient<ISliderService, SliderService>();
             services.AddTransient<ILangService, LangService>();
             services.AddTransient<ISeoService, SeoService>();
+            services.AddTransient<IReceiptService, ReceiptService>();
+            services.AddTransient<IReceiptPhotoService, ReceiptPhotoService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<ISiteSettingsService, SiteSettingsService>();

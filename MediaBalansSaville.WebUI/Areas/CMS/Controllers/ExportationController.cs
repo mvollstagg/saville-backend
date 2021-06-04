@@ -67,7 +67,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                     DetailsAZ = exportationFromDb.ExportationLangs.FirstOrDefault(x => x.Lang.Code == "az").Details,
                     DetailsRU = exportationFromDb.ExportationLangs.FirstOrDefault(x => x.Lang.Code == "ru").Details,
                     DetailsEN = exportationFromDb.ExportationLangs.FirstOrDefault(x => x.Lang.Code == "en").Details,
-                    Countries = exportationFromDb.ExportationCountries.ToList()
+                    Countries = await _exportationService.GetAllCountries()
                 };
                 
                 return View(settingsVM);
@@ -106,7 +106,6 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
             ExportationCountry newCountry = new ExportationCountry
             {
-                ExportationId = exportationFromDb.Id,
                 Code = countryCreateVM.Code,
                 Name = countryCreateVM.Name
             };

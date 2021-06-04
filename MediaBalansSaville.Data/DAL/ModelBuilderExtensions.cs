@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MediaBalansSaville.Services.Helpers;
 using MediaBalansSaville.Entities;
+using System.Collections.Generic;
 
 namespace MediaBalansSaville.Data.DAL
 {
@@ -90,6 +91,27 @@ namespace MediaBalansSaville.Data.DAL
 
             modelBuilder.Entity<UserRole>().HasData(adminUserRole);
             #endregion
+
+            #region Creation of Countries
+            var countries = new List<ExportationCountry>
+            {
+				new ExportationCountry { Id = 1, Name = "Afghanistan", Code = "" },
+				new ExportationCountry { Id = 2, Name = "Albania", Code = "" },
+				new ExportationCountry { Id = 3, Name = "Algeria", Code = "" },
+				new ExportationCountry { Id = 4, Name = "Andorra", Code = "" },
+				new ExportationCountry { Id = 5, Name = "Angola", Code = "" },
+				new ExportationCountry { Id = 6, Name = "Antigua and Barbuda", Code = "" },
+				new ExportationCountry { Id = 7, Name = "Argentina", Code = "" },
+				new ExportationCountry { Id = 8, Name = "Armenia", Code = "" },
+				new ExportationCountry { Id = 9, Name = "Aruba", Code = "" },
+				new ExportationCountry { Id = 10, Name = "Australia", Code = "" },
+				new ExportationCountry { Id = 11, Name = "Austria", Code = "" },
+				new ExportationCountry { Id = 12, Name = "Azerbaijan", Code = "" }
+            };
+
+            modelBuilder.Entity<ExportationCountry>().HasData(countries);
+            #endregion
+            
         }
     }
 }

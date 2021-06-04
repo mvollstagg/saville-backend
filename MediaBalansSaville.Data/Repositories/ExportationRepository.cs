@@ -21,7 +21,7 @@ namespace MediaBalansSaville.Data.Repositories
             return await ApplicationDbContext.Exportations
                 .Include(a => a.ExportationLangs)
                     .ThenInclude(b => b.Lang)
-                .Include(b => b.ExportationCountries)
+                // .Include(b => b.ExportationCountries)
                 .FirstOrDefaultAsync();
         }
     }

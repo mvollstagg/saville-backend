@@ -39,59 +39,34 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
         [Route("/cms/seo/yarat")]
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(SeoCreateVM seoCreateVM)
+        public async Task<IActionResult> Create(SeoCreateVM seoCreateVM, List<SeoLang> seoLangs)
         {
             if (!ModelState.IsValid) return View(seoCreateVM);
 
-            Lang azLang = await _langService.GetLangWithCode("az");
-            Lang ruLang = await _langService.GetLangWithCode("ru");
-            Lang enLang = await _langService.GetLangWithCode("en");
-
-            if (azLang == null && ruLang == null && enLang == null)
-            {
-                ModelState.AddModelError("", "Öncə məlumat bazasına dillər əlavə edilməlidir !");
-                return View(seoCreateVM);
-            }
-
             Seo newSeo = new Seo
             {
-                SlugUrl = UrlSeoHelper.UrlSeo(seoCreateVM.TitleAZ.Trim()),
+                SlugUrl = UrlSeoHelper.UrlSeo(seoCreateVM.Page.Trim()),
                 IsActive = true,
                 UniqueId = Guid.NewGuid().ToString().Replace("-", "").GetHashCode(),
                 Page = seoCreateVM.Page,
                 IsBlog = false,
                 IsProduct = false,
                 IsReceipt = false
-            };            
-            List<SeoLang> seoLangs = new List<SeoLang>();
-            SeoLang newSeoLangAZ = new SeoLang
+            };         
+
+            List<SeoLang> newProductSeoLangs = new List<SeoLang>();   
+            foreach (var item in seoLangs)
             {
-                SeoId = newSeo.Id,
-                Title = seoCreateVM.TitleAZ,
-                Keys = seoCreateVM.KeysAZ,
-                Desc = seoCreateVM.DescAZ,
-                LangId = azLang.Id       
-            };
-            SeoLang newSeoLangRU = new SeoLang
-            {
-                SeoId = newSeo.Id,
-                Title = seoCreateVM.TitleRU,
-                Keys = seoCreateVM.KeysRU,
-                Desc = seoCreateVM.DescRU,
-                LangId = ruLang.Id          
-            };
-            SeoLang newSeoLangEN = new SeoLang
-            {
-                SeoId = newSeo.Id,
-                Title = seoCreateVM.TitleEN,
-                Keys = seoCreateVM.KeysEN,
-                Desc = seoCreateVM.KeysEN,
-                LangId = enLang.Id            
-            };
-            seoLangs.Add(newSeoLangAZ);
-            seoLangs.Add(newSeoLangRU);
-            seoLangs.Add(newSeoLangEN);
-            newSeo.SeoLangs = seoLangs;
+                newProductSeoLangs.Add(new SeoLang()
+                {
+                    Title = item.Title,
+                    Keys = item.Keys,
+                    Desc = item.Desc,
+                    SeoId = newSeo.Id,
+                    LangId = item.LangId
+                });
+            }
+            newSeo.SeoLangs = newProductSeoLangs; 
             await _seoService.CreateSeo(newSeo);
             return RedirectToAction("Index", "Seo");
         }
@@ -105,15 +80,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
             SeoCreateVM seoUpdateVM = new SeoCreateVM
             {
-                TitleAZ = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Title,
-                KeysAZ = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Keys,
-                DescAZ = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Desc,
-                TitleRU = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Title,
-                KeysRU = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Keys,
-                DescRU = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Desc,
-                TitleEN = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Title,
-                KeysEN = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Keys,
-                DescEN = seoFromDb.SeoLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Desc,
+                SeoLangs = seoFromDb.SeoLangs.ToList(),
                 Page = seoFromDb.Page          
             };
             return View(seoUpdateVM);
@@ -130,15 +97,14 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             if (!ModelState.IsValid) return View(seoUpdateVM);
 
             seoFromVm.Page = seoUpdateVM.Page;
-            seoFromVm.SeoLangs.FirstOrDefault(x =>x.Lang.Code == "az").Title = seoUpdateVM.TitleAZ;
-            seoFromVm.SeoLangs.FirstOrDefault(x =>x.Lang.Code == "az").Keys = seoUpdateVM.KeysAZ;
-            seoFromVm.SeoLangs.FirstOrDefault(x =>x.Lang.Code == "az").Desc = seoUpdateVM.DescAZ;
-            seoFromVm.SeoLangs.FirstOrDefault(x =>x.Lang.Code == "ru").Title = seoUpdateVM.TitleRU;
-            seoFromVm.SeoLangs.FirstOrDefault(x =>x.Lang.Code == "ru").Keys = seoUpdateVM.KeysRU;
-            seoFromVm.SeoLangs.FirstOrDefault(x =>x.Lang.Code == "ru").Desc = seoUpdateVM.DescRU;
-            seoFromVm.SeoLangs.FirstOrDefault(x =>x.Lang.Code == "en").Title = seoUpdateVM.TitleEN;
-            seoFromVm.SeoLangs.FirstOrDefault(x =>x.Lang.Code == "en").Keys = seoUpdateVM.KeysEN;
-            seoFromVm.SeoLangs.FirstOrDefault(x =>x.Lang.Code == "en").Desc = seoUpdateVM.DescEN;
+            int count = 0;
+            foreach (var item in seoFromVm.SeoLangs)
+            {                
+                item.Title = seoUpdateVM.SeoLangs.ElementAt(count).Title;
+                item.Keys = seoUpdateVM.SeoLangs.ElementAt(count).Keys;
+                item.Desc = seoUpdateVM.SeoLangs.ElementAt(count).Desc;
+                count++;
+            }
             
             await _seoService.UpdateSeo(seoFromDb, seoFromVm);
             return RedirectToAction("Index", "Seo");

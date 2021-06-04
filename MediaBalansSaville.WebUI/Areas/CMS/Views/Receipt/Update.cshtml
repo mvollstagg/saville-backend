@@ -2,188 +2,186 @@
 
 @{
     ViewData["Title"] = "Update";
+    int count = 0;
 }
 
 <div class="row">
     <div class="col-12 my-4 mx-auto">
         <div class="card shadow mb-4">
             <div class="card-header py-4">
-                Receipt Əlavə et <a asp-area="CMS" asp-controller="Receipt" asp-action="Index" class="float-right btn btn-outline-secondary">Geriyə get</a>
-                <hr>
-                <br>
-                <div id="diller">
-                    <ul  class="nav nav-pills nav-fill justify-content-center">
-                        <li class="nav-item">
-                            <button class="btn btn-outline-secondary" onclick="langAZ()" >Azərbaycan dili</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-outline-secondary" onclick="langRU()" >русский</a>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-outline-secondary" onclick="langEN()" >English</button>
-                        </li>                    
-                    </ul>  
-                </div>                          
+                Receipt Əlavə et <a asp-area="CMS" asp-controller="Receipt" asp-action="Index" class="float-right btn btn-outline-secondary">Geriyə get</a>                       
             </div>
             <div class="card-body">
                 <form asp-area="CMS" asp-controller="Receipt" asp-action="Update" method="post" enctype="multipart/form-data">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>                    
-                    <div id="blogAZ">
-                        <div class="form-group">
-                            <label class="control-label">Başlıq (AZ)</label>
-                            <input asp-for="TitleAZ" type="text" class="form-control" />
-                            <span asp-validation-for="TitleAZ"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">İçindekiler (AZ)</label>
-                            <textarea id="texteditor" asp-for="IngredientsAZ" class="form-control texteditor"></textarea>
-                            <span asp-validation-for="IngredientsAZ"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Hazırlanışı (AZ)</label>
-                            <textarea id="texteditor" asp-for="PreparationAZ" class="form-control texteditor"></textarea>
-                            <span asp-validation-for="PreparationAZ"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <hr>
-                        <div class="form-group">
-                            <label class="control-label">Seo Başlıq (AZ)</label>
-                            <input asp-for="SeoTitleAZ" type="text" class="form-control" />
-                            <span asp-validation-for="SeoTitleAZ"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Seo Keys (AZ)</label>
-                            <input asp-for="SeoKeysAZ" type="text" class="form-control" />
-                            <span asp-validation-for="SeoKeysAZ"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Seo Desc (AZ)</label>
-                            <input asp-for="SeoDescAZ" type="text" class="form-control" />
-                            <span asp-validation-for="SeoDescAZ"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div id="blogRU" style="display: none;">
-                        <div class="form-group">
-                            <label class="control-label">Başlıq (RU)</label>
-                            <input asp-for="TitleRU" type="text" class="form-control" />
-                            <span asp-validation-for="TitleRU"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">İçindekiler (RU)</label>
-                            <textarea id="texteditor" asp-for="IngredientsRU" class="form-control texteditor"></textarea>
-                            <span asp-validation-for="IngredientsRU"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Hazırlanışı (RU)</label>
-                            <textarea id="texteditor" asp-for="PreparationRU" class="form-control texteditor"></textarea>
-                            <span asp-validation-for="PreparationRU"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <hr>
-                        <div class="form-group">
-                            <label class="control-label">Seo Başlıq (RU)</label>
-                            <input asp-for="SeoTitleRU" type="text" class="form-control" />
-                            <span asp-validation-for="SeoTitleRU"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Seo Keys (RU)</label>
-                            <input asp-for="SeoKeysRU" type="text" class="form-control" />
-                            <span asp-validation-for="SeoKeysRU"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Seo Desc (RU)</label>
-                            <input asp-for="SeoDescRU" type="text" class="form-control" />
-                            <span asp-validation-for="SeoDescRU"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div id="blogEN" style="display: none;">
-                        <div class="form-group">
-                            <label class="control-label">Başlıq (EN)</label>
-                            <input asp-for="TitleEN" type="text" class="form-control" />
-                            <span asp-validation-for="TitleEN"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">İçindekiler (EN)</label>
-                            <textarea id="texteditor" asp-for="IngredientsEN" class="form-control texteditor"></textarea>
-                            <span asp-validation-for="IngredientsEN"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Hazırlanışı (EN)</label>
-                            <textarea id="texteditor" asp-for="PreparationEN" class="form-control texteditor"></textarea>
-                            <span asp-validation-for="PreparationEN"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <hr>
-                        <div class="form-group">
-                            <label class="control-label">Seo Başlıq (EN)</label>
-                            <input asp-for="SeoTitleEN" type="text" class="form-control" />
-                            <span asp-validation-for="SeoTitleEN"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Seo Keys (EN)</label>
-                            <input asp-for="SeoKeysEN" type="text" class="form-control" />
-                            <span asp-validation-for="SeoKeysEN"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Seo Desc (EN)</label>
-                            <input asp-for="SeoDescEN" type="text" class="form-control" />
-                            <span asp-validation-for="SeoDescEN"></span>
-                            <span class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div id="kategoriSelect" class="form-group">
-                        <label class="control-label">Kateqoriya</label>
-                        <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control"></select>
-                        <span asp-validation-for="CategoryId"></span>
-                        <span class="text-danger"></span>
-                    </div>                    
-                    <div class="form-group">
-                        <strong class="control-label">Əsas şəkil</strong>
-                        <img src="~/files/receipt/@Model.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="custom-file">
-                            <input asp-for="MainPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
-                            <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
-                        </div>
-                    </div>
-                    <div id="digerSekiller">
-                        <div class="input-group mb-3">
-                            <div class="form-group">
-                                <strong class="control-label">Digər şəkillər</strong>
-                                <div class="d-flex">
-                                    @foreach (var photoUrl in Model.PhotoUrls)
-                                    {
-                                        <img class="ml-3" src="~/files/receipt/@photoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
-                                    }
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div> 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    Tərcümə olunacaq dillər
                                 </div>
+                                <div class="card-body">
+                                    <ul class="nav nav-pills mb-3 text-center" id="pills-tab" role="tablist">
+                                        @{
+                                            int b = 0;
+                                        }
+                                        @foreach (var item in await lang.GetAllLangs())
+                                        {
+                                            <li style="width:32%" class="nav-item ml-2 bg-secondary ">
+                                                <a class="nav-link @(b==0 ? "active" : "") text-white" id="pills-@item.Code-tab" data-toggle="pill" href="#pills-@item.Code" role="tab" aria-controls="pills-home" aria-selected="true">@item.Name</a>
+                                            </li>
+                                            b++;
+                                        }
+                                    </ul>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-12 col-12">
+                                            <div class="tab-content" id="pills-tabContent ">
+                                                @foreach (var item in Model.ReceiptLangs.ToList())
+                                                {
+                                                    <div class="col-md-12 col-12 tab-pane fade @(count == 0 ? "show active" : "")" id="pills-@item.Lang.Code" role="tabpanel">
+                                                        <div class="form-group">
+                                                            <input type="hidden" name="ReceiptLangs[@count].LangId" value="@item.LangId" />
+                                                            <input type="hidden" name="ReceiptLangs[@count].ReceiptId" value="@item.ReceiptId" />
+
+                                                            <label class="control-label">Başlıq (@item.Lang.Code)</label>
+                                                            <input name="ReceiptLangs[@count].Title" value="@item.Title" type="text" class="form-control" />
+                                                            <label class="control-label">İçindekiler (@item.Lang.Code.ToUpper())</label>
+                                                            <textarea name="ReceiptLangs[@count].Ingredients" type="text" class="form-control texteditor">@item.Ingredients</textarea>
+                                                            <label class="control-label">Hazırlanışı (@item.Lang.Code.ToUpper())</label>
+                                                            <textarea name="ReceiptLangs[@count].Preparation" type="text" class="form-control texteditor">@item.Preparation</textarea>
+                                                        </div>
+                                                        @foreach (var seo in Model.SeoLangs.Where(x => x.LangId == item.LangId))
+                                                        {
+                                                            <div class="form-group">                                                            
+                                                                <input type="hidden" name="SeoLangs[@count].LangId" value="@seo.LangId" />
+                                                                <input type="hidden" name="SeoLangs[@count].SeoId" value="@seo.SeoId" />
+
+                                                                <label class="control-label">Seo Başlıq (@item.Lang.Code)</label>
+                                                                <input name="SeoLangs[@count].Title" value="@seo.Title" type="text" class="form-control" />
+                                                                <label class="control-label">Seo Keywords (@item.Lang.Code)</label>
+                                                                <input name="SeoLangs[@count].Keys" value="@seo.Keys" type="text" class="form-control" />
+                                                                <label class="control-label">Seo Description (@item.Lang.Code)</label>
+                                                                <input name="SeoLangs[@count].Desc" value="@seo.Desc" type="text" class="form-control" />
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                    count++;
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="kategoriSelect" class="form-group">
+                                <label class="control-label">Kateqoriya</label>
+                                <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control"></select>
+                                <span asp-validation-for="CategoryId"></span>
+                                <span class="text-danger"></span>
+                            </div>                    
+                            <div class="form-group">
+                                <strong class="control-label">Əsas şəkil</strong>
+                                <img src="~/files/receipt/@Model.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
                             </div>
                             <div class="input-group mb-3">
                                 <div class="custom-file">
-                                    <input asp-for="PhotoFiles" type="file" multiple class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
+                                    <input asp-for="MainPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
                                     <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
                                 </div>
                             </div>
+                            <div id="digerSekiller">
+                                <div class="input-group mb-3">
+                                    <div class="form-group">
+                                        <strong class="control-label">Digər şəkillər</strong>
+                                        <div class="d-flex">
+                                            @foreach (var photoUrl in Model.PhotoUrls)
+                                            {
+                                                <img class="ml-3" src="~/files/receipt/@photoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="custom-file">
+                                            <input asp-for="PhotoFiles" type="file" multiple class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
+                                            <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                    
+                            <div class="form-group">
+                                <label class="control-label">Status</label>
+                                <input asp-for="IsActive" type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
+                            </div>
                         </div>
-                    </div>                    
-                    <div class="form-group">
-                        <label class="control-label">Status</label>
-                        <input asp-for="IsActive" type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
                     </div>
+                    <div class="row">
+                        <div class="col-12 my-4 mx-auto">
+                            <div class="card shadow mb-4">
+                                <div class="card-header">
+                                    Mehsullar
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table dataTables table-striped table-bordered dataTable" id="dataTables-example">
+                                            <thead>
+                                                <tr>
+                                                    <th>Şekil</th>
+                                                    <th>Ad</th>
+                                                    <th>Kateqoriya</th>
+                                                    <th>Status</th>
+                                                    <th style="width: 100px;">İşlemler</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model.Products == null || Model.Products.Count() == 0)
+                                                {
+                                                    <tr>
+                                                        <td colspan="8" class="text-center">
+                                                            Siyahı boşdur
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                else
+                                                {
+                                                    @foreach (var product in Model.Products)
+                                                    {
+                                                        <tr id="@("productRow" + product.Id)"> 
+                                                            <td>
+                                                                <img src="~/files/product/@product.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
+                                                            </td>
+                                                            <td>
+                                                                @(product.ProductLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Name.Length > 30 ? product.ProductLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Name.Substring(0, 30) : product.ProductLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Name)
+                                                            </td>
+                                                            <td>
+                                                                @product.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == "az").Name
+                                                            </td>
+                                                            <td id="@("productStatus" + product.Id)">
+                                                                @if(Model.ProductValues != null)
+                                                                    @(Model.ProductValues.Contains(product.Id.ToString()) ? "Eklenecek" : "Eklenmeyecek")
+                                                                else
+                                                                {
+                                                                    <p>Eklenmeyecek</p>
+                                                                }
+                                                            </td>
+                                                            <td style="text-align: center;">
+                                                                <button onclick="toggleProduct(@product.Id)" type="button" class="btn btn-outline-success">
+                                                                    <i class="fas fa-fw fa-exchange-alt"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" asp-for="ProductValuesLine" id="productValues" />
                     <div class="form-group">
                         <input type="submit" value="Təsdiq et" class="btn btn-primary" />
                     </div>
@@ -193,26 +191,33 @@
     </div>
 </div>
 <script>
-    
+   var arr = [];
+   @if(Model.ProductValues != null)
+   {
+       @foreach (var value in Model.ProductValues)
+        {
+            @:arr.push(@value);
+        }
+   }
+   
+    function toggleProduct(id)
+    {       
+        
+        if(arr.includes(id))
+        {
+            arr = arr.filter(function(ele){                     
+                    return ele != id; 
+                });
+            $('#productStatus' + id).text("Eklenmeyecek");
+        }
+        else
+        {
+            arr.push(id);
+            $('#productStatus' + id).text("Eklenecek");
+        }
 
-    var blogAZ = document.getElementById("blogAZ");
-    var blogRU = document.getElementById("blogRU");
-    var blogEN = document.getElementById("blogEN");
-    function langAZ() {     
-        blogAZ.style.display = "block";
-        blogRU.style.display = "none";
-        blogEN.style.display = "none";
-    }
-    function langRU() {     
-        blogAZ.style.display = "none";
-        blogRU.style.display = "block";
-        blogEN.style.display = "none";
-    }
-    function langEN() {     
-        blogAZ.style.display = "none";
-        blogRU.style.display = "none";
-        blogEN.style.display = "block";
-    }    
+        $("#productValues").val(arr);
+    }   
 </script>
 @section validation{
     <partial name="_ValidationScriptsPW" />

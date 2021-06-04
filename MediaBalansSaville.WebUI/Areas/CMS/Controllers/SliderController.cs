@@ -53,48 +53,12 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 return View(sliderCreateVM);
             }
 
-            Lang azLang = await _langService.GetLangWithCode("az");
-            Lang ruLang = await _langService.GetLangWithCode("ru");
-            Lang enLang = await _langService.GetLangWithCode("en");
-
-            if (azLang == null && ruLang == null && enLang == null)
-            {
-                ModelState.AddModelError("", "Öncə məlumat bazasına dillər əlavə edilməlidir !");
-                return View(sliderCreateVM);
-            }
-
             Slider newSlider = new Slider
             {
                 PhotoUrl = await _image.UploadAsync(sliderCreateVM.MainPhotoFile, "files", "slider"),
-                SlugUrl = UrlSeoHelper.UrlSeo(sliderCreateVM.TitleAZ.Trim()),
+                SlugUrl = "pic",
                 IsActive = sliderCreateVM.IsActive
             };
-            
-            
-            SliderLang newSliderLangAZ = new SliderLang
-            {
-                Title = sliderCreateVM.TitleAZ.Trim(),
-                Details = sliderCreateVM.DetailsAZ.Trim(),
-                SliderId = newSlider.Id,
-                LangId = azLang.Id
-            };
-            SliderLang newSliderLangRU = new SliderLang
-            {
-                Title = sliderCreateVM.TitleRU.Trim(),
-                Details = sliderCreateVM.DetailsRU.Trim(),
-                SliderId = newSlider.Id,
-                LangId = ruLang.Id
-            };
-            SliderLang newSliderLangEN = new SliderLang
-            {
-                Title = sliderCreateVM.TitleEN.Trim(),
-                Details = sliderCreateVM.DetailsEN.Trim(),
-                SliderId = newSlider.Id,
-                LangId = enLang.Id
-            };
-            newSlider.SliderLangs.Add(newSliderLangAZ);
-            newSlider.SliderLangs.Add(newSliderLangRU);
-            newSlider.SliderLangs.Add(newSliderLangEN);
 
             await _sliderService.CreateSlider(newSlider);
 
@@ -110,12 +74,6 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
             SliderUpdateVM sliderUpdateVM = new SliderUpdateVM
             {
-                TitleAZ = sliderFromDb.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Title,
-                TitleRU = sliderFromDb.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Title,
-                TitleEN = sliderFromDb.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Title,
-                DetailsAZ = sliderFromDb.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Details,
-                DetailsRU = sliderFromDb.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").Details,
-                DetailsEN = sliderFromDb.SliderLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").Details,
                 PhotoUrl = sliderFromDb.PhotoUrl,
                 IsActive = sliderFromDb.IsActive
             };
@@ -141,7 +99,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                     return View(sliderUpdateVM);
                 }
             }
-            sliderFromVm.SlugUrl = UrlSeoHelper.UrlSeo(sliderUpdateVM.TitleAZ.Trim());
+            // sliderFromVm.SlugUrl = UrlSeoHelper.UrlSeo(sliderUpdateVM.TitleAZ.Trim());
             sliderFromVm.IsActive = sliderUpdateVM.IsActive;
 
             if (sliderUpdateVM.MainPhotoFile != null)
@@ -149,13 +107,6 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 _image.Delete("files", "slider", sliderFromDb.PhotoUrl);
                 sliderFromVm.PhotoUrl = await _image.UploadAsync(sliderUpdateVM.MainPhotoFile, "files", "slider");
             }
-
-            sliderFromVm.SliderLangs.FirstOrDefault(x =>x.Lang.Code == "az").Title = sliderUpdateVM.TitleAZ.Trim();
-            sliderFromVm.SliderLangs.FirstOrDefault(x =>x.Lang.Code == "az").Details = sliderUpdateVM.DetailsAZ.Trim();            
-            sliderFromVm.SliderLangs.FirstOrDefault(x =>x.Lang.Code == "ru").Title = sliderUpdateVM.TitleRU.Trim();
-            sliderFromVm.SliderLangs.FirstOrDefault(x =>x.Lang.Code == "ru").Details = sliderUpdateVM.DetailsRU.Trim();            
-            sliderFromVm.SliderLangs.FirstOrDefault(x =>x.Lang.Code == "en").Title = sliderUpdateVM.TitleEN.Trim();
-            sliderFromVm.SliderLangs.FirstOrDefault(x =>x.Lang.Code == "en").Details = sliderUpdateVM.DetailsEN.Trim();
             
             await _sliderService.UpdateSlider(sliderFromDb, sliderFromVm);
 
@@ -169,7 +120,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             if (id == 0) return BadRequest();
             Slider sliderFromDb = await _sliderService.GetSliderById(id);
             await _sliderService.DeleteSlider(sliderFromDb);
-            _image.Delete("files", "slider", sliderFromDb.PhotoUrl);
+            // _image.Delete("files", "slider", sliderFromDb.PhotoUrl);
 
             return RedirectToAction("Index", "Slider");
         }

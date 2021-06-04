@@ -19,16 +19,16 @@ namespace MediaBalansSaville.Data.Repositories
         public async Task<IEnumerable<Slider>> GetAllSliders()
         {
             return await ApplicationDbContext.Sliders
-                .Include(a => a.SliderLangs)
-                    .ThenInclude(b => b.Lang)
+                // .Include(a => a.SliderLangs)
+                //     .ThenInclude(b => b.Lang)
                 .ToListAsync();
         }
 
         public async Task<Slider> GetSliderById(int id)
         {
             return await ApplicationDbContext.Sliders
-                .Include(a => a.SliderLangs)
-                    .ThenInclude(b => b.Lang)
+                // .Include(a => a.SliderLangs)
+                //     .ThenInclude(b => b.Lang)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
     }

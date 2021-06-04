@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediaBalansSaville.Core.Services;
@@ -61,24 +62,13 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 AboutSettingsFromDb.AboutSettingsLangs.Add(newAboutSettingsLangEN);
                 await _aboutSettingservice.CreateAboutSettings(AboutSettingsFromDb);
                 
-                return View(AboutSettingsUpdateVM);
+                return RedirectToAction("Index", "AboutSettings");
             }
             else
             {
                 AboutSettingsVM settingsVM = new AboutSettingsVM
                 {
-                    OurStoryAZ = AboutSettingsFromDb.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == "az").OurStory,
-                    OurStoryRU = AboutSettingsFromDb.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == "ru").OurStory,
-                    OurStoryEN = AboutSettingsFromDb.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == "en").OurStory,
-                    OurMissionAZ = AboutSettingsFromDb.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == "az").OurMission,
-                    OurMissionRU = AboutSettingsFromDb.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == "ru").OurMission,
-                    OurMissionEN = AboutSettingsFromDb.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == "en").OurMission,
-                    OurVisionAZ = AboutSettingsFromDb.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == "az").OurVision,
-                    OurVisionRU = AboutSettingsFromDb.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == "ru").OurVision,
-                    OurVisionEN = AboutSettingsFromDb.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == "en").OurVision,
-                    WhySavilleAZ = AboutSettingsFromDb.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == "az").WhySaville,
-                    WhySavilleRU = AboutSettingsFromDb.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == "ru").WhySaville,
-                    WhySavilleEN = AboutSettingsFromDb.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == "en").WhySaville,
+                    AboutSettingsLangs = AboutSettingsFromDb.AboutSettingsLangs.ToList(),
                     Certificates = AboutSettingsFromDb.AboutSettingsCertificates.ToList(),
                     Items = AboutSettingsFromDb.AboutSettingsItems.ToList()
                 };
@@ -89,24 +79,21 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
         [Route("/cms/haqqimizdaparametrleri/duzeliset")]
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Save(AboutSettingsVM AboutSettingsUpdateVM)
+        public async Task<IActionResult> Update(AboutSettingsVM AboutSettingsUpdateVM)
         {            
             AboutSettings AboutSettingsFromDb = await _aboutSettingservice.GetAboutSettings();
             AboutSettings AboutSettingsFromVm = AboutSettingsFromDb;
             if (!ModelState.IsValid) return View(AboutSettingsUpdateVM);            
             
-            AboutSettingsFromVm.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").OurStory = AboutSettingsUpdateVM.OurStoryAZ;
-            AboutSettingsFromVm.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").OurStory = AboutSettingsUpdateVM.OurStoryRU;
-            AboutSettingsFromVm.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").OurStory = AboutSettingsUpdateVM.OurStoryEN;
-            AboutSettingsFromVm.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").OurMission = AboutSettingsUpdateVM.OurMissionAZ;
-            AboutSettingsFromVm.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").OurMission = AboutSettingsUpdateVM.OurMissionRU;
-            AboutSettingsFromVm.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").OurMission = AboutSettingsUpdateVM.OurMissionEN;
-            AboutSettingsFromVm.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").OurVision = AboutSettingsUpdateVM.OurVisionAZ;
-            AboutSettingsFromVm.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").OurVision = AboutSettingsUpdateVM.OurVisionRU;
-            AboutSettingsFromVm.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").OurVision = AboutSettingsUpdateVM.OurVisionEN;
-            AboutSettingsFromVm.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").WhySaville = AboutSettingsUpdateVM.WhySavilleAZ;
-            AboutSettingsFromVm.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "ru").WhySaville = AboutSettingsUpdateVM.WhySavilleRU;
-            AboutSettingsFromVm.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "en").WhySaville = AboutSettingsUpdateVM.WhySavilleEN;
+            int count = 0;
+            foreach (var item in AboutSettingsFromVm.AboutSettingsLangs)
+            {                
+                item.OurStory = AboutSettingsUpdateVM.AboutSettingsLangs.ElementAt(count).OurStory;
+                item.OurMission = AboutSettingsUpdateVM.AboutSettingsLangs.ElementAt(count).OurMission;
+                item.OurVision = AboutSettingsUpdateVM.AboutSettingsLangs.ElementAt(count).OurVision;
+                item.WhySaville = AboutSettingsUpdateVM.AboutSettingsLangs.ElementAt(count).WhySaville;
+                count++;
+            }
 
             await _aboutSettingservice.UpdateAboutSettings(AboutSettingsFromDb, AboutSettingsFromVm);
             return RedirectToAction("Index", "AboutSettings");             
@@ -212,7 +199,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
         [Route("/cms/parametr/yarat")]
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateItem(ASItemCreateVM itemCreateVM)
+        public async Task<IActionResult> CreateItem(ASItemCreateVM itemCreateVM, List<AboutSettingsItemLang> itemLangs)
         {
             if (!ModelState.IsValid) return View(itemCreateVM);
 
@@ -222,9 +209,6 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 return View(itemCreateVM);
             }
             AboutSettings AboutSettingsFromDb = await _aboutSettingservice.GetAboutSettings();
-            Lang azLang = await _langService.GetLangWithCode("az");
-            Lang ruLang = await _langService.GetLangWithCode("ru");
-            Lang enLang = await _langService.GetLangWithCode("en");
 
             AboutSettingsItem newItem = new AboutSettingsItem
             {
@@ -232,30 +216,16 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 PhotoUrl = await _image.UploadAsync(itemCreateVM.MainPhotoFile, "files", "aboutsettings"),
                 IsActive = itemCreateVM.IsActive
             };
-            AboutSettingsItemLang itemAZ = new AboutSettingsItemLang
-            {               
-                Title = itemCreateVM.TitleAZ,
-                Details = itemCreateVM.DetailsAZ,
-                AboutSettingsItemId = newItem.Id,
-                LangId = azLang.Id
-            };
-            AboutSettingsItemLang itemRU = new AboutSettingsItemLang
-            {               
-                Title = itemCreateVM.TitleRU,
-                Details = itemCreateVM.DetailsRU,
-                AboutSettingsItemId = newItem.Id,
-                LangId = ruLang.Id
-            };
-            AboutSettingsItemLang itemEN = new AboutSettingsItemLang
-            {               
-                Title = itemCreateVM.TitleEN,
-                Details = itemCreateVM.DetailsEN,
-                AboutSettingsItemId = newItem.Id,
-                LangId = enLang.Id
-            };
-            newItem.AboutSettingsItemLangs.Add(itemAZ);
-            newItem.AboutSettingsItemLangs.Add(itemRU);
-            newItem.AboutSettingsItemLangs.Add(itemEN);
+            foreach (var item in itemLangs)
+            {
+                newItem.AboutSettingsItemLangs.Add(new AboutSettingsItemLang()
+                {
+                    Title = item.Title,
+                    Details = item.Details,
+                    AboutSettingsItemId = newItem.Id,
+                    LangId = item.LangId
+                });
+            }
 
             await _aboutSettingservice.CreateItem(newItem);
 
@@ -271,12 +241,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
             ASItemUpdateVM itemUpdateVM = new ASItemUpdateVM
             {          
-                TitleAZ = itemFromDb.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Title,
-                TitleRU = itemFromDb.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "ru").Title,  
-                TitleEN = itemFromDb.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "en").Title,  
-                DetailsAZ = itemFromDb.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Details,  
-                DetailsRU = itemFromDb.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "ru").Details,  
-                DetailsEN = itemFromDb.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "en").Details,  
+                Langs = itemFromDb.AboutSettingsItemLangs.ToList(),
                 PhotoUrl = itemFromDb.PhotoUrl,
                 IsActive = itemFromDb.IsActive
             };
@@ -302,12 +267,13 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                     return View(itemUpdateVM);
                 }
             }
-            itemFromVm.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Title = itemUpdateVM.TitleAZ;
-            itemFromVm.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "ru").Title = itemUpdateVM.TitleRU;
-            itemFromVm.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "en").Title = itemUpdateVM.TitleEN;
-            itemFromVm.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Details = itemUpdateVM.DetailsAZ;
-            itemFromVm.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "ru").Details = itemUpdateVM.DetailsRU;
-            itemFromVm.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "en").Details = itemUpdateVM.DetailsEN;
+            int count = 0;
+            foreach (var item in itemFromVm.AboutSettingsItemLangs)
+            {                
+                item.Title = itemUpdateVM.Langs.ElementAt(count).Title;
+                item.Details = itemUpdateVM.Langs.ElementAt(count).Details;
+                count++;
+            }
             itemFromVm.IsActive = itemUpdateVM.IsActive;
 
             if (itemUpdateVM.MainPhotoFile != null)
