@@ -1,0 +1,237 @@
+.maslahatlar-slider-main {
+
+    .main-slider { min-height: 576px; position: relative; top: 60px; 
+        @include desktop-xl{
+            min-height: 500px;
+        }
+        @include desktop-l{
+            min-height: 434px;
+        }
+        @include desktop-sm{
+            min-height: 373px;
+        }
+        @include mobile-xl{
+            min-height: 383px;
+        }
+        @include mobile-l{
+            top: 8px;
+            min-height: inherit;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .maslahatlar-detail-slider { width: 58%; height: 593px;   
+             @include desktop-xl{
+            height: 508px;
+            }
+            @include desktop-l{
+                height: 440px;
+            }
+            @include desktop-sm{
+                width: 70%;
+                height: 389px;
+            }
+            @include mobile-xl{
+                width: 80%;
+                height: 420px;
+            }
+            @include mobile-l{
+                width: 100%;
+                height: 290px;
+            }
+
+            .slider-item { height: 593px; 
+                @include desktop-xl{
+                    height: 508px;
+                }
+                @include desktop-l{
+                    height: 440px;
+                }
+                @include desktop-sm{
+                    height: 389px;
+                }
+                @include mobile-xl{
+                    height: 420px;
+                }
+                @include mobile-l{
+                    height: 290px;
+                }
+                img { width: 100%; height: 100%; 
+                    object-fit: cover; }
+            }
+
+            .owl-nav { position: absolute; left: 50%; bottom: 0px; transform: translate(-50%, -50%); 
+
+                button {
+                    i { color: #fff; font-size: 30px; }
+                }
+
+                .owl-prev { margin-right: 30px; }
+            }
+        }
+
+        .slider-text { @include padding(120px 60px); z-index: 1; position: absolute; top: 60px; right: 0px; background-color: #a51515; background-color: #a51515; 
+            @include desktop-l{
+                top: 28px;
+                @include padding(100px 40px);
+            }
+            @include desktop-sm{
+                top: 28px;
+                @include padding(40px 30px);
+            }
+            @include mobile-display{
+                @include padding(30px 30px);
+            }
+            @include mobile-l{
+                @include padding(30px 40px);
+                position: inherit;
+                top: inherit;
+                margin-bottom: 27px;
+                width: 100%;
+            }
+            p { @include font-size(25px); color: #fff; font-family: $SemiBold; line-height: 35px; 
+                @include desktop-sm{
+                    font-size: 18px;
+                    line-height: 25px !important; 
+                }
+                @include mobile-xl{
+                    font-size: 17px;
+                    line-height: 20px !important; 
+                }
+                @include mobile-l{
+                    font-size: 17px;
+                    line-height: 20px !important; 
+                }
+            }
+        }
+    }
+}
+
+.maslahatlar-share { background-color: #f2f2f2; 
+
+    .blog-info { padding: 103px 0 58px; display: flex; justify-content: space-between; 
+        @include mobile-l{
+            flex-direction: column;
+            align-items: center;
+            padding: 41px 0 35px;
+        }
+        .category-name { font-family: $SemiBold; font-size: 17px; color: #838383; 
+            @include mobile-l{
+                margin-bottom: 25px;
+            }
+            strong { color: #1a1a1a; }
+        }
+
+        .share { display: flex; align-items: center; 
+
+            .share-text { font-size: 17px; font-family: $SemiBold; color: #838383; margin-right: 25px; }
+
+            .share-list { display: flex; 
+
+                .share-item { margin-right: 15px; cursor: pointer; position: relative; 
+
+                    &:hover {
+                        &::after { opacity: 1; }
+                    }
+
+                    &::after { content: ''; width: 100%; height: 2px; background-color: #475993; position: absolute; bottom: -7px; left: 0px; border-radius: 5px; opacity: 0; 
+                        @extend %transition; }
+
+                    &:last-child { margin-right: 0px; }
+
+                    &:nth-child(1) {
+                        &::after { background-color: #475993; }
+
+                        i { color: #475993; }
+                    }
+
+                    &:nth-child(2) {
+                        &::after { background-color: #76a9ea; }
+
+                        i { color: #76a9ea; }
+                    }
+
+                    &:nth-child(3) {
+                        &::after { background-color: #0084b1; }
+
+                        i { color: #0084b1; }
+                    }
+
+                    i { font-size: 25px; }
+                }
+            }
+        }
+    }
+}
+
+.maslahat-contents-main { min-height: 78vh; position: relative; 
+
+    .maslahatlar-contents {
+        .contents-heading { @include font-size(20px); font-family: $SemiBold; color: #831212; @include padding(45px 0); }
+
+        .products-heading { padding-bottom: 35px; }
+
+        .hazırlanma-list {
+            .hazırlanma-item { display: flex; flex-wrap: wrap; @include margin-bottom(40px); 
+
+                &:last-child { margin-bottom: 0px; }
+
+                .numbers { width: 30px; height: 30px; background-color: #a51515; font-family: $SemiBold; color: #fff; font-size: 16px; display: flex; border-radius: 50%; align-items: center; margin-right: 19px; text-align: center; justify-content: center; }
+
+                .text { width: 85%; display: inline-block; }
+            }
+        }
+
+        .ingredients {@include mobile-l{
+            @include padding(20px 0px);
+        }
+            .ıngredients-list {
+                .ıng-item { margin-bottom: 7px; font-size: 17px; line-height: 22px; }
+            }
+        }
+        .product-card-main{@include padding(0px 0 50px);
+            .productcard { height: 252px; ; border: 1px solid #dddddd; border-radius: 0px;
+                display: block; text-decoration: none; position: relative; 
+                &:hover{
+                    @extend %transition;
+                    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+
+                }
+                @include desktop-sm{
+                    height: 214px;
+                }
+   
+               .product-image { height: 201px; display: block; margin: auto;  margin: auto; position: relative; 
+                   @include desktop-sm{
+                       height: 165px;
+                   }
+                   img {
+                       object-fit: scale-down; 
+                       object-position: bottom; position: absolute; display: block; bottom: 0px; left: 50%; transform: translate(-50%, 0); width: 100%; height: 100%; }
+               }
+   
+               .mahsul-name { @include font-size(12px); margin: 8px; font-family: $SemiBold; color: #000; text-align: center; overflow: hidden; white-space: inherit; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; 
+                   /* number of lines to show */
+                   -webkit-box-orient: vertical; }
+   
+   
+           }
+        }
+  
+
+    }
+
+    .maslahat-right-nar { position: absolute; bottom: 0px; right: -106px;
+        @include desktop-sm{
+            right: -145px;
+        }
+    }
+}
+
+.diger-receptler {
+    @include mobile-display{
+        margin-top: 40px;
+    }
+    .partner-heading { @extend %button; width: 185px; }
+
+    .recept-card-main { @include padding(30px 0 90px); }
+}

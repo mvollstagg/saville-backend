@@ -1,0 +1,107 @@
+﻿@inject IConfiguration _configuration
+@{
+    string _lang = ViewBag.Lang ?? "az";
+}
+@model IEnumerable<Product>
+@section seo{
+    @{await Html.RenderPartialAsync("_Seo", "Product");}
+}
+@section Styles{
+   
+}
+
+<section>
+    <div class="mahsullar-general-main">
+        <div class="container">
+            <div class="col-12 col-md-11 col-lg-11 col-xl-11 mx-auto mahsullar-main">
+                <span class="partner-heading">
+                    Məhsullar
+                </span>
+                <div class="row col-12 col-md-12 col-lg-10 col-xl-8 col-xxl-5  gx-2 mx-auto mahsullar-search">
+                    <div class="col-7 col-md-12 col-lg-9">
+                        <div class="search-box">
+                            <input type="text" class="form-control" placeholder="Axtarış">
+                            <i class="bi bi-search"></i>
+                        </div>
+                    </div>
+                    <div class="col-5 col-md-3">
+                        <div class="dropdown filter-search">
+                            <button class="btn btn-filter" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-funnel-fill"></i>
+                                <span>Filter</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li class="dropdown-item">250 ml</li>
+                                <li class="dropdown-item">650 ml</li>
+                                <li class="dropdown-item">1 l</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 gx-5 gy-5 mahsullar-card-main">
+                    @foreach (var product in Model)
+                    {
+                        <div class="col">
+                            <a class="mahsulcard" asp-controller="Product" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@product.SlugUrl.ToLower()" asp-route-urlid="@product.UrlId">
+                                <div class="mahsulcard-image">
+                                    <img src="~/files/product/@product.SlugUrl/@product.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl" alt="mahsulcard-image">
+                                </div>
+                                <p class="mahsul-name">@product.ProductLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name
+                                    @product.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name
+                                </p>
+                                <p class="mahsul-content">@product.ProductLangs.FirstOrDefault(x => x.Lang.Code == _lang).Details </p>
+                            </a>
+                        </div>
+                    }                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+@section Scripts{
+   <script> 
+       var skipCount = 10;
+       function moreProduct()
+       {
+           var loadingimg = document.getElementById("loading");
+           loadingimg.style.display = "block";
+           $.ajax({
+                url: 'moreproduct?skipCount=' + skipCount + '&category=Mayonez',
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    var tetikle = setInterval(function () {
+                        $('#productList').append(data);
+                        clearInterval(tetikle);
+                    }, 900); 
+                    skipCount += 10;
+                    loadingimg.style.display = "none"; 
+                }
+            });
+       }       
+       function filterProducts()
+       {
+           var loadingimg = document.getElementById("loading");
+           loadingimg.style.display = "block";
+           var filterText = document.getElementById("filter").value;
+           $('#productList').html('');
+           $.ajax({
+                url: 'productfiltered?filter=' + filterText,
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    var tetikle = setInterval(function () {
+                        $('#productList').append(data);
+                        clearInterval(tetikle);
+                    }, 900);
+                    loadingimg.style.display = "none";  
+                }
+            });
+       }       
+   </script>
+}

@@ -1,0 +1,40 @@
+
+@mixin menu { -webkit-animation: fade-in 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both; animation: fade-in 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both; 
+
+
+    @-webkit-keyframes fade-in {    
+      0% { opacity: 0; }
+  
+      100% { opacity: 1; }
+    }
+  
+    @keyframes fade-in {    
+      0% { opacity: 0; }
+  
+      100% { opacity: 1; }
+    }
+  }
+
+@mixin  textins {
+  -webkit-animation: fade-in2 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: fade-in2 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+          @-webkit-keyframes fade-in2 {
+            0% {
+              opacity: 0;
+            }
+
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes fade-in2 {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          
+}
+

@@ -1,0 +1,110 @@
+footer { background-image: url(/assets/img/background/footer-back.png); background-color: #000;
+     background-repeat: no-repeat; background-size: cover;  position: relative;
+     z-index: 5;
+
+    .footer-main { display: flex; flex-direction: column; align-items: center; padding: 25px 0px; 
+
+        .footer-logo { width: 151px; height: 105px; 
+            @include mobile-l {     width: 116px;
+                height: 81px; }
+          
+            img { @extend %img-size; }
+        }
+
+        .footer-menu { padding: 28px 0px; display: inline-block; align-items: center; margin-left: auto; display: flex;  width: 100%; 
+            @include desktop-sm{
+                flex-direction: column;
+            }
+            @include mobile-display{
+                flex-direction: column;
+            }
+            @include mobile-l{
+                padding: 30px 0px 15px;
+            }
+            .footer-menu-list { display: flex; margin-left: auto; flex-wrap: wrap;
+                @include desktop-sm{
+                    justify-content: center;
+                }
+                @include mobile-display{
+                    justify-content: center;
+                }
+                @include mobile-l{
+                    flex-direction: column;
+                    margin-right: auto;
+                    align-items: center;
+                }
+                .footer-item { @include margin-right(30px); 
+                    @include desktop-sm{
+                        margin-bottom: 20px;
+                    }
+                    @include mobile-display{
+                        margin-bottom: 20px;
+                    }
+                    @include mobile-l{
+                        margin-bottom: 20px;
+                        margin-right: 0px;
+                    }
+                    &:last-child { margin-right: 0px; }
+
+                    .footer-links { font-size: 17px; color: #fff; font-family: $medium;
+                        &:hover{
+                            color: #b8b8b8;
+                            @extend %transition;
+                        }
+                        }
+                }
+            }
+
+            .down-lang { display: inline-block; margin-left: auto; 
+                @include desktop-sm{
+                    margin: 0px  auto 20px;
+                    
+                }
+                @include mobile-display{
+                    margin: 0px  auto 20px;
+                }
+                .btn-lang { color: #fff; 
+               
+                    span { color: #fff; }
+
+                }
+
+                .dropdown-menu { min-width: 0; border: 1px solid #fff; background-color: transparent; 
+                    @include desktop-sm{
+                     background-color: #831212;
+                        
+                    }
+                    @include mobile-display{
+                        background-color: #831212;
+                    }
+                    &.show { transform: translate(15px, 40px) !important; }
+
+                    .dropdown-item { color: #fff; text-align: center; cursor: pointer; 
+
+                        &:hover { background-color: #fff; color: #a51515; 
+                            @extend %transition; }
+                    }
+                }
+            }
+        }
+
+        .social-list { display: flex; 
+
+            .social-item { margin-right: 20px; 
+
+                &:last-child { margin-right: 0px; }
+
+                .social-links { color: #fff; 
+                    &:hover{
+                        color: #b8b8b8;
+                        @extend %transition;
+                    }
+                    i { font-size: 30px; 
+                    }
+                }
+            }
+        }
+
+        .copright { font-family: $regular; font-size: 15px; color: #fff; @include padding-top(70px); }
+    }
+}

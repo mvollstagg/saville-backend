@@ -1,0 +1,143 @@
+.maslahat-main{@include padding(0 0 50px);
+    .partner-heading{
+        @extend %button;
+        width: 264px;
+    }
+    .maslahat-search{
+        box-shadow: 0 3px 15px rgba(165, 21, 21, 0.2);
+        background-color: #a51515;
+        display: flex;
+     
+        .search-main{
+            width: 100%;
+            display: flex;
+            @include margin(30px 40px);
+            height: 65px;
+            @include mobile-display{
+                flex-direction: column;
+                height: 100%;
+                width: 56%;
+                margin: 20px auto;
+            }
+            @include mobile-l{
+                width: 75% !important;
+            }
+            .search-box{position: relative;     width: 63%;
+                @include mobile-display{
+                    width: 100%;
+                }
+
+               .form-control{
+                border: 1px solid #ffffff;
+                height: 100%;
+                border-radius: 0px;
+                background-color: transparent;
+                font-family: $medium;
+                color: #ffffff;
+                font-size: 17px;
+                padding: 0px 55px 0px 25px;
+                @include mobile-display{
+                    height: 55px;
+                }
+                &:focus{
+                    box-shadow: none;
+                    &::placeholder{
+                      color: transparent;
+                      @extend %transition;
+                    }
+                  }
+                &::placeholder{
+                    color: #ffffff;
+                }
+               } 
+               i{
+                   color: #ffffff;
+                   font-size: 20px;
+                   position: absolute;
+                   right: 23px;
+                   top: 22px;
+                   @include mobile-display{
+                    top: 17px;
+                   }
+               }
+            }
+            .filter-search{
+                @include mobile-display{
+                    margin-top: 25px;
+                }
+                .btn-filter{
+                    border: 1px solid #ffffff;
+                    height: 100%;
+                    color: #ffffff;
+                    font-family: $medium;
+                    border-radius: 0px;
+                    margin-left: 15px;
+                    min-width: 150px;
+                    width: 173px;
+                    @include mobile-display{
+                        width: 100%;
+                        margin-left: 0px;
+                        height: 65px;
+                    }
+                    @include mobile-l{
+                        height: 55px;
+                    }
+                    i{
+                        font-size: 17px;
+                    }
+                    span{
+                        display: inline-block;
+                        margin: 0 5px;
+                    }
+                }
+                .dropdown-menu{
+                    box-shadow: 0 3px 15px rgba(165, 21, 21, 0.15);
+                    background-color: #b41d1d;
+                    min-width: 0px;
+                    width: 92%;
+                    padding: 20px 0px;
+                    @include mobile-display{
+                        width: 100%;
+                    }
+                    .dropdown-item{
+                        font-family: $medium;
+                        color: #ffffff;
+                        font-size: 17px;
+                        cursor: pointer;
+                        margin-bottom: 5px;
+                        padding: 6px 20px;
+                        @extend %transition;
+                        &:hover{
+                            background-color: rgba(255, 255, 255, 0.21);
+                        }
+                    }
+
+                }
+            }
+            .btn-aktarıs{
+                background-color: #ba2a2a;
+                color: #ffffff;
+                font-family: $medium;
+                padding: 23px 57px;
+                display: block;
+                @include margin-left(45px);
+                @include mobile-display{
+                    margin-top: 25px;
+                    margin-left: 0px;
+                }
+                @include mobile-l{
+                    height: 55px;
+                    padding: 0px;
+                }
+                &:hover{
+                    background-color: #ffffff;
+                    color: #ba2a2a;
+                    @extend %transition;
+                }
+            }
+        }
+    }
+    .maslahatlar-card-main{
+        @include padding(100px 0 150px);
+    }
+}

@@ -1,0 +1,104 @@
+﻿@inject IConfiguration _configuration
+@{
+    string _lang = ViewBag.Lang ?? "az";
+}
+@model ReceiptItemPageVM
+@section seo{
+    @{await Html.RenderPartialAsync("_SeoOther", @Model.Receipt.UniqueId);}
+}
+@section Styles{
+    
+}
+
+@* <section>
+    <div class="recep-detail">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-6">
+                    <div id="recept-detail-slider" class="owl-carousel owl-theme" data-slider-id="1">
+                        @foreach (var photo in Model.Receipt.ReceiptPhotos)
+                        {
+                            <div class="item">
+                                <img src="/files/receipt/@photo.PhotoUrl" alt="sliderimage">
+                            </div>
+                        }                        
+                    </div>
+                    <div class="owl-thumbs row row-cols-3 row-cols-md-5 row-cols-xl-6 gx-3 mt-3" data-slider-id="1">
+                        @foreach (var photo in Model.Receipt.ReceiptPhotos)
+                        {
+                            <div class='col thm-content owl-thumb-item'>
+                                <img src="/files/receipt/@photo.PhotoUrl" alt="smallimage">
+                            </div>
+                        }                         
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="recept-detail-text">
+                        <div class="dropdown sharedown">
+                            <button class="btn btn-share" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="sharetext">@_configuration[$"Paylas:{_lang}"]</span>
+                                <i class="bi bi-share-fill"></i>
+                            </button>
+                            <ul class="dropdown-menu share-social" aria-labelledby="dropdownMenuButton1">
+                                <a href="https://www.facebook.com/share.php?u=@Context.Request.Host@Context.Request.Path"><li class="dropdown-item btn-socialshare"><i class="bi bi-facebook"></i></li></a>
+                                <a href="whatsapp://send?text=@Context.Request.Host@Context.Request.Path"><li class="dropdown-item btn-socialshare"><i class="bi bi-whatsapp"></i></li></a>
+                            </ul>
+                        </div>
+                        <div class="recept-info">
+                            <p class="product">@Model.Receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</p>
+                            <p class="product-name">@Model.Receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Title</p>
+                        </div>
+                        <div class="recept-menu">
+                            <h3>@_configuration[$"Tərkib:{_lang}"]:</h3>
+                            @Html.Raw(Model.Receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Ingredients)
+                        </div>
+                        <div class="hazır-menu">
+                            <h3>@_configuration[$"Preparation:{_lang}"]:</h3>
+                            @Html.Raw(Model.Receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Preparation)
+                        </div>
+                        @if(Model.Receipt.IsVideo == true)
+                        {
+                            <iframe  src="https://www.youtube.com/embed/@Model.Receipt.VideoUrl"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> *@
+
+<section>
+    <div class="recep-detail-alt">
+        <div class="container">
+            <h3>@_configuration[$"DigerReseptler:{_lang}"]</h3>
+            <div class="row row-cols-1 row-cols-md-2  row-cols-xl-4  gx-4 gy-4">
+                @foreach (var receipt in Model.OtherReceipts.TakeLast(4))
+                {
+                    <div class="col">
+                        <a asp-controller="Receipt" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@receipt.SlugUrl.ToLower()" asp-route-urlid="@receipt.UrlId" class="receptcard">
+                            <div class="card">
+                                <div class="recept-image">
+                                    <img src="/files/receipt/@receipt.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl" alt="receptimage">
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-status">@receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</h4>
+                                    <h5 class="card-title">@receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Title</h5>
+                                    <span class="btn arrow"><i class="bi bi-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+            <a asp-controller="Receipt" asp-action="Index" asp-route-_lang="@_lang" class="btn btn-cox">@_configuration[$"DahaCox:{_lang}"]</a>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+   
+}

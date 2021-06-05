@@ -13566,6 +13566,102 @@
         }
       },
       {
+        "HashCode": 1470941291,
+        "Kind": "MVC.ViewComponent",
+        "Name": "__Generated__SeoOtherViewComponentTagHelper",
+        "AssemblyName": "MediaBalansSaville.WebUI",
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "vc:seo-other",
+            "Attributes": [
+              {
+                "Name": "id"
+              }
+            ]
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "MVC.ViewComponent",
+            "Name": "id",
+            "TypeName": "System.Int32",
+            "Metadata": {
+              "Common.PropertyName": "id"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "__Generated__SeoOtherViewComponentTagHelper",
+          "MVC.ViewComponent.Name": "SeoOther"
+        }
+      },
+      {
+        "HashCode": 1333141986,
+        "Kind": "MVC.ViewComponent",
+        "Name": "__Generated__SeoViewComponentTagHelper",
+        "AssemblyName": "MediaBalansSaville.WebUI",
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "vc:seo",
+            "Attributes": [
+              {
+                "Name": "page"
+              }
+            ]
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "MVC.ViewComponent",
+            "Name": "page",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "page"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "__Generated__SeoViewComponentTagHelper",
+          "MVC.ViewComponent.Name": "Seo"
+        }
+      },
+      {
+        "HashCode": -1254288050,
+        "Kind": "MVC.ViewComponent",
+        "Name": "__Generated__SiteSettingsViewComponentTagHelper",
+        "AssemblyName": "MediaBalansSaville.WebUI",
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "vc:site-settings",
+            "Attributes": [
+              {
+                "Name": "lang"
+              }
+            ]
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "MVC.ViewComponent",
+            "Name": "lang",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "lang"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "__Generated__SiteSettingsViewComponentTagHelper",
+          "MVC.ViewComponent.Name": "SiteSettings"
+        }
+      },
+      {
         "HashCode": -482054960,
         "Kind": "Components.Bind",
         "Name": "Bind",
@@ -15619,6 +15715,11 @@
   "RootNamespace": "MediaBalansSaville.WebUI",
   "Documents": [
     {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/_Header.cshtml",
+      "TargetPath": "Views\\Shared\\_Header.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/AboutSettings/CreateCertificate.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\AboutSettings\\CreateCertificate.cshtml",
       "FileKind": "mvc"
@@ -15674,8 +15775,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Receipt/Index.cshtml",
+      "TargetPath": "Views\\Receipt\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/_Seo.cshtml",
+      "TargetPath": "Views\\Shared\\_Seo.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/AboutSettings/UpdateItem.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\AboutSettings\\UpdateItem.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Product/Index.cshtml",
+      "TargetPath": "Views\\Product\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15699,6 +15815,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/_Messages.cshtml",
+      "TargetPath": "Views\\Shared\\_Messages.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Receipt/Update.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\Receipt\\Update.cshtml",
       "FileKind": "mvc"
@@ -15706,6 +15827,16 @@
     {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Seo/Create.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\Seo\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Receipt/GetFilter.cshtml",
+      "TargetPath": "Views\\Receipt\\GetFilter.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Receipt/Item.cshtml",
+      "TargetPath": "Views\\Receipt\\Item.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15721,6 +15852,16 @@
     {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Product/Item.cshtml",
+      "TargetPath": "Views\\Product\\Item.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/Components/SiteSettings/default.cshtml",
+      "TargetPath": "Views\\Shared\\Components\\SiteSettings\\default.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15749,6 +15890,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/About/Index.cshtml",
+      "TargetPath": "Views\\About\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Seo/Index.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\Seo\\Index.cshtml",
       "FileKind": "mvc"
@@ -15759,8 +15905,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Home/Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/_SeoOther.cshtml",
+      "TargetPath": "Views\\Shared\\_SeoOther.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/Components/SeoOther/default.cshtml",
+      "TargetPath": "Views\\Shared\\Components\\SeoOther\\default.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15779,6 +15930,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/_Footer.cshtml",
+      "TargetPath": "Views\\Shared\\_Footer.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Shared/_Layout.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -15794,6 +15950,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Product/LoadMoreProduct.cshtml",
+      "TargetPath": "Views\\Product\\LoadMoreProduct.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Home/Index.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
@@ -15806,6 +15967,11 @@
     {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/_ViewImports.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/Components/Seo/default.cshtml",
+      "TargetPath": "Views\\Shared\\Components\\Seo\\default.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15836,6 +16002,11 @@
     {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Seo/Update.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\Seo\\Update.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Receipt/LoadMoreReceipt.cshtml",
+      "TargetPath": "Views\\Receipt\\LoadMoreReceipt.cshtml",
       "FileKind": "mvc"
     },
     {

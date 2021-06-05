@@ -1,0 +1,157 @@
+
+.alaqa-main{position: relative;
+    .alaqa-form-main{
+        .partner-heading{
+            @extend %button;
+            width: 185px;
+        }
+        .form-main{display: flex; @include padding(60px 0px 120px); flex-wrap: wrap;
+            @include mobile-display{
+                flex-direction: column;
+                align-items: center;
+            }
+            .left{
+                border: 1px solid rgba(165, 21, 21, 0.2);
+                width: 48%;
+                display: flex;
+                flex-direction: column;
+                height: fit-content;
+                @include padding(40px 26px);
+                @include mobile-display{
+                    width: 70%;
+                    margin-bottom: 55px;
+                }
+                @include mobile-l{
+                    width: 100%;
+                }
+                .left-heading{
+                    @include font-size(20px);
+                    font-family: $SemiBold;
+                    color: #831212;
+                    margin-bottom: 20px;
+                }
+                .left-text{
+                    font-size: 17px;
+                    color: #1a1a1a;
+                    font-family: $medium;
+                    line-height: 22px;
+                    @include padding-bottom(30px);
+                }
+                .info{
+                    font-size: 17px;
+                    color: #1a1a1a;
+                    display: block;
+                    margin-bottom: 13px;
+                   
+                    &:hover{
+                        @extend %transition;
+                        color: #a51515;
+                    }
+                    i{
+                        font-size: 21px;
+                        margin-right: 10px;
+                    }
+                    &:last-child{
+                        margin-bottom: 0px;
+                    }
+                }
+                .social-list { display: flex; @include padding-top(52px);
+
+                    .social-item { margin-right: 15px; 
+        
+                        &:last-child { margin-right: 0px; }
+        
+                        .social-links { color: #1a1a1a; 
+                          
+                            &:hover{
+                                @extend %transition;
+                                color:  #a51515;
+                            }
+                            i { font-size: 25px; }
+                        }
+                    }
+                }
+            }
+            .right{width: 36%;           background-color: #ffffff; @include padding(23px 40px );  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+                @include margin-left(157px);
+                @include desktop-sm{
+                    margin-left: 50px;
+                    width: 40%;
+                }
+                @include mobile-display{
+                    width: 70%;
+                    margin-left: 0px;
+                }
+                @include mobile-l{
+                    width: 100%;
+                }
+       
+                .right-heading{
+                    @include font-size(20px);
+                    color: #831212;
+                    margin-bottom: 10px;
+                    font-family: $SemiBold;
+                }
+                .right-text{
+                    font-family: $medium;
+                    color: #1a1a1a;
+                    font-size: 17px;
+                    line-height: 22px;
+                }
+                form{padding-top: 16px;
+                    .form-box{position: relative; margin-bottom: 10px;
+                        .form-control{
+                            height: 40px;
+                            border: 1px solid #c4c4c4;
+                            background-color: #ffffff;
+                            font-family: $medium;
+                            padding-left: 45px;
+                            color: #831212;
+                            &:focus{
+                                box-shadow: none;
+                                border-color: #831212;
+                                @extend %transition;
+                                &::placeholder{
+                                    @extend %transition;
+                                    color: transparent;
+                                }
+                            }
+                        }
+                        .areas{
+                            height: 120px;
+                            resize: none;
+                        }
+                        i{
+                            position: absolute;
+                            left: 20px;
+                            top: 12px;
+                            color: #831212;
+                        }
+                    }
+                    .btn-send{
+                        display: block;
+                        height: 40px;
+                        box-shadow: 0 3px 15px rgba(131, 18, 18, 0.2);
+                        background-color: #831212;
+                        width: 100%;
+                        text-align: center;
+                        font-family: $medium;
+                        color: #ffffff;
+                        margin-top: 15px;
+                    }
+                }
+            }
+        }
+    }
+    .alaqa-left-nar{
+        position: absolute;
+        left: -60px;
+        bottom: 25px;
+    }
+    .alaqa-right-nar{
+        position: absolute;
+         right: 55px;
+         bottom: 189px;
+        z-index: -1;
+    }
+}

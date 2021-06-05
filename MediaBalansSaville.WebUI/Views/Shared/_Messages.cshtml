@@ -1,0 +1,22 @@
+@inject IConfiguration _configuration
+@if(TempData["Success"] != null){
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        Swal.fire(
+            '@_configuration[$"SuccessTitle:{@ViewBag.Lang}"]',
+            '@_configuration[$"SuccessDetail:{@ViewBag.Lang}"]',
+            'success'
+        )
+    </script> 
+}
+
+@if(TempData["Error"] != null){
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        Swal.fire(
+            '@_configuration[$"ErrorTitle:{@ViewBag.Lang}"]',
+            '@_configuration[$"ErrorDetail:{@ViewBag.Lang}"]',
+            'error'
+        )
+    </script> 
+}

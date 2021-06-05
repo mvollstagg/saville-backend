@@ -1,0 +1,85 @@
+@inject IConfiguration _configuration
+@model SiteSettings
+@{
+    string _lang = ViewBag.Lang ?? "az";
+    if (Context.Session.GetString("_lang") != null)
+    {
+        _lang = Context.Session.GetString("_lang");
+    }
+    var controller = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
+    var action = ViewContext.RouteData.Values["Action"].ToString().ToLower();
+}
+
+
+@if(Model != null)
+{
+    <footer>
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-logo">
+                    <img src="/assets/img/icons/logo.svg" alt="">
+                </div>
+                <div class="footer-menu">
+                    <ul class="footer-menu-list">
+                        <li class="footer-item">
+                            <a asp-controller="Home" asp-action="Index" asp-route-_lang="@_lang" class="footer-links">@_configuration[$"AnaSəhifə:{_lang}"]</a>
+                        </li>
+                        <li class="footer-item">
+                            <a asp-controller="About" asp-action="Index" asp-route-_lang="@_lang" class="footer-links">@_configuration[$"Haqqımızda:{_lang}"]</a>
+                        </li>
+                        <li class="footer-item">
+                            <a asp-controller="Product" asp-action="Index" asp-route-_lang="@_lang" class="footer-links">@_configuration[$"Məhsullar:{_lang}"]</a>
+                        </li>
+                        <li class="footer-item">
+                            <a asp-controller="Pomegranate" asp-action="Index" asp-route-_lang="@_lang" class="footer-links">@_configuration[$"Narınfaydaları:{_lang}"]</a>
+                        </li>
+                        <li class="footer-item">
+                            <a asp-controller="Receipt" asp-action="Index" asp-route-_lang="@_lang" class="footer-links">@_configuration[$"Faydalıməsləhətlər:{_lang}"]</a>
+                        </li>
+                        <li class="footer-item">
+                            <a asp-controller="Exportation" asp-action="Index" asp-route-_lang="@_lang" class="footer-links">@_configuration[$"İxracat:{_lang}"]</a>
+                        </li>
+                        <li class="footer-item">
+                            <a asp-controller="Contact" asp-action="Index" asp-route-_lang="@_lang" class="footer-links">@_configuration[$"Əlaqə:{_lang}"]</a>
+                        </li>
+                        <li class="footer-item">
+                            <a asp-controller="FAQ" asp-action="Index" asp-route-_lang="@_lang" class="footer-links">@_configuration[$"Faq:{_lang}"]</a>
+                        </li>
+                    </ul>
+                    <div class="dropdown down-lang">
+                        <button class="btn btn-lang" type="button" id="language" data-bs-toggle="dropdown">
+                            <i class="bi bi-globe"></i>
+                            <span>@_lang.ToUpper()</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu lang-down" aria-labelledby="language">
+                            <a asp-controller="@controller" asp-action="@action" asp-route-_lang="az" asp-route-slugurl="@ViewBag.SlugUrl" asp-route-urlid="@ViewBag.UrlId" class="btn btn-lang active"><li class="dropdown-item">AZ</li></a>
+                            <a asp-controller="@controller" asp-action="@action" asp-route-_lang="ru" asp-route-slugurl="@ViewBag.SlugUrl" asp-route-urlid="@ViewBag.UrlId" class="btn btn-lang active"><li class="dropdown-item">RU</li></a>
+                            <a asp-controller="@controller" asp-action="@action" asp-route-_lang="en" asp-route-slugurl="@ViewBag.SlugUrl" asp-route-urlid="@ViewBag.UrlId" class="btn btn-lang active"><li class="dropdown-item">EN</li></a>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="social-list">
+                    <li class="social-item">
+                        <a href="@Model.FacebookURL" target="_blank" class="social-links">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="social-item">
+                        <a href="@Model.InstagramURL" target="_blank" class="social-links">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                    </li>
+                    <li class="social-item">
+                        <a href="@Model.TwitterURL" target="_blank" class="social-links">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                    </li>
+                </ul>
+                <p class="copright">© @DateTime.Now.Year Saville. @_configuration[$"Copyright:{_lang}"]</p>
+            </div>
+
+        </div>
+    </footer>
+}
+

@@ -10,6 +10,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Models
     {
         public bool IsActive { get; set; }
         public string PhotoUrl { get; set; }
+        public string SlugUrl { get; set; }
         public string NutritionFactsPhotoUrl { get; set; }
         public IFormFile MainPhotoFile { get; set; }
         public IFormFile NutritionFactPhotoFile { get; set; }

@@ -1,0 +1,67 @@
+﻿@inject IConfiguration _configuration
+@{  
+    string _lang = ViewBag.Lang ?? "az";
+    if(Context.Session.GetString("_lang") != null)
+    {
+        _lang = Context.Session.GetString("_lang");
+    }
+    var controller = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
+    var action = ViewContext.RouteData.Values["Action"].ToString().ToLower();
+}
+
+<nav>
+    <div class="navbar">
+        <div class="container ">
+            <div class="sufre-navbar">
+                <a href="index.html" class="navbar-logo">
+                    <img src="/assets/img/icons/logo.svg" alt="navbar-logo">
+                </a>
+                <div class="menu-btn">
+                    <div class="navicon"></div>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="toggle">
+                <div class="main">
+                    <ul class="menu-list">
+                        <li class="menu-item">
+                            <a asp-controller="Home" asp-action="Index" asp-route-_lang="@_lang" class="menu-links">@_configuration[$"AnaSəhifə:{_lang}"].ToUpper().ToUpper()</a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-controller="About" asp-action="Index" asp-route-_lang="@_lang" class="menu-links">@_configuration[$"Haqqımızda:{_lang}"].ToUpper()</a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-controller="Product" asp-action="Index" asp-route-_lang="@_lang" class="menu-links">@_configuration[$"Məhsullar:{_lang}"].ToUpper()</a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-controller="Pomegranate" asp-action="Index" asp-route-_lang="@_lang" class="menu-links">@_configuration[$"Narınfaydaları:{_lang}"].ToUpper()</a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-controller="Receipt" asp-action="Index" asp-route-_lang="@_lang" class="menu-links">@_configuration[$"Faydalıməsləhətlər:{_lang}"].ToUpper()</a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-controller="Exportation" asp-action="Index" asp-route-_lang="@_lang" class="menu-links">@_configuration[$"İxracat:{_lang}"].ToUpper()</a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-controller="Contact" asp-action="Index" asp-route-_lang="@_lang" class="menu-links">@_configuration[$"Əlaqə:{_lang}"].ToUpper()</a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-controller="FAQ" asp-action="Index" asp-route-_lang="@_lang" class="menu-links">@_configuration[$"Faq:{_lang}"].ToUpper()</a>
+                        </li>
+                    </ul>
+                    <div class="lang-list">
+                        <a asp-controller="@controller" asp-action="@action" asp-route-_lang="az" asp-route-slugurl="@ViewBag.SlugUrl" asp-route-urlid="@ViewBag.UrlId" type="button" class='@(_lang == "az" ? "btn btn-lang active" : "btn btn-lang")'>AZ</a>
+                        <a asp-controller="@controller" asp-action="@action" asp-route-_lang="ru" asp-route-slugurl="@ViewBag.SlugUrl" asp-route-urlid="@ViewBag.UrlId" type="button" class='@(_lang == "ru" ? "btn btn-lang active" : "btn btn-lang")'>RU</a>
+                        <a asp-controller="@controller" asp-action="@action" asp-route-_lang="en" asp-route-slugurl="@ViewBag.SlugUrl" asp-route-urlid="@ViewBag.UrlId" type="button" class='@(_lang == "en" ? "btn btn-lang active" : "btn btn-lang")'>EN</a>
+                    </div>
+                    <img class="menu-bottom-nar partner-images" src="/assets/img/left-right-image/menu-nar.webp"
+                        alt="menu nar">
+                    <img class="menu-top-nar partner-images" src="/assets/img/left-right-image/menu-nar-top.png"
+                        alt="menu nar">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</nav>

@@ -46,16 +46,21 @@
                                 <span class="text-danger"></span>
                             </div>
                             <div id="digerSekiller">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="addnae">Digər şəkillər</span>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input asp-for="PhotoFiles" type="file" multiple class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
-                                        <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
-                                    </div>
-                                    <span asp-validation-for="PhotoFiles"></span>
-                                    <span class="text-danger"></span>
+                                <div class="sekiller">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group mb-3">   
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="addnae">1. Şəkil</span>
+                                                    </div>
+                                                    <div class="custom-file">
+                                                        <input asp-for="PhotoFiles" type="file" multiple class="custom-file-input" id="file1" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
+                                                        <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <button type="button" class="btn btn-outline-success sekil-add">Şəkil Əlavə Et</button>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -95,6 +100,8 @@
 
                                                             <label class="control-label">Ad (@item.Code.ToUpper())</label>
                                                             <input name="ProductLangs[@count].Name" type="text" required class="form-control" />
+                                                            <label class="control-label">Açıklama (@item.Code.ToUpper())</label>
+                                                            <input name="ProductLangs[@count].Details" type="text" required class="form-control" />
                                                             <label class="control-label">Seo Başlıq (@item.Code.ToUpper())</label>
                                                             <input name="SeoLangs[@count].Title" type="text" required class="form-control" />
                                                             <label class="control-label">Seo Keywords (@item.Code.ToUpper())</label>
@@ -124,3 +131,25 @@
     <partial name="_ValidationScriptsPW" />
 }
 
+
+@section Scripts{
+    <script>
+        var sekilCount = 1;
+        $(document).on("click", ".sekil-add", function() {
+            $(".sekiller > .row").append(`
+                <div class="col-md-12">
+                    <div class="input-group mb-3">   
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addnae">` + parseInt(sekilCount+1) + `. Şəkil</span>
+                        </div>
+                        <div class="custom-file">
+                            <input name="PhotoFiles" type="file" multiple class="custom-file-input" id="file` + sekilCount + `" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
+                            <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                        </div>
+                    </div>
+                </div>
+            `);
+            sekilCount++;
+        });
+    </script>
+}

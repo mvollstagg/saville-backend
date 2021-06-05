@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediaBalansSaville.Core.Services;
 using MediaBalansSaville.Entities;
+using MediaBalansSaville.Services.Utilities;
 using MediaBalansSaville.WebUI.Areas.CMS.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,12 +17,15 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
     {
         private readonly ISiteSettingsService _SiteSettingsService;
         private readonly ILangService _langService;
+        private readonly IImage _image;
 
         public SiteSettingsController(ISiteSettingsService SiteSettingsService,
-                                    ILangService langService)
+                                    ILangService langService,
+                                    IImage image)
         {
             this._langService = langService;
             this._SiteSettingsService = SiteSettingsService;
+            _image = image;
         }
         
         [Route("/cms/saytparametrleri")]
@@ -36,6 +40,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 Lang enLang = await _langService.GetLangWithCode("en");
 
                 SiteSettingsFromDb = new SiteSettings();
+                SiteSettingsFromDb.VideoCoverUrl = "CoverPhotoUrl";
                 
                 SiteSettingsLang newSiteSettingsLangAZ = new SiteSettingsLang
                 {
@@ -63,6 +68,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             {
                 SiteSettingsVM settingsVM = new SiteSettingsVM
                 {
+                    VideoPhotoUrl = SiteSettingsFromDb.VideoCoverUrl,
                     SiteSettingsLangs = SiteSettingsFromDb.SiteSettingsLangs.ToList(),
                     FacebookURL = SiteSettingsFromDb.FacebookURL,
                     InstagramURL = SiteSettingsFromDb.InstagramURL,
@@ -86,6 +92,20 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             SiteSettings SiteSettingsFromVm = SiteSettingsFromDb;
             if (!ModelState.IsValid) return View(SiteSettingsUpdateVM);
             
+            if(SiteSettingsUpdateVM.VideoPhotoFile != null)
+            {
+                if (!_image.IsImageValid(SiteSettingsUpdateVM.VideoPhotoFile))
+                {
+                    ModelState.AddModelError("", "Dosya .jpg/.jpeg/.png formatında ve maksimum 3MB boyutunda olmalıdır!");
+                    return View(SiteSettingsUpdateVM);
+                }
+                else
+                {
+                    _image.Delete("files", "sitesettings", SiteSettingsFromVm.VideoCoverUrl);
+                    SiteSettingsFromVm.VideoCoverUrl = await _image.UploadAsync(SiteSettingsUpdateVM.VideoPhotoFile, "files", "sitesettings"); 
+                }
+            }
+
             SiteSettingsFromVm.FacebookURL = SiteSettingsUpdateVM.FacebookURL;
             SiteSettingsFromVm.InstagramURL = SiteSettingsUpdateVM.InstagramURL;
             SiteSettingsFromVm.TwitterURL = SiteSettingsUpdateVM.TwitterURL;
@@ -102,6 +122,8 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 item.AboutTitle = SiteSettingsUpdateVM.SiteSettingsLangs.ElementAt(count).AboutTitle;
                 item.AboutDetail = SiteSettingsUpdateVM.SiteSettingsLangs.ElementAt(count).AboutDetail;
                 item.AdDetail = SiteSettingsUpdateVM.SiteSettingsLangs.ElementAt(count).AdDetail;
+                item.SliderTitle = SiteSettingsUpdateVM.SiteSettingsLangs.ElementAt(count).SliderTitle;
+                item.SliderDetails = SiteSettingsUpdateVM.SiteSettingsLangs.ElementAt(count).SliderDetails;
                 count++;
             }
 

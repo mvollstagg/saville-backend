@@ -1,0 +1,24 @@
+@inject IConfiguration _configuration
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    string _lang = ViewBag.Lang ?? "az";
+}
+@model IEnumerable<Product>
+
+@* @if (Model != null)
+{
+    @foreach (var product in Model)
+    {
+        <div class="col">
+            <a asp-controller="Product" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@product.SlugUrl.ToLower()" asp-route-urlid="@product.UrlId" class="mahsulcard">
+                <div class="card">
+                    <img class="mahsulcard-image" src="/files/product/@product.PhotoUrl"
+                        alt="mahsulcard-image">
+                    <p class="mahsul-name">@product.ProductLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</p>
+                    <p class="mahsul-gram">@product.Weights</p>
+                    <button type="button" class="btn btn-mahsul-etraflı">Ətraflı</button>
+                </div>
+            </a>
+        </div>
+    }
+} *@

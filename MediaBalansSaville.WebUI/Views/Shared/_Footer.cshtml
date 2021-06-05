@@ -1,0 +1,7 @@
+@inject IConfiguration _configuration
+@{
+    string _lang = ViewBag.Lang ?? "az";
+}
+
+
+@await Component.InvokeAsync("SiteSettings", new{ lang = @_lang})

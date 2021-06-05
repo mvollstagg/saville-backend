@@ -1,3 +1,10 @@
 ﻿@using MediaBalansSaville.WebUI
 @using MediaBalansSaville.WebUI.Models
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Configuration
+@using MediaBalansSaville.Services.Helpers
+@using MediaBalansSaville.Entities
+@using MediaBalansSaville.Data.DAL
+@inject IHttpContextAccessor httpAccessor
+@inject ApplicationDbContext context
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

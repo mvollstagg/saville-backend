@@ -1,0 +1,130 @@
+﻿@inject IConfiguration _configuration
+@{
+    string _lang = ViewBag.Lang ?? "az";
+}
+@model ReceiptPageVM
+@section seo{
+    @{await Html.RenderPartialAsync("_Seo", "Receipt");}
+}
+@section Styles{
+   
+}
+
+<section>
+    <div class="recept-blog-main">
+        <div class="container">
+            <h2>@_configuration[$"RECEIPTLER:{_lang}"]</h2>
+            <div class="search-recept">
+                <div class="row gx-lg-2 gx-xl-5">
+                    <div class="mb-3 mb-md-0 col-md-5 col-lg-7">
+                        <div class="form-floating">
+                            <input id="filter" type="text" class="form-control" placeholder="@_configuration[$"Axtaris:{_lang}"]">
+                            <label for="filter">@_configuration[$"Axtaris:{_lang}"]</label>
+                        </div>
+                    </div>
+                    <div class="mb-3 mb-md-0 col-md-5 col-lg-3">
+                        <div class="dropdown search-down">
+                            <button class="btn btn-search" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="text-truncate">@_configuration[$"ChooseCategory:{_lang}"]</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li class="dropdown-item" data-filter="All" >@_configuration[$"HamısınaBax:{_lang}"] </li>
+                                @foreach (var category in Model.ReceiptCategories.Where(x => x.IsReceipt == true))
+                                {
+                                    <li class="dropdown-item" data-filter="@category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name">@category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mb-3 mb-md-0 col-md-2 col-lg-2">
+                        <button onclick="filterReceipts()" class="btn btn-recep-search"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <div style="display: none;" id="loading" class="img-container">
+                    <img style="" src="/img/icons/loading.gif" >
+                </div>                
+            </div>
+            <div id="receiptList" class="row row-cols-1 row-cols-md-2  row-cols-xl-4  gx-4 gy-4 style-hg">
+                @{ await Html.RenderPartialAsync("_ReceiptList", Model.Receipts); }
+            </div>
+            <div style="text-align: center;">
+                <div style="display: none;" id="loadingMore" class="img-container">
+                    <img style="" src="/img/icons/loading.gif" >
+                </div>                
+            </div>
+            <div class="etraflı-buttons">
+                <button onclick="moreReceipt()" class="btn btn-color">@_configuration[$"ETRAFLI:{_lang}"]</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts{
+   <script>    
+       var skipCount = 8;
+       function moreReceipt()
+       {
+           var loadingimg = document.getElementById("loadingMore");
+           loadingimg.style.display = "block";
+           $.ajax({
+                url: 'morereceipt?skipCount=' + skipCount,
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    var tetikle = setInterval(function () {
+                        $('#receiptList').append(data);
+                        clearInterval(tetikle);
+                    }, 900); 
+                    skipCount += 8;
+                    loadingimg.style.display = "none"; 
+                }
+            });
+       }       
+
+       function filterReceipts()
+       {
+           var loadingimg = document.getElementById("loading");
+           loadingimg.style.display = "block";
+           var filterText = document.getElementById("filter").value;
+           $('#receiptList').html('');
+           $.ajax({
+                url: 'receiptfiltered?filter=' + filterText,
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    var tetikle = setInterval(function () {
+                        $('#receiptList').append(data);
+                        clearInterval(tetikle);
+                    }, 900);
+                    loadingimg.style.display = "none";  
+                }
+            });
+       }
+
+       $(document).on('click','.dropdown-menu li',function  (e){
+           var loadingimg = document.getElementById("loading");
+           loadingimg.style.display = "block";
+           e.preventDefault();
+           let filter=$(this).attr('data-filter');
+           $('#receiptList').html('');
+           $.ajax({
+            url: 'receiptfiltered?category=' + filter,
+            type: 'GET',
+            dataType: 'html',
+            success: function (data) {
+                var tetikle = setInterval(function () {
+                    $('#receiptList').append(data);
+                    clearInterval(tetikle);
+                }, 900);   
+                loadingimg.style.display = "none";             
+            }
+        });
+       })
+       
+   </script>
+}

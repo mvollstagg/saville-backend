@@ -137,7 +137,7 @@
                                                     {
                                                         <tr id="@("productRow" + product.Id)"> 
                                                             <td>
-                                                                <img src="~/files/product/@product.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
+                                                                <img src="~/files/product/@product.SlugUrl/@product.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
                                                             </td>
                                                             <td>
                                                                 @(product.ProductLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Name.Length > 30 ? product.ProductLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Name.Substring(0, 30) : product.ProductLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Name)

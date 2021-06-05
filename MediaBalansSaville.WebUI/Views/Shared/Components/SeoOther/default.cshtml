@@ -1,0 +1,31 @@
+@model Seo
+@{
+    ViewData["Title"] = "Index";
+    string _lang = "az";
+    if (httpAccessor.HttpContext.Request.Cookies["lang"] != null)
+    {
+        _lang = httpAccessor.HttpContext.Request.Cookies["lang"];
+    }
+    var seo = Model;
+}
+@if (seo != null)
+{
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="title" content="@seo.SeoLangs.Where(x=>x.Lang.Code==_lang).FirstOrDefault().Title ">
+    <meta name="description" content="@seo.SeoLangs.Where(x=>x.Lang.Code==_lang).FirstOrDefault().Desc">
+    <meta name="keywords" content="@seo.SeoLangs.Where(x=>x.Lang.Code==_lang).FirstOrDefault().Keys">
+    <meta property="og:title" content="@seo.SeoLangs.Where(x=>x.Lang.Code==_lang).FirstOrDefault().Title" />
+    <meta property="og:description" content="@seo.SeoLangs.Where(x=>x.Lang.Code==_lang).FirstOrDefault().Desc" />
+    <meta property="og:site_name" content="Al Market" />
+    <meta property="og:locale" content="en" />
+    <meta property="og:type" content="media" />
+    <meta property="og:image" content="~/favicon.ico" />
+    <meta property="og:url" content="@(Context.Request.Host + Context.Request.Path)" />
+    <meta name="twitter:title" content="@seo.SeoLangs.Where(x=>x.Lang.Code==_lang).FirstOrDefault().Title" />
+    <meta name="twitter:description" content="@seo.SeoLangs.Where(x=>x.Lang.Code==_lang).FirstOrDefault().Desc" />
+    <meta name="twitter:site" content="Al Market" />
+    <meta name="twitter:image" content="~/favicon.ico" />
+    <title>@seo.SeoLangs.Where(x => x.Lang.Code == _lang).FirstOrDefault().Title </title>
+}

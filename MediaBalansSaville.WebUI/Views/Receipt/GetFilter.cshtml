@@ -1,0 +1,28 @@
+@inject IConfiguration _configuration
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *,PagedList.Core.Mvc
+@{
+    string _lang = ViewBag.Lang ?? "az";
+}
+@model IEnumerable<Receipt>
+
+@if (Model != null)
+{
+    @foreach (var receipt in Model)
+    {
+        <div class="col">
+            <a asp-controller="Receipt" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@receipt.SlugUrl.ToLower()" asp-route-urlid="@receipt.UrlId" class="receptcard">
+                <div class="card">
+                    <div class="recept-image">
+                        <img src="/files/receipt/@receipt.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl" alt="receptimage">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-status">@receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</h4>
+                        <h5 class="card-title">@receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Title</h5>
+                        <button class="btn arrow"><i class="bi bi-arrow-right"></i></button>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+}

@@ -176,7 +176,6 @@
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/_ViewImports.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/_ViewStart.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Home/Index.cshtml.g.cs
-/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Home/Privacy.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/Error.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/_Layout.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/_ValidationScriptsPartial.cshtml.g.cs
@@ -409,3 +408,19 @@ D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/MediaBalan
 D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/ref/MediaBalansSaville.WebUI.dll
 D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/MediaBalansSaville.WebUI.pdb
 D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/MediaBalansSaville.WebUI.genruntimeconfig.cache
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/Components/Seo/default.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/Components/SeoOther/default.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/Components/SiteSettings/default.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/_Footer.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/_Header.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/_Messages.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/_Seo.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/_SeoOther.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/About/Index.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Product/Item.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Product/LoadMoreProduct.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Receipt/GetFilter.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Receipt/Index.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Receipt/Item.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Receipt/LoadMoreReceipt.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Product/Index.cshtml.g.cs

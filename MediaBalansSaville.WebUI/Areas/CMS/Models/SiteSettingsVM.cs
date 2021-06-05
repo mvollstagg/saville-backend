@@ -6,6 +6,8 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Models
 {
     public class SiteSettingsVM
     {
+        public string VideoPhotoUrl { get; set; }
+        public IFormFile VideoPhotoFile { get; set; }
         public string FacebookURL { get; set; }
         public string InstagramURL { get; set; }
         public string TwitterURL { get; set; }

@@ -1,8 +1,105 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@inject IConfiguration _configuration
+@{
+    string _lang = ViewBag.Lang ?? "az";
+    Random rnd = new Random();
+    SiteSettings settings = context.SiteSettings.FirstOrDefault();
+}
+@model HomePageVM
+@section seo{
+    @{await Html.RenderPartialAsync("_Seo", "Home");}
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="home-section-1">
+    <div class="section1-text">
+        <h1>@settings.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).SliderTitle</h1>
+        <p>@settings.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).SliderDetails</p>
+    </div>
+</section>
+
+<section class="home-section-2">
+    <div class="container-sm">
+        <div class="home-about-main">
+            <div class="about-heading">
+                <h1>@_configuration[$"Haqqımızda:{_lang}"].ToUpper()</h1>
+                <p class="about-text-1">@settings.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).AboutTitle</p>
+                <div class="about-text-2">@Html.Raw(settings.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).AboutDetail)</div>
+            </div>
+            <div class="row about-reklam">
+                <div class="col-12 col-lg-6">
+                    <div class="left">
+                        <h2>Reklam filmi</h2>
+                        <p>@settings.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).AdDetail</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="right">
+                        <a href="@settings.AdVideoURL" data-lity class="about-player">
+                            <img src="~/files/sitesettings/@settings.VideoCoverUrl" alt="Video" />
+                            <i class="bi bi-play-circle-fill"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<section class="home-section-3">
+    <div class="container-sm">
+        <div class="our-product-main">
+            <span class="partner-heading">
+                Our products
+            </span>
+            <div id="ourproductslider" class="owl-carousel owl-theme">
+                @foreach (var product in Model.Products)
+                {
+                    <a class="mahsulcard" asp-controller="Product" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@product.SlugUrl.ToLower()" asp-route-urlid="@product.UrlId">
+                        <div class="mahsulcard-image">
+                            <img src="~/files/product/@product.SlugUrl/@product.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl" alt="mahsulcard-image">
+                        </div>
+                        <p class="mahsul-name">@product.ProductLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name
+                            @product.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name
+                        </p>
+                        <p class="mahsul-content">@product.ProductLangs.FirstOrDefault(x => x.Lang.Code == _lang).Details </p>
+                    </a>
+                }                
+            </div>
+        </div>
+    </div>
+    <img class="home-about-left-nar partner-images" src="/assets/img/left-right-image/home-about-nar-left.webp"
+        alt="">
+    <img class="home-maslahat-nar-right partner-images"
+        src="/assets/img/left-right-image/home-product-right-nar.webp" alt="">
+</section>
+
+
+<section class="home-section-4">
+    <div class="container">
+        <div class="maslahat-main">
+            <span class="partner-heading">
+                Faydalı məsləhətlər
+            </span>
+            <div id="home_maslahat_slider" class="owl-carousel owl-theme">
+                @foreach (var receipt in Model.Receipts)
+                {
+                    <a href="#" class="partner-card">
+                        <div class="partner-card-image">
+                            <img src="~/files/receipt/@receipt.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl" alt="">
+                        </div>
+                        <div class="card-text">
+                            <div class="category-name">@receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</div>
+                            <div class="card-texting">
+                                @Html.Raw(receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Preparation)
+                            </div>
+                            <span>Ətraflı</span>
+                        </div>
+                    </a>
+                }                
+            </div>
+        </div>
+
+    </div>
+
+</section>

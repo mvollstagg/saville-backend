@@ -76,21 +76,21 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             {
                 CategoryId = category.Id,
                 Category = category,
-                SlugUrl = UrlSeoHelper.UrlSeo(productLangs.FirstOrDefault(x => x.LangId == 1).Name.Trim()),
+                SlugUrl = UrlSeoHelper.UrlSeo(productLangs.FirstOrDefault(x => x.LangId == 1).Name.Trim() +" "+ category.CategoryLangs.FirstOrDefault(x => x.LangId == 1).Name),
                 IsActive = productCreateVM.IsActive
             };
             List<ProductPhoto> productPhotos = new List<ProductPhoto>();
 
             ProductPhoto newMainProductPhoto = new ProductPhoto
             {
-                PhotoUrl = await _image.UploadAsync(productCreateVM.MainPhotoFile, "files", "product"),
+                PhotoUrl = await _image.UploadForProductAsync(productCreateVM.MainPhotoFile, -1, newProduct.SlugUrl, false, "files", "product"),
                 IsCover = true,
                 ProductId = newProduct.Id
             };
             productPhotos.Add(newMainProductPhoto);
             ProductPhoto newNutritionProductPhoto = new ProductPhoto
             {
-                PhotoUrl = await _image.UploadAsync(productCreateVM.NutritionFactPhotoFile, "files", "product"),
+                PhotoUrl = await _image.UploadForProductAsync(productCreateVM.NutritionFactPhotoFile, -1, newProduct.SlugUrl, false, "files", "product"),
                 IsNutrition = true,
                 ProductId = newProduct.Id
             };
@@ -103,7 +103,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                     var item = productCreateVM.PhotoFiles.ElementAtOrDefault(i);
                     ProductPhoto newProductPhoto = new()
                     {
-                        PhotoUrl = await _image.UploadAsync(item, "files", "product"),
+                        PhotoUrl = await _image.UploadForProductAsync(item, i, newProduct.SlugUrl, true, "files", "product"),
                         ProductId = newProduct.Id
                     };
                     productPhotos.Add(newProductPhoto);
@@ -142,6 +142,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 newProduct.ProductLangs.Add(new ProductLang()
                 {
                     Name = item.Name,
+                    Details = item.Details,
                     ProductId = newProduct.Id,
                     LangId = item.LangId
                 });
@@ -159,6 +160,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
             ProductUpdateVM productUpdateVM = new()
             {
+                SlugUrl = productFromDb.SlugUrl,
                 PhotoUrl = productFromDb.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl,
                 NutritionFactsPhotoUrl = productFromDb.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl,
                 Categories = await _categoyrLangService.GetAllCategoryLangsFor("product"),
@@ -166,6 +168,8 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 SeoLangs = productFromDb.ProductSeo.SeoLangs.ToList(),
                 IsActive = productFromDb.IsActive
             };
+            foreach (var item in productFromDb.ProductPhotos.Where(x => x.IsCover == false && x.IsNutrition == false).ToList())
+                productUpdateVM.PhotoUrls.Add(item.PhotoUrl);
             return View(productUpdateVM);
         }
 
@@ -189,7 +193,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 else
                 {
                     _image.Delete("files", "product", productFromVm.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl);
-                    productFromVm.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl = await _image.UploadAsync(productUpdateVM.MainPhotoFile, "files", "product");
+                    productFromVm.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl = await _image.UploadForProductAsync(productUpdateVM.MainPhotoFile, -1, productFromVm.SlugUrl, false, "files", "product");
                 }
             }
             if (productUpdateVM.NutritionFactPhotoFile != null)
@@ -202,11 +206,11 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 else
                 {
                     _image.Delete("files", "product", productFromVm.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl);
-                    productFromVm.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl = await _image.UploadAsync(productUpdateVM.NutritionFactPhotoFile, "files", "product");
+                    productFromVm.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl = await _image.UploadForProductAsync(productUpdateVM.NutritionFactPhotoFile, -1, productFromVm.SlugUrl, false, "files", "product");
                 }
             }
 
-            productFromVm.SlugUrl = UrlSeoHelper.UrlSeo(productUpdateVM.ProductLangs.FirstOrDefault(x => x.LangId == 1).Name.Trim());
+            // productFromVm.SlugUrl = UrlSeoHelper.UrlSeo(productUpdateVM.ProductLangs.FirstOrDefault(x => x.LangId == 1).Name.Trim());
             productFromVm.IsActive = productUpdateVM.IsActive;
             Category category = await _categoryService.GetCategoryByCategoryLangId(productUpdateVM.CategoryId);
             productFromVm.Category = category;
@@ -225,7 +229,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                     var item = productUpdateVM.PhotoFiles.ElementAtOrDefault(i);
                     ProductPhoto newProductPhoto = new ProductPhoto
                     {
-                        PhotoUrl = await _image.UploadAsync(item, "files", "product"),
+                        PhotoUrl = await _image.UploadForProductAsync(item, i, productFromVm.SlugUrl, true, "files", "product"),
                         ProductId = productFromVm.Id
                     };
                     productFromVm.ProductPhotos.Add(newProductPhoto);
@@ -245,6 +249,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             foreach (var item in productFromVm.ProductLangs)
             {
                 item.Name = productUpdateVM.ProductLangs.ElementAt(count).Name;
+                item.Details = productUpdateVM.ProductLangs.ElementAt(count).Details;
                 count++;
             }
             await _productService.UpdateProduct(productFromDb, productFromVm);
@@ -256,13 +261,14 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
         // [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == 0) return BadRequest();
             Product productFromDb = await _productService.GetProductById(id);
-            await _productService.DeleteProduct(productFromDb);
+            if (id == 0 && productFromDb != null) return BadRequest();
+            
             foreach (var item in productFromDb.ProductPhotos)
             {
-                _image.Delete("files", "product", item.PhotoUrl);
+                _image.DeleteForProduct("files", "product", productFromDb.SlugUrl ,item.PhotoUrl);
             }
+            await _productService.DeleteProduct(productFromDb);            
 
             return RedirectToAction("Index", "Product");
         }

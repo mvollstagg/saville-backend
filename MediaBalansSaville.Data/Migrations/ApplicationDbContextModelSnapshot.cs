@@ -485,7 +485,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Azərbaycan",
-                            RecordedAtDate = new DateTime(2021, 6, 4, 23, 2, 44, 775, DateTimeKind.Local).AddTicks(2740),
+                            RecordedAtDate = new DateTime(2021, 6, 5, 19, 4, 8, 865, DateTimeKind.Local).AddTicks(1150),
                             SlugUrl = "az",
                             UrlId = 1
                         },
@@ -496,7 +496,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Rusiya",
-                            RecordedAtDate = new DateTime(2021, 6, 4, 23, 2, 44, 784, DateTimeKind.Local).AddTicks(4970),
+                            RecordedAtDate = new DateTime(2021, 6, 5, 19, 4, 8, 875, DateTimeKind.Local).AddTicks(6110),
                             SlugUrl = "ru",
                             UrlId = 2
                         },
@@ -507,7 +507,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "İngiltərə",
-                            RecordedAtDate = new DateTime(2021, 6, 4, 23, 2, 44, 784, DateTimeKind.Local).AddTicks(5000),
+                            RecordedAtDate = new DateTime(2021, 6, 5, 19, 4, 8, 875, DateTimeKind.Local).AddTicks(6150),
                             SlugUrl = "en",
                             UrlId = 3
                         });
@@ -677,6 +677,9 @@ namespace MediaBalansSaville.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LangId")
                         .HasColumnType("int");
@@ -864,7 +867,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "admin",
-                            RecordedAtDate = new DateTime(2021, 6, 4, 23, 2, 44, 796, DateTimeKind.Local).AddTicks(4070),
+                            RecordedAtDate = new DateTime(2021, 6, 5, 19, 4, 8, 883, DateTimeKind.Local).AddTicks(9430),
                             SlugUrl = "admin",
                             UrlId = 1
                         },
@@ -874,7 +877,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "user",
-                            RecordedAtDate = new DateTime(2021, 6, 4, 23, 2, 44, 796, DateTimeKind.Local).AddTicks(4970),
+                            RecordedAtDate = new DateTime(2021, 6, 5, 19, 4, 8, 884, DateTimeKind.Local).AddTicks(60),
                             SlugUrl = "user",
                             UrlId = 2
                         });
@@ -999,6 +1002,9 @@ namespace MediaBalansSaville.Data.Migrations
                     b.Property<int>("UrlId")
                         .HasColumnType("int");
 
+                    b.Property<string>("VideoCoverUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("SiteSettings");
@@ -1028,6 +1034,12 @@ namespace MediaBalansSaville.Data.Migrations
 
                     b.Property<int>("SiteSettingsId")
                         .HasColumnType("int");
+
+                    b.Property<string>("SliderDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SliderTitle")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -1129,10 +1141,10 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             LastName = "Admin",
-                            PasswordHash = "ffccc997422fa1581a5ad7bd9716a33238dcc685400c9f6f150c2d47ce02ea6bc865efdd2758483701c170af95ca620f040cff70a73f59a658ef486698a386d1",
+                            PasswordHash = "c6d3f51ff85fec296dbd14d70719d403e7c63a168536ce4c9cedd3f5f099a65fe7b4065ed293baffe4e453cd827b9130e5501e1462c04f253c577db2eeab571a",
                             PhoneNumber = "0534 895 22 84",
-                            RecordedAtDate = new DateTime(2021, 6, 4, 23, 2, 44, 788, DateTimeKind.Local).AddTicks(1790),
-                            SecretKey = "b620ee62da4547c99856fde50b8dc2d26/4/2021110244PM",
+                            RecordedAtDate = new DateTime(2021, 6, 5, 19, 4, 8, 877, DateTimeKind.Local).AddTicks(9900),
+                            SecretKey = "0b319023771744d2b17e0227b243900e6/5/202170408PM",
                             UrlId = 0
                         });
                 });

@@ -13,6 +13,8 @@ namespace MediaBalansSaville.Entities
         public string AboutTitle { get; set; }
         public string AboutDetail { get; set; }
         public string AdDetail { get; set; }
+        public string SliderTitle { get; set; }
+        public string SliderDetails { get; set; }
         [ForeignKey("SiteSettings")]
         public int SiteSettingsId { get; set; }
         public virtual SiteSettings SiteSettings { get; set; }

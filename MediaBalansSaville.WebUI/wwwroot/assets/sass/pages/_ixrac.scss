@@ -1,0 +1,88 @@
+.ixrac-general-main{
+    .ixrac-main{width: 78%; margin: auto;
+        @include desktop-l{
+            width: 90%;
+        }
+        @include desktop-sm{
+            width: 100%;
+        }
+        @include mobile-display{
+            width: 100%;
+        }
+        .partner-heading{
+            @extend %button;
+            width: 185px;
+        }
+        .ixrac-text{
+            @include font-size(20px);
+            font-family: $regular;
+            color: #1a1a1a;
+            line-height: 22px;
+            text-align: center;
+            @include margin(53px 0 130px);
+            @include mobile-l{
+                font-size: 17px;
+            }
+        }
+    }
+    .maps-back{
+        background-image: url(/assets/img/background/ixracback.webp);
+        min-height: 61vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        @include margin(120px auto);
+        @include mobile-l{
+            background-position: 20% -3%;
+        }
+        .form-select{
+            height: 550px;
+            background-color: #fbf3f3;
+            border-radius: 0px;
+            border: none;
+            font-size: 17px;
+            font-family: $SemiBold;
+            cursor: pointer;
+            @include padding(20px 0);
+            @include mobile-l{
+                height: 300px;
+                margin-bottom: 40px;
+            }
+            &::-webkit-scrollbar { width: 15px; }
+
+            &::-webkit-scrollbar-track { background: #fbf3f3; }
+        
+            &::-webkit-scrollbar-thumb { background: #a51515; border-radius: 0px; }
+        
+            &::-webkit-scrollbar-track-piece:end { background-color: rgba(165, 21, 21, 0.1); margin-bottom: 10px; }
+        
+            &::-webkit-scrollbar-track-piece:start { background-color: rgba(165, 21, 21, 0.1); margin-top: 10px; }
+            option{
+                @include padding-left(20px);
+                margin-bottom: 5px;
+                text-transform: uppercase;
+                &:hover{
+                    background-color: rgba(165, 21, 21, 1);
+                    color: #fff;
+                }
+                &.selected{
+                    background-color: rgba(165, 21, 21, 1);
+                    color: #fff;
+                } 
+                &:checked{
+                    box-shadow: 0 0 10px 100px #a51515 inset;
+                }
+            }
+          
+            &:focus{
+                box-shadow: none;
+                border-color: transparent;
+            }
+        }
+        #chartdiv {
+            width: 100%;
+            height: 550px;
+            overflow: hidden;
+          }
+    }
+
+}

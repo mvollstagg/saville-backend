@@ -17,11 +17,35 @@ namespace MediaBalansSaville.Services.Utilities
                                     
             if(fileExtension == "svg+xml")
                 fileExtension = "svg";
-            string fileName = Guid.NewGuid().ToString() + "_" + "Webfron" +  "." + fileExtension;
+            string fileName = Guid.NewGuid().ToString() + "_" + "Saville" +  "." + fileExtension;
             string filePath = Path.Combine(folderPath, fileName);
             using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
                 await file.CopyToAsync(fileStream);            
             return fileName;
+        }
+        public async Task<string> UploadForProductAsync(IFormFile file, int index, string slugUrl, bool Is3D, string outerFolderName, string innerFolderName)
+        {
+            string folderPath = Path.Combine("wwwroot", outerFolderName, innerFolderName, slugUrl);
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+            string fileExtension = file.ContentType.Substring(file.ContentType.IndexOf("/") + 1,
+                                    file.ContentType.Length - file.ContentType.IndexOf("/") - 1);
+                                    
+            string fileName;
+            if(Is3D)
+                fileName = "img" +  (index +1) +  "." + fileExtension;
+            else
+                fileName = Guid.NewGuid().ToString() + "_" + "Saville" +  "." + fileExtension;
+            string filePath = Path.Combine(folderPath, fileName);
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+                await file.CopyToAsync(fileStream);            
+            return fileName;
+        }
+        public void DeleteForProduct(string outerFolderName, string innerFolderName, string slugUrl, string fileName)
+        {
+            string folderPath = Path.Combine("wwwroot", outerFolderName, innerFolderName, slugUrl);
+            string filePath = Path.Combine(folderPath, fileName);
+            if (System.IO.File.Exists(filePath)) System.IO.File.Delete(filePath);
         }
         public void Delete(string outerFolderName, string innerFolderName, string fileName)
         {

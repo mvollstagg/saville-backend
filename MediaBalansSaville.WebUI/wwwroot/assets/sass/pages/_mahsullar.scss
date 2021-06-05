@@ -1,0 +1,201 @@
+.mahsullar-general-main{
+    .mahsullar-main{
+        .partner-heading{@include margin(60px auto);
+            @extend %button;
+            width: 185px;
+            top: 0px;
+        }
+        .mahsullar-search{height: 65px; @include margin-bottom(45px);
+            @include mobile-l{
+                height: inherit;
+                margin-bottom: 20px;
+            }
+            .search-box{height: 100%; position: relative;
+                @include mobile-l{
+                    height: 48px;
+                    margin-bottom: 25px;
+                }
+                .form-control{
+                    height: 100%;
+                    color: #a51515;
+                    background-color: #f2f2f2;
+                    font-family: $medium;
+                    border-radius: 0px;
+                    border-color: #f2f2f2;
+                    &:focus{
+                        border-color:  #a51515;
+                        box-shadow: none;
+                        @extend %transition;
+                        
+                    }
+                }
+                .form-control:focus ~ i {
+                    color: #831212;
+                }
+                i{
+                    position: absolute;
+                    right: 25px;
+                    top: 25px;
+                    font-size: 20px;
+                    @include mobile-l{
+                        top: 15px;
+                    }
+                }
+            }
+            .filter-search{height: 100%;
+                @include mobile-l{
+                    height: 48px;
+                }
+                .btn-filter{
+                    border: 1px solid #ffffff;
+                    height: 100%;
+                    color: #000;
+                    font-family: $medium;
+                    border-radius: 0px;
+                    margin-left: 15px;
+                    width: 100%;
+                    background-color: #f2f2f2;
+                    @include mobile-l{
+                        margin-left: 0px;
+                    }
+                    &:hover{
+                        box-shadow: 0 3px 15px rgba(165, 21, 21, 0.15);
+                        background-color: #b41d1d;
+                        color: #ffffff;
+                        @extend %transition;
+                    }
+                    &.show{
+                        box-shadow: 0 3px 15px rgba(165, 21, 21, 0.15);
+                        background-color: #b41d1d;
+                        color: #ffffff;
+                        @extend %transition;
+                    }
+                    i{
+                        font-size: 17px;
+                    }
+                    span{
+                        display: inline-block;
+                        margin: 0 5px;
+                    }
+                }
+                .dropdown-menu{
+                    box-shadow: 0 3px 15px rgba(165, 21, 21, 0.15);
+                    background-color: #b41d1d;
+                    min-width: 0px;
+                    width: 100%;
+                    padding: 20px 0px;
+                    .dropdown-item{
+                        font-family: $medium;
+                        color: #ffffff;
+                        font-size: 17px;
+                        cursor: pointer;
+                        margin-bottom: 5px;
+                        padding: 6px 20px;
+                        @extend %transition;
+                        &:hover{
+                            background-color: rgba(255, 255, 255, 0.21);
+                        }
+                    }
+    
+                }
+            }
+        }
+    
+    }
+
+    .g-5, .gy-5 {
+        --bs-gutter-y: 7rem;
+        @include desktop-l{
+            --bs-gutter-y: 4rem;
+        }
+        @include desktop-sm{
+            --bs-gutter-y: 3rem;
+        }
+        @include mobile-l{
+            --bs-gutter-y: 2rem;
+        }
+    }
+    .g-5, .gx-5 {
+        --bs-gutter-x: 7rem;
+        @include desktop-l{
+            --bs-gutter-x: 4rem;
+        }
+        @include desktop-sm{
+            --bs-gutter-x: 3rem;
+        }
+        @include mobile-l{
+            --bs-gutter-x: 2rem;
+        }
+    }
+    .mahsullar-card-main{ @include padding(0 0 120px);
+    
+        .mahsulcard {height: 700px;  @include padding(50px 25px 0px);  
+             border: 1px solid #e0e0e0; border-radius: 0px; display: block; text-decoration: none; position: relative;
+             @include desktop-l{
+                height: 637px;
+             }
+             @include desktop-sm{
+                height: 539px;
+             }
+             @include mobile-l{
+                height: 414px;
+                @include padding(50px 10px 0px);  
+               
+             }
+             &:hover{
+                box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+                @extend %transition;
+             }
+            .mahsulcard-image{ height: 484px; margin: auto;  position: relative;
+                @include desktop-l{
+                    height: 409px;
+                }
+                @include desktop-sm{
+          
+                    height: 333px;
+                }
+                @include mobile-xl{
+                    height: 334px;
+                }
+                @include mobile-l{
+
+                    height: 239px;
+                    
+                }
+                img {
+                    object-fit: scale-down; 
+                    object-position: bottom;  position: absolute;    
+                     display: block; 
+                     bottom: 0px;
+                    left: 50%;
+                    transform: translate(-50%, 0);
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+              
+        
+                .mahsul-name { @include font-size(18px); line-height: 22px; font-family: $SemiBold;  color: #000; text-align: center; 
+                    overflow: hidden; white-space: inherit; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; 
+                        /* number of lines to show */
+                        -webkit-box-orient: vertical;
+                        margin-top: 35px;
+                        @include mobile-l{
+                            font-size: 14px;
+                            margin-top: 13px;
+                        }
+                    }
+        
+                .mahsul-content {  @include font-size(14px); font-family: $regular;  color: #000; text-align: center; 
+                    overflow: hidden; white-space: inherit; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; 
+                        /* number of lines to show */
+                        -webkit-box-orient: vertical;
+                        line-height: 17px;
+                        margin-top: 15px;
+                    }
+        
+        
+           
+        }
+    }
+}

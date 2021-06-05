@@ -1,0 +1,71 @@
+﻿@inject IConfiguration _configuration
+@{
+    string _lang = ViewBag.Lang ?? "az";
+}
+@model Product
+@section seo{
+    @{await Html.RenderPartialAsync("_SeoOther", @Model.UniqueId);}
+}
+@section Styles{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.1/lity.min.css">
+}
+
+<section>
+    <div class="mahsul-detay">
+        <div class="container-fluid  ps-0  ms-0">
+            <div class="mahsul-detay-main">
+                <div class="left">
+                    <div class="mahsul-detay-image">
+                        <div class="cloudimage-360" data-folder="/files/product/@Model.SlugUrl/" 
+                        data-image-list=''
+                        data-filename="img{index}.jpeg"
+                            data-amount="@Model.ProductPhotos.Where(x => x.IsCover == false && x.IsNutrition == false).Count()">
+                            <button class="btn cloudimage-360-prev">
+                                <img class="svg" src="/assets/img/icons/curved-prev.svg" alt="">
+                            </button>
+                            <button class="btn cloudimage-360-next">
+                                <img class="svg" src="/assets/img/icons/curved-prev.svg" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <h3 class="mahsul-name">@Model.ProductLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name 
+                        @Model.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name </h3>
+                    <ul class="features">
+                        <li class="features-item">
+                            <img class="svg" src="/assets/img/icons/mahsuldetay-icons1.svg" alt="">
+                            100% təbii Nar şirəsi
+                        </li>
+                        <li class="features-item">
+                            <img class="svg" src="/assets/img/icons/mahsuldetay-icon2.svg" alt="">
+                            Şəkər əlavəsiz
+                        </li>
+                        <li class="features-item">
+                            <img class="svg" src="/assets/img/icons/mahsuldetay-icon3.svg" alt="">
+                            Tərkibində GMO yoxdur
+                        </li>
+                        <li class="features-item">
+                            <img class="svg" src="/assets/img/icons/mahsuldetay-icon4.svg" alt="">
+                            Konsentratdan hazırlanmayıb
+                        </li>
+                    </ul>
+                    <div class="nutriton">
+                        <p>Nutrition Facts</p>
+                        <a href="~/files/product/@Model.SlugUrl/@Model.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl" data-lightbox="image1">
+                            <img src="~/files/product/@Model.SlugUrl/@Model.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl" alt="">
+                        </a>
+                    </div>
+                </div>
+                <img class="mahsul-detay-right-nar partner-images" src="/assets/img/left-right-image/mahsuldetay-right.webp"
+                    alt="">
+                <img class="mahsul-tabii" src="/assets/img/icons/mahsuldetay-tabii.webp" alt="">
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+@section Scripts{
+   <script src="https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/2.6.0/js-cloudimage-360-view.min.js"></script>
+}

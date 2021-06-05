@@ -1,0 +1,106 @@
+﻿@inject IConfiguration _configuration
+@{
+    string _lang = ViewBag.Lang ?? "az";
+    int count = 0;
+}
+@model AboutSettingsVM
+@section seo{
+    @{await Html.RenderPartialAsync("_Seo", "About");}
+}
+
+<section>
+    <div class="partner-heading-image">
+        <img src="/assets/img/image-test/alaqa-image.jpg" alt="">
+    </div>
+</section>
+
+<section>
+    <div class="haqqımızda-main">
+        <div class="container">
+            <span class="partner-heading">
+                Haqqımızda
+            </span>
+            <div class="row col-12 col-lg-12 col-xl-10 mx-auto gx-5">
+                <div class="col-md-12 px-0 px-md-2">
+                    <div class="haqqımızda-box hikayemiz">
+                        <p class="haqqımızda-heading">HEKAYƏMİZ</p>
+                        <div class="haqqımızda-text"> @Html.Raw(Model.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).OurStory) </div>
+                    </div>
+
+                </div>
+                <div class="col-12 col-lg-6 mb-5 mb-lg-0  px-0 px-md-2">
+                    <div class="haqqımızda-box">
+                        <p class="haqqımızda-heading">MİSYON</p>
+                        <div class="haqqımızda-text"> @Html.Raw(Model.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).OurMission) </div>
+                    </div>
+
+                </div>
+                <div class="col-12 col-lg-6  px-0 px-md-2">
+                    <div class="haqqımızda-box">
+                        <p class="haqqımızda-heading">VİZYON</p>
+                        <div class="haqqımızda-text"> @Html.Raw(Model.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).OurVision) </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="niye-saville">
+        <div class="container">
+            <div class="col-md-10 mx-auto">
+                <div class="saville-heading">
+                    <h2>NİYƏ SAVİLLE?</h2>
+                    <div> @Html.Raw(Model.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).WhySaville) </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-11 col-lg-9 col-xl-11 col-xxl-9 mx-auto saville-list-main">
+                <ul class="saville-list">
+                    @foreach (var item in Model.AboutSettingsItems)
+                    {
+                        <li class="saville-item">
+                            <img class="svg" src="~/files/aboutsettings/@item.PhotoUrl" alt="">
+                            @item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == _lang).Title
+                            <div class="circles">
+                                <span></span>
+                            </div>
+                            <i class="bi bi-chevron-down"></i>
+                            <ul class="alt-list">
+                                <li class="alt-item">
+                                    <div>
+                                        @Html.Raw(item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == _lang).Details)
+                                    </div>
+                                
+                                    <div class="left-tops styles"></div>
+                                    <div class="bottom-rights styles"></div>
+                                </li>
+                            </ul>
+                        </li>
+                    }                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="sertifikalar">
+        <div class="container-sm">
+                <h3>SERTİFİKATLAR</h3>
+                <div class="sertifika-card-main">                    
+                    @foreach (var certificate in Model.Certificates)
+                    {
+                        <a href="~/files/aboutsettings/@certificate.PhotoUrl" class="sertifikar-card" data-lightbox="image-@count">
+                            <img src="~/files/aboutsettings/@certificate.PhotoUrl" alt="sertifika">
+                            <span>
+                                <i class="bi bi-zoom-in"></i>
+                            </span>
+                        </a>
+                        count++;
+                    }                    
+                </div>
+        </div>
+    </div>
+</section>

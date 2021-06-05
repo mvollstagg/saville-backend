@@ -43,6 +43,10 @@
                                                             <input type="hidden" name="SiteSettingsLangs[@count].LangId" value="@item.LangId" />
                                                             <input type="hidden" name="SiteSettingsLangs[@count].SiteSettingsId" value="@item.SiteSettingsId" />
                                                             
+                                                            <label class="control-label">Slayder Başlıq (@item.Lang.Code)</label>
+                                                            <input name="SiteSettingsLangs[@count].SliderTitle" value="@item.SliderTitle" type="text" class="form-control" />
+                                                            <label class="control-label">Slayder Detay (@item.Lang.Code)</label>
+                                                            <input name="SiteSettingsLangs[@count].SliderDetails" value="@item.SliderDetails" type="text" class="form-control" />
                                                             <label class="control-label">Haqqında Başlıq (@item.Lang.Code)</label>
                                                             <input name="SiteSettingsLangs[@count].AboutTitle" value="@item.AboutTitle" type="text" class="form-control" />
                                                             <label class="control-label">Haqqında Yazısı (@item.Lang.Code)</label>
@@ -63,6 +67,28 @@
                         </div>
                     </div>
                     <br>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addnae">Mevcut Video Cover Şekil</span>
+                        </div>
+                        @if (Model.VideoPhotoUrl == "CoverPhotoUrl")
+                        {
+                            <span class="text" style="margin-left: 30px; object-fit: cover;" id="addnae">Henüz eklenmemiş</span>
+                        }
+                        else
+                        {
+                            <img src="~/files/sitesettings/@Model.VideoPhotoUrl" style="margin-left: 30px; width: 150px;height: 150px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />  
+                        }                                                 
+                    </div>
+                    <div class="input-group mb-3">                        
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addnae">Video Cover Şekil </span>
+                        </div>
+                        <div class="custom-file">
+                            <input asp-for="VideoPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png, .svg">
+                            <label class="custom-file-label" for="inputGroupFile01">Fotoğraf yükle</label>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="control-label">Reklam URL</label>
                         <input asp-for="AdVideoURL" type="text" class="form-control" />

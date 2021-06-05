@@ -1,48 +1,69 @@
-﻿<!DOCTYPE html>
+﻿@inject IConfiguration _configuration
+
+@{
+    var controller = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
+    var action = ViewContext.RouteData.Values["Action"].ToString().ToLower();
+    SiteSettings settings = context.SiteSettings.FirstOrDefault();
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MediaBalansSaville.WebUI</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("seo", required: false)
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.1/lity.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="preload" as="font" type="font/woff" crossorigin="anonymous" href="/assets/fonts/Montserrat-Bold.woff">
+    <link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href="/assets/fonts/Montserrat-Bold.woff2">
+    <link rel="preload" as="font" type="font/woff" crossorigin="anonymous" href="/assets/fonts/Montserrat-Medium.woff">
+    <link rel="preload" as="font" type="font/woff2" crossorigin="anonymous"
+        href="/assets/fonts/Montserrat-Medium.woff2">
+    <link rel="preload" as="font" type="font/woff" crossorigin="anonymous" href="/assets/fonts/Montserrat-Regular.woff">
+    <link rel="preload" as="font" type="font/woff2" crossorigin="anonymous"
+        href="/assets/fonts/Montserrat-Regular.woff2">
+    <link rel="preload" as="font" type="font/woff" crossorigin="anonymous"
+        href="/assets/fonts/Montserrat-SemiBold.woff">
+    <link rel="preload" as="font" type="font/woff2" crossorigin="anonymous"
+        href="/assets/fonts/Montserrat-SemiBold.woff2">
+    <link rel="stylesheet" href="~/assets/css/style.min.css" asp-append-version="true" />
+    @RenderSection("Styles", required: false)
+    @if (settings != null)
+    {
+        @if (settings.GoogleAnalyticsCode != null)
+        {
+            @Html.Raw(settings.GoogleAnalyticsCode)
+        }
+        @if (settings.FacebookPixel != null)
+        {
+            @Html.Raw(settings.FacebookPixel)
+        }
+    }
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MediaBalansSaville.WebUI</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    @{await Html.RenderPartialAsync("_Header");}
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - MediaBalansSaville.WebUI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <main>
+        @RenderBody()
+        <div class="overlay-body"></div>
+    </main>
+
+
+    @{await Html.RenderPartialAsync("_Footer");}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.1/lity.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    @{ await Html.RenderPartialAsync("_Messages"); }
+    @RenderSection("validation", required: false)
+    @RenderSection("Scripts", required: false)
+    <script src="~/assets/js/style.js" asp-append-version="true"></script>
 </body>
 </html>

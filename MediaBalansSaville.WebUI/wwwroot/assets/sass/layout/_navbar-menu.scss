@@ -1,0 +1,105 @@
+nav {
+  .navbar { position: absolute; width: 100%; top: -8px; }
+
+  .navbar-relative { position: relative; width: 100%; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.16); background-color: #831212; z-index: 50; }
+
+  .sufre-navbar { display: flex; flex-wrap: wrap; position: relative; width: 100%; padding: 12px 0px; justify-content: space-between; align-items: center; 
+
+    .navbar-logo { width: 144px; display: block; height: 99px; position: relative; z-index: 3; 
+      @include mobile-l {     width: 85px;
+        height: 60px;}
+
+      img { @extend %img-size; }
+    }
+
+    .menu-btn { z-index: 14; cursor: pointer; width: 27px; height: 30px; display: flex; align-items: center; transform: scale(-1); 
+
+      .navicon { width: 20px !important; height: 3px; border-radius: 5px; background-color: #fff; transition: all 0.2s ease-in-out; 
+
+        &::before,
+        &::after { content: ""; position: absolute; width: 27px; height: 3px; border-radius: 5px; background-color: #fff; transition: all 0.2s ease-in-out; }
+      }
+
+      &.open {
+        .navicon { transform: translateX(-50px); background-color: transparent; pointer-events: none; 
+
+          &::before { transform: rotate(45deg) translate(35px, -35px); }
+
+          &::after { transform: rotate(-45deg) translate(35px, 35px); }
+        }
+      }
+    }
+
+    .navicon {
+      &::before { transform: translateY(-8px); }
+    }
+
+    .navicon {
+      &::after { transform: translateY(8px); }
+    }
+  }
+
+  .menu { position: relative; 
+
+    .toggle { overflow: hidden; width: 100%; height: 100vh; z-index: 2; display: none;
+       background-image: url(/assets/img/background/menu-bacground.jpg); background-position: center; 
+       background-repeat: no-repeat; background-size: cover; 
+       position: fixed; right: 0px; top: 0; @include menu; 
+
+      &::before { content: ''; height: 100%; width: 100%; position: absolute; top: 0px; background-image: linear-gradient(270deg, #831212 0%, rgba(92, 15, 15, 0.7) 100%); }
+
+      .main { display: flex; flex-direction: column; align-items: center; height: 100vh; justify-content: center; text-align: center; position: relative; 
+
+        .menu-list { width: 100%; display: flex; flex-direction: column; align-items: center; 
+
+          .menu-item { font-family: $SemiBold; width: fit-content; @include margin-bottom(25px); @include mobile-l { margin-bottom: 6px; }
+          @include mobile-display{
+            @include margin-bottom(21px);
+          }
+            @extend %transition; cursor: pointer; 
+
+            .menu-links { font-family: $SemiBold; opacity: 0.6; @include font-size(35px); color: #fff; text-decoration: none; display: block; 
+              @extend %transition; 
+              @include mobile-display{
+                font-size: 25px;
+                opacity: 1;
+              }
+              @include mobile-l{
+                font-size: 20px;
+              }
+              &:hover { opacity: 1; }
+
+              &.active { opacity: 1; }
+
+            }
+
+          }
+        }
+
+        .lang-list { display: flex; width: 100%; justify-content: center; position: relative; top: 80px; 
+
+          .btn-lang { font-family: $SemiBold; @include font-size(25px); color: #fff; margin-right: 25px; padding: 0px; opacity: 0.6; 
+            @extend %transition; 
+            @include mobile-display{
+              font-size: 17px;
+              margin-right: 15px;
+            }
+            &:hover { opacity: 1; }
+
+            &.active { opacity: 1; }
+
+            &:last-child { margin-right: 0px; }
+          }
+        }
+        .menu-bottom-nar { position: absolute; bottom: -24px; right: -85px; }
+        .menu-top-nar { position: absolute; right: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(151%, -103%); }
+
+      }
+    }
+    .toggle--active { display: block; @include menu; -webkit-transform: translateY(0); transform: translateY(0%); position: fixed; top: 0px; bottom: 0; right: 0; }
+  }
+}
+
+.overflow { overflow: hidden; }
+
+.menu-icon { pointer-events: none; opacity: 0; }
