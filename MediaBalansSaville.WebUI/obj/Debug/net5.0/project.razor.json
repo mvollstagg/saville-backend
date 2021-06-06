@@ -15760,6 +15760,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Exportation copy/Index.cshtml",
+      "TargetPath": "Views\\Exportation copy\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Exportation/UpdateCountry.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\Exportation\\UpdateCountry.cshtml",
       "FileKind": "mvc"
@@ -15850,6 +15855,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Pomegranate/Index.cshtml",
+      "TargetPath": "Views\\Pomegranate\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
@@ -15925,6 +15935,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Exportation/Index.cshtml",
+      "TargetPath": "Views\\Exportation\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Slider/Update.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\Slider\\Update.cshtml",
       "FileKind": "mvc"
@@ -15942,6 +15957,11 @@
     {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Receipt/Index.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\Receipt\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Contact/Index.cshtml",
+      "TargetPath": "Views\\Contact\\Index.cshtml",
       "FileKind": "mvc"
     },
     {

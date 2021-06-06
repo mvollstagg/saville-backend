@@ -1,0 +1,94 @@
+﻿@inject IConfiguration _configuration
+@{
+    string _lang = ViewBag.Lang ?? "az";
+}
+@model ExportationVM
+@section seo{
+    @{await Html.RenderPartialAsync("_Seo", "Exportation");}
+}
+
+<section>
+    <div class="partner-heading-image">
+        <img src="/assets/img/image-test/alaqa-image.jpg" alt="">
+    </div>
+</section>
+
+<section>
+    <div class="ixrac-general-main">
+        <div class="container">
+            <div class="ixrac-main">
+                <span class="partner-heading">
+                    İxrac
+                </span>
+                <div class="ixrac-text">
+                    @Html.Raw(Model.Exportation.ExportationLangs.FirstOrDefault(x => x.Lang.Code == _lang).Details)
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="ixrac-main maps-back">
+                <div class="row ">
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <select id="select" class="form-select" onchange="selectArea(this);" multiple
+                            aria-label="multiple select example">
+                            <option value="">All Country</option>
+                            @foreach (var country in Model.Countries)
+                            {
+                                <option value="@country.Code">@country.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-8 col-lg-9">
+                        <div id="chartdiv"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</section>
+
+@section Scripts{
+     <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script>
+        var map = AmCharts.makeChart("chartdiv", {
+            "type": "map",
+            "theme": "light",
+            "balloon": {
+                "adjustBorderColor": false,
+                "color": "#fff",
+                "cornerRadius": 5,
+                "fillAlpha": 1,
+                "fillColor": "#fff"
+            },
+            "dataProvider": {
+                "map": "worldLow",
+                "getAreasFromMap": true
+            },
+            "areasSettings": {
+                "autoZoom": true,
+                "alpha": 1,
+                "color": "#505050",
+                "rollOverColor": "#a51515",
+                "selectedColor": "#a51515",
+
+            }
+
+
+        });
+
+        function selectArea(select) {
+            var id = select.options[select.selectedIndex].value;
+            if ('' == id) {
+                map.clickMapObject(map.dataProvider);
+            } else {
+                map.clickMapObject(map.getObjectById(id));
+            }
+        }
+    </script>
+}

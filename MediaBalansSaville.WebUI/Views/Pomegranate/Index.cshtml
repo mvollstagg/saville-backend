@@ -1,0 +1,54 @@
+﻿@inject IConfiguration _configuration
+@{
+    string _lang = ViewBag.Lang ?? "az";
+}
+@model PomegranateSettings
+@section seo{
+    @{await Html.RenderPartialAsync("_Seo", "Pomegranate");}
+}
+
+<section class="section-1">
+    <div class="container-xl">
+        <div class="section-text-main">
+            <p class="section-heading">@Model.PomegranateSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).MainTitle</p>
+            <div class="section-text">@Html.Raw(Model.PomegranateSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).MainDetails)</div>
+        </div>
+    </div>
+
+</section>
+<section class="section-2">
+    <div class="container-xl">
+        <div class="section-text-main">
+            <p class="section-heading">@Model.PomegranateSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).RhythmTitle</p>
+            <div class="section-list">
+                <div class="section-list-item">
+                    @Html.Raw(Model.PomegranateSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).RhythmDetails)
+                </div>                
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-3">
+    <div class="container-xl">
+        <div class="section-text-main">
+            <p class="section-heading">@Model.PomegranateSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).BoostTitle </p>
+            <div class="section-list">
+                <div class="section-list-item">
+                    @Html.Raw(Model.PomegranateSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).BoostDetails)
+                </div>                    
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-4">
+    <div class="container-xl">
+        <div class="section-text-main">
+            <p class="section-heading">@Model.PomegranateSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).HealthInsuranceTitle</p>
+            <div class="section-list">
+                <div class="section-list-item">
+                    @Html.Raw(Model.PomegranateSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).HealthInsuranceDetails)
+                </div>                   
+            </div>
+        </div>
+    </div>
+</section>

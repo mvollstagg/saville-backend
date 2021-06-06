@@ -55,7 +55,7 @@
             <div id="ourproductslider" class="owl-carousel owl-theme">
                 @foreach (var product in Model.Products)
                 {
-                    <a class="mahsulcard" asp-controller="Product" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@product.SlugUrl.ToLower()" asp-route-urlid="@product.UrlId">
+                    <a asp-controller="Product" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@product.SlugUrl.ToLower()" asp-route-urlid="@product.UrlId" class="mahsulcard">
                         <div class="mahsulcard-image">
                             <img src="~/files/product/@product.SlugUrl/@product.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl" alt="mahsulcard-image">
                         </div>
@@ -84,7 +84,7 @@
             <div id="home_maslahat_slider" class="owl-carousel owl-theme">
                 @foreach (var receipt in Model.Receipts)
                 {
-                    <a href="#" class="partner-card">
+                    <a asp-controller="Receipt" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@receipt.SlugUrl.ToLower()" asp-route-urlid="@receipt.UrlId" class="partner-card">
                         <div class="partner-card-image">
                             <img src="~/files/receipt/@receipt.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl" alt="">
                         </div>

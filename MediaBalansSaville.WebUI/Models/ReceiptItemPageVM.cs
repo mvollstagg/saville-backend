@@ -7,5 +7,6 @@ namespace MediaBalansSaville.WebUI.Models
     {
         public Receipt Receipt { get; set; }
         public IEnumerable<Receipt> OtherReceipts { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

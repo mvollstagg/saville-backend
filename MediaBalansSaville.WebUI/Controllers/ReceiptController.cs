@@ -16,19 +16,22 @@ namespace MediaBalansSaville.WebUI.Controllers
     public class ReceiptController : Controller
     {
         private readonly IReceiptService _receiptService;
-        private readonly ICategoryService _categorytService;
+        private readonly IProductService _productService;
+        private readonly ICategoryLangService _categoryLangService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<ReceiptController> _logger;
 
         public ReceiptController(IHttpContextAccessor httpContextAccessor,
                                 IReceiptService receiptService,
-                                ICategoryService categorytService,
-                                ILogger<ReceiptController> logger)
+                                ICategoryLangService categoryLangService,
+                                ILogger<ReceiptController> logger,
+                                IProductService productService)
         {
             _httpContextAccessor = httpContextAccessor;
             MainHelper.TryToSetLang(_httpContextAccessor);
             this._receiptService = receiptService;
-            this._categorytService = categorytService;
+            _productService = productService;
+            _categoryLangService = categoryLangService;
             this._logger = logger;
         }
         [Route("/{_lang}/reseptler")]
@@ -42,7 +45,7 @@ namespace MediaBalansSaville.WebUI.Controllers
                 ReceiptPageVM receiptPageVM = new ReceiptPageVM()
                 {      
                     Receipts = receipts.OrderByDescending(x => x.RecordedAtDate).Skip(0).Take(8),         
-                    ReceiptCategories = await _categorytService.GetAllCategories()
+                    ReceiptCategories = await _categoryLangService.GetAllCategoryLangsFor("receiptall")
                 };
                 return View(receiptPageVM);
             }
@@ -116,9 +119,20 @@ namespace MediaBalansSaville.WebUI.Controllers
 
                 ReceiptItemPageVM pageVM = new ReceiptItemPageVM()
                 {
-                    Receipt = await _receiptService.GetReceiptBySlugUrlAndUrlId(slugurl, urlid),
-                    OtherReceipts = await _receiptService.GetAllReceipts()
+                    Receipt = await _receiptService.GetReceiptBySlugUrlAndUrlId(slugurl, urlid)                    
                 };
+                
+                List<Product> products = new List<Product>();
+                string[] values = pageVM.Receipt.ProductValues.Split(',');
+                foreach (var value in values)
+                {
+                    Product product = await _productService.GetProductById(Convert.ToInt16(value));
+                    if(product != null)
+                        products.Add(product);
+                }
+                pageVM.Products = products;
+                pageVM.OtherReceipts = await _receiptService.GetAllReceipts();
+                pageVM.OtherReceipts.TakeLast(4);
                 return View(pageVM);
             }
             catch (Exception ex)

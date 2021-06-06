@@ -1,0 +1,43 @@
+﻿@inject IConfiguration _configuration
+@{
+    string _lang = ViewBag.Lang ?? "az";
+    int count = 1;
+}
+@model IEnumerable<FAQ>
+@section seo{
+    @{await Html.RenderPartialAsync("_Seo", "Exportation");}
+}
+
+<section>
+    <div class="faq-main">
+        <div class="container-sm">
+            <div class="faq-heading">
+                <p class="faq-text1">FAQ</p>
+                <p class="faq-text2">There are many variations of passages of Lorem Ipsum available, but the
+                    majority have suffered alteration in some form, by injected humour, or randomised words which
+                    don't look even slightly believable.</p>
+            </div>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                @foreach (var faq in Model)
+                {
+                    <div class="accordion-item">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="@("#collapse" + faq.Id)" aria-expanded="false" aria-controls="@("collapse" + faq.Id)">
+                            @count - @faq.FAQLangs.FirstOrDefault(x => x.Lang.Code == _lang).Question
+                        </button>
+                        <div id="@("collapse" + faq.Id)" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                @faq.FAQLangs.FirstOrDefault(x => x.Lang.Code == _lang).Answer
+                            </div>
+                        </div>
+                    </div>
+                    count++;
+                }
+            </div>
+        </div>
+</section>
+
+@section Scripts{
+    
+}

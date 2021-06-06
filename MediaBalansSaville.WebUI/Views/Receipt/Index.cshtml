@@ -11,53 +11,57 @@
 }
 
 <section>
-    <div class="recept-blog-main">
+    <div class="partner-heading-image">
+        <img src="/assets/img/image-test/alaqa-image.jpg" alt="">
+    </div>
+</section>
+
+<section>
+    <div class="maslahat-main">
         <div class="container">
-            <h2>@_configuration[$"RECEIPTLER:{_lang}"]</h2>
-            <div class="search-recept">
-                <div class="row gx-lg-2 gx-xl-5">
-                    <div class="mb-3 mb-md-0 col-md-5 col-lg-7">
-                        <div class="form-floating">
-                            <input id="filter" type="text" class="form-control" placeholder="@_configuration[$"Axtaris:{_lang}"]">
-                            <label for="filter">@_configuration[$"Axtaris:{_lang}"]</label>
-                        </div>
+            <span class="partner-heading">
+                Faydalı məsləhətlər
+            </span>
+            <div class="col-12 col-lg-12 col-xl-9 col-xxl-8 mx-auto maslahat-search">
+                <div class="search-main">
+                    <div class="search-box">
+                        <input type="text" class="form-control" placeholder="Axtarış">
+                        <i class="bi bi-search"></i>
                     </div>
-                    <div class="mb-3 mb-md-0 col-md-5 col-lg-3">
-                        <div class="dropdown search-down">
-                            <button class="btn btn-search" type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="text-truncate">@_configuration[$"ChooseCategory:{_lang}"]</span>
-                                <i class="bi bi-chevron-down"></i>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li class="dropdown-item" data-filter="All" >@_configuration[$"HamısınaBax:{_lang}"] </li>
-                                @foreach (var category in Model.ReceiptCategories.Where(x => x.IsReceipt == true))
-                                {
-                                    <li class="dropdown-item" data-filter="@category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name">@category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</li>
-                                }
-                            </ul>
-                        </div>
+                    <div class="dropdown filter-search">
+                        <button class="btn btn-filter" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-funnel-fill"></i>
+                            <span>Kateqoriya</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            @foreach (var category in Model.ReceiptCategories.Where(x => x.Lang.Code == _lang))
+                            {
+                                <li class="dropdown-item">@category.Name</li>
+                            }                            
+                        </ul>
                     </div>
-                    <div class="mb-3 mb-md-0 col-md-2 col-lg-2">
-                        <button onclick="filterReceipts()" class="btn btn-recep-search"><i class="bi bi-search"></i></button>
-                    </div>
+                    <button type="button" class="btn btn-aktarıs">Axtarış</button>
                 </div>
             </div>
-            <div style="text-align: center;">
-                <div style="display: none;" id="loading" class="img-container">
-                    <img style="" src="/img/icons/loading.gif" >
-                </div>                
-            </div>
-            <div id="receiptList" class="row row-cols-1 row-cols-md-2  row-cols-xl-4  gx-4 gy-4 style-hg">
-                @{ await Html.RenderPartialAsync("_ReceiptList", Model.Receipts); }
-            </div>
-            <div style="text-align: center;">
-                <div style="display: none;" id="loadingMore" class="img-container">
-                    <img style="" src="/img/icons/loading.gif" >
-                </div>                
-            </div>
-            <div class="etraflı-buttons">
-                <button onclick="moreReceipt()" class="btn btn-color">@_configuration[$"ETRAFLI:{_lang}"]</button>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3  row-cols-xl-4 gy-5 gx-5 maslahatlar-card-main">
+                @foreach (var receipt in Model.Receipts)
+                {
+                    <div class="col">
+                        <a asp-controller="Receipt" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@receipt.SlugUrl.ToLower()" asp-route-urlid="@receipt.UrlId" class="partner-card">
+                            <div class="partner-card-image">
+                                <img src="~/files/receipt/@receipt.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl" alt="">
+                            </div>
+                            <div class="card-text">
+                                <p class="category-name">@receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</p>
+                                <div class="card-texting">@Html.Raw(receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Preparation)
+                                </div>
+                                <span>Ətraflı</span>
+                            </div>
+                        </a>
+                    </div>
+                }                
             </div>
         </div>
     </div>

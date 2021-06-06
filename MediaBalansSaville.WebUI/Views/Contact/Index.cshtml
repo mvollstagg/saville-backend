@@ -1,0 +1,99 @@
+﻿@inject IConfiguration _configuration
+@{
+    string _lang = ViewBag.Lang ?? "az";
+    SiteSettings settings = context.SiteSettings.FirstOrDefault();
+}
+@* @model SiteSettings *@
+@section seo{
+    @{await Html.RenderPartialAsync("_Seo", "About");}
+}
+
+<section>
+    <div class="partner-heading-image">
+        <img src="/assets/img/image-test/alaqa-image.jpg" alt="">
+    </div>
+</section>
+
+<section>
+    <div class="alaqa-main">
+        <div class="container-sm">
+            <div class="alaqa-form-main">
+                <span class="partner-heading">
+                    Əlaqə
+                </span>
+                <div class="form-main">
+                    <div class="left">
+                        <p class="left-heading">ƏLAQƏ</p>
+                        <p class="left-text">It is a long established fact that a reader will be distracted by the
+                            readable content of a page when looking at its layout. </p>
+                        <a href="tel:@settings.PhoneNumber" class="info">
+                            <i class="bi bi-telephone-forward"></i>
+                            @settings.PhoneNumber
+                        </a>
+                        <a href="mailto:@settings.Email" class="info">
+                            <i class="bi bi-envelope"></i>
+                            @settings.Email
+                        </a>
+                        <ul class="social-list">
+                            <li class="social-item">
+                                <a href="@settings.FacebookURL" target="_blank" class="social-links">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                            </li>
+                            <li class="social-item">
+                                <a href="@settings.InstagramURL" target="_blank" class="social-links">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                            </li>
+                            <li class="social-item">
+                                <a href="@settings.TwitterURL" target="_blank" class="social-links">
+                                    <i class="bi bi-twitter"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right">
+                        <p class="right-heading">BİZƏ YAZIN</p>
+                        <p class="right-text">Bizimlə əlaqə saxlamaq üçün aşağıdakı formu doldurun.</p>
+                        <form id="contactus-form">
+                            <div class="form-box">
+                                <input type="text" required id="name" class="form-control" placeholder="Ad və soyad">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                            <div class="form-box">
+                                <input type="number"required id="phone" class="form-control" placeholder="Telefon">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+                            <div class="form-box">
+                                <input type="email" required id="email" class="form-control" placeholder="E-mail">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+                            <div class="form-box">
+                                <input type="text" required id="country" class="form-control" placeholder="olke">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+                            <div class="form-box">
+                                <input type="text" required id="city" class="form-control" placeholder="Şəhər">
+                                <i class="bi bi-geo-fill"></i>
+                            </div>
+                            <div class="form-box">
+                                <textarea required id="message" id="message" class="form-control areas"placeholder="Mesajınız"></textarea>
+                                <i class="bi bi-chat-dots-fill"></i>
+                            </div>
+                            <button type="submit" class="btn btn-send">Göndər</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="alaqa-left-nar partner-images" src="/assets/img/left-right-image/alaqa-left-nar.webp" alt="">
+        <img class="alaqa-right-nar partner-images" src="/assets/img/left-right-image/alaqa-right-nart.webp" alt="">
+    </div>
+</section>
+
+@section validation{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+@section Scripts{
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+}
