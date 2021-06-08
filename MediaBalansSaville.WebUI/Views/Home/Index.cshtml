@@ -9,7 +9,7 @@
     @{await Html.RenderPartialAsync("_Seo", "Home");}
 }
 
-<section class="home-section-1">
+<section style="background-image: url(/files/sitesettings/@settings.SliderUrl);" class="home-section-1">
     <div class="section1-text">
         <h1>@settings.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).SliderTitle</h1>
         <p>@settings.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).SliderDetails</p>
@@ -27,7 +27,7 @@
             <div class="row about-reklam">
                 <div class="col-12 col-lg-6">
                     <div class="left">
-                        <h2>Reklam filmi</h2>
+                        <h2>@_configuration[$"Reklamfilmi:{_lang}"]</h2>
                         <p>@settings.SiteSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).AdDetail</p>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
     <div class="container-sm">
         <div class="our-product-main">
             <span class="partner-heading">
-                Our products
+                @_configuration[$"Məhsullarımız:{_lang}"]
             </span>
             <div id="ourproductslider" class="owl-carousel owl-theme">
                 @foreach (var product in Model.Products)
@@ -79,7 +79,7 @@
     <div class="container">
         <div class="maslahat-main">
             <span class="partner-heading">
-                Faydalı məsləhətlər
+                @_configuration[$"Faydalıməsləhətlər:{_lang}"]
             </span>
             <div id="home_maslahat_slider" class="owl-carousel owl-theme">
                 @foreach (var receipt in Model.Receipts)
@@ -91,9 +91,9 @@
                         <div class="card-text">
                             <div class="category-name">@receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</div>
                             <div class="card-texting">
-                                @Html.Raw(receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Preparation)
+                                @receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Details
                             </div>
-                            <span>Ətraflı</span>
+                            <span> @_configuration[$"Ətraflı:{_lang}"]</span>
                         </div>
                     </a>
                 }                

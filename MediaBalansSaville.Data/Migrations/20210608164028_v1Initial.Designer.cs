@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediaBalansSaville.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210605160410_v2SiteSettings")]
-    partial class v2SiteSettings
+    [Migration("20210608164028_v1Initial")]
+    partial class v1Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -265,86 +265,527 @@ namespace MediaBalansSaville.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Code = "",
+                            Code = "AF",
                             IsActive = false,
                             Name = "Afghanistan"
                         },
                         new
                         {
                             Id = 2,
-                            Code = "",
+                            Code = "AL",
                             IsActive = false,
                             Name = "Albania"
                         },
                         new
                         {
                             Id = 3,
-                            Code = "",
+                            Code = "DZ",
                             IsActive = false,
                             Name = "Algeria"
                         },
                         new
                         {
                             Id = 4,
-                            Code = "",
+                            Code = "AD",
                             IsActive = false,
                             Name = "Andorra"
                         },
                         new
                         {
                             Id = 5,
-                            Code = "",
+                            Code = "AO",
                             IsActive = false,
                             Name = "Angola"
                         },
                         new
                         {
                             Id = 6,
-                            Code = "",
+                            Code = "AG",
                             IsActive = false,
                             Name = "Antigua and Barbuda"
                         },
                         new
                         {
                             Id = 7,
-                            Code = "",
+                            Code = "AR",
                             IsActive = false,
                             Name = "Argentina"
                         },
                         new
                         {
-                            Id = 8,
-                            Code = "",
-                            IsActive = false,
-                            Name = "Armenia"
-                        },
-                        new
-                        {
                             Id = 9,
-                            Code = "",
+                            Code = "AW",
                             IsActive = false,
                             Name = "Aruba"
                         },
                         new
                         {
                             Id = 10,
-                            Code = "",
+                            Code = "AU",
                             IsActive = false,
                             Name = "Australia"
                         },
                         new
                         {
                             Id = 11,
-                            Code = "",
+                            Code = "AT",
                             IsActive = false,
                             Name = "Austria"
                         },
                         new
                         {
                             Id = 12,
-                            Code = "",
+                            Code = "AZ",
                             IsActive = false,
                             Name = "Azerbaijan"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Code = "BH",
+                            IsActive = false,
+                            Name = "Bahrain"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Code = "BD",
+                            IsActive = false,
+                            Name = "Bangladesh"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Code = "BY",
+                            IsActive = false,
+                            Name = "Belarus"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Code = "BE",
+                            IsActive = false,
+                            Name = "Belgium"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Code = "BA",
+                            IsActive = false,
+                            Name = "Bosnia and Herzegovina"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Code = "BR",
+                            IsActive = false,
+                            Name = "Brazil"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Code = "BG",
+                            IsActive = false,
+                            Name = "Bulgaria"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Code = "CA",
+                            IsActive = false,
+                            Name = "Canada"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Code = "CF",
+                            IsActive = false,
+                            Name = "Central African Republic"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Code = "CN",
+                            IsActive = false,
+                            Name = "China"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Code = "CO",
+                            IsActive = false,
+                            Name = "Colombia"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Code = "CY",
+                            IsActive = false,
+                            Name = "Cyprus"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Code = "CZ",
+                            IsActive = false,
+                            Name = "Czechia"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Code = "DK",
+                            IsActive = false,
+                            Name = "Denmark"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Code = "EG",
+                            IsActive = false,
+                            Name = "Egypt"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Code = "EE",
+                            IsActive = false,
+                            Name = "Estonia"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Code = "ET",
+                            IsActive = false,
+                            Name = "Ethiopia"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Code = "FI",
+                            IsActive = false,
+                            Name = "Finland"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Code = "FR",
+                            IsActive = false,
+                            Name = "France"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Code = "GE",
+                            IsActive = false,
+                            Name = "Georgia"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Code = "DE",
+                            IsActive = false,
+                            Name = "Germany"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Code = "GR",
+                            IsActive = false,
+                            Name = "Greece"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Code = "HK",
+                            IsActive = false,
+                            Name = "Hong Kong	"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Code = "HU",
+                            IsActive = false,
+                            Name = "Hungary"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Code = "IS",
+                            IsActive = false,
+                            Name = "Iceland"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Code = "IN",
+                            IsActive = false,
+                            Name = "India"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Code = "ID",
+                            IsActive = false,
+                            Name = "Indonesia"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Code = "IR",
+                            IsActive = false,
+                            Name = "Iran"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Code = "IQ",
+                            IsActive = false,
+                            Name = "Iraq"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Code = "IE",
+                            IsActive = false,
+                            Name = "Ireland"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Code = "IL",
+                            IsActive = false,
+                            Name = "Israel"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Code = "IT",
+                            IsActive = false,
+                            Name = "Italy"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Code = "JP",
+                            IsActive = false,
+                            Name = "Japan"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Code = "JO",
+                            IsActive = false,
+                            Name = "Jordan"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Code = "KZ",
+                            IsActive = false,
+                            Name = "Kazakhstan"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Code = "KW",
+                            IsActive = false,
+                            Name = "Kuwait"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Code = "KG",
+                            IsActive = false,
+                            Name = "Kyrgyzstan"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Code = "LV",
+                            IsActive = false,
+                            Name = "Latvia"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Code = "LB",
+                            IsActive = false,
+                            Name = "Lebanon"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Code = "LY",
+                            IsActive = false,
+                            Name = "Libya"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Code = "LT",
+                            IsActive = false,
+                            Name = "Lithuania"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Code = "MT",
+                            IsActive = false,
+                            Name = "Malta"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Code = "MX",
+                            IsActive = false,
+                            Name = "Mexico"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Code = "MD",
+                            IsActive = false,
+                            Name = "Moldova"
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Code = "NL",
+                            IsActive = false,
+                            Name = "Netherlands"
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Code = "NZ",
+                            IsActive = false,
+                            Name = "New Zealand"
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Code = "NO",
+                            IsActive = false,
+                            Name = "Norway"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Code = "OM",
+                            IsActive = false,
+                            Name = "Oman"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Code = "PK",
+                            IsActive = false,
+                            Name = "Pakistan"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Code = "PT",
+                            IsActive = false,
+                            Name = "Portugal"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Code = "QA",
+                            IsActive = false,
+                            Name = "Qatar"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Code = "RO",
+                            IsActive = false,
+                            Name = "Romania"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Code = "RU",
+                            IsActive = false,
+                            Name = "Russian Federation"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Code = "E",
+                            IsActive = false,
+                            Name = "Spain"
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Code = "SE",
+                            IsActive = false,
+                            Name = "Sweden"
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Code = "TR",
+                            IsActive = false,
+                            Name = "Turkey"
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Code = "TM",
+                            IsActive = false,
+                            Name = "Turkmenistan"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Code = "UA",
+                            IsActive = false,
+                            Name = "Ukraine"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Code = "AE",
+                            IsActive = false,
+                            Name = "United Arab Emirates"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Code = "GB",
+                            IsActive = false,
+                            Name = "United Kingdom"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Code = "US",
+                            IsActive = false,
+                            Name = "United States of America"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Code = "UZ",
+                            IsActive = false,
+                            Name = "Uzbekistan"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Code = "VE",
+                            IsActive = false,
+                            Name = "Venezuela"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Code = "YE",
+                            IsActive = false,
+                            Name = "Yemen"
                         });
                 });
 
@@ -487,7 +928,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Azərbaycan",
-                            RecordedAtDate = new DateTime(2021, 6, 5, 19, 4, 8, 865, DateTimeKind.Local).AddTicks(1150),
+                            RecordedAtDate = new DateTime(2021, 6, 8, 19, 40, 27, 916, DateTimeKind.Local).AddTicks(1350),
                             SlugUrl = "az",
                             UrlId = 1
                         },
@@ -498,7 +939,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Rusiya",
-                            RecordedAtDate = new DateTime(2021, 6, 5, 19, 4, 8, 875, DateTimeKind.Local).AddTicks(6110),
+                            RecordedAtDate = new DateTime(2021, 6, 8, 19, 40, 27, 924, DateTimeKind.Local).AddTicks(2850),
                             SlugUrl = "ru",
                             UrlId = 2
                         },
@@ -509,7 +950,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "İngiltərə",
-                            RecordedAtDate = new DateTime(2021, 6, 5, 19, 4, 8, 875, DateTimeKind.Local).AddTicks(6150),
+                            RecordedAtDate = new DateTime(2021, 6, 8, 19, 40, 27, 924, DateTimeKind.Local).AddTicks(2880),
                             SlugUrl = "en",
                             UrlId = 3
                         });
@@ -783,6 +1224,9 @@ namespace MediaBalansSaville.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Ingredients")
                         .HasColumnType("nvarchar(max)");
 
@@ -869,7 +1313,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "admin",
-                            RecordedAtDate = new DateTime(2021, 6, 5, 19, 4, 8, 883, DateTimeKind.Local).AddTicks(9430),
+                            RecordedAtDate = new DateTime(2021, 6, 8, 19, 40, 27, 931, DateTimeKind.Local).AddTicks(6780),
                             SlugUrl = "admin",
                             UrlId = 1
                         },
@@ -879,7 +1323,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "user",
-                            RecordedAtDate = new DateTime(2021, 6, 5, 19, 4, 8, 884, DateTimeKind.Local).AddTicks(60),
+                            RecordedAtDate = new DateTime(2021, 6, 8, 19, 40, 27, 931, DateTimeKind.Local).AddTicks(7410),
                             SlugUrl = "user",
                             UrlId = 2
                         });
@@ -989,11 +1433,17 @@ namespace MediaBalansSaville.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("LogoUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("RecordedAtDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("SliderUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SlugUrl")
                         .HasColumnType("nvarchar(max)");
@@ -1143,10 +1593,10 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             LastName = "Admin",
-                            PasswordHash = "c6d3f51ff85fec296dbd14d70719d403e7c63a168536ce4c9cedd3f5f099a65fe7b4065ed293baffe4e453cd827b9130e5501e1462c04f253c577db2eeab571a",
+                            PasswordHash = "142b778b41109fb955c1435e19746fa5d66c3fe9fb02fcd6880dfe757945f03c0e8a287b738521682a1e949eccd72d5e59e68a8aa03093636d9167bd311c04a4",
                             PhoneNumber = "0534 895 22 84",
-                            RecordedAtDate = new DateTime(2021, 6, 5, 19, 4, 8, 877, DateTimeKind.Local).AddTicks(9900),
-                            SecretKey = "0b319023771744d2b17e0227b243900e6/5/202170408PM",
+                            RecordedAtDate = new DateTime(2021, 6, 8, 19, 40, 27, 926, DateTimeKind.Local).AddTicks(5370),
+                            SecretKey = "942f1d23356e4c588646bd5e6774a3eb6/8/202174027PM",
                             UrlId = 0
                         });
                 });

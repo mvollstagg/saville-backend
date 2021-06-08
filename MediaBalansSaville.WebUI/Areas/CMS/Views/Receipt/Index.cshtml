@@ -46,7 +46,7 @@
                                             @(receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Title.Length > 30 ? receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Title.Substring(0, 30) : receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Title)
                                         </td>                                        
                                         <td>
-                                            @Html.Raw((receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Preparation.Length > 30 ? receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Preparation.Substring(0, 30) : receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Preparation))                                       
+                                            @Html.Raw((receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Details.Length > 30 ? receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Details.Substring(0, 30) : receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code.ToLower() == "az").Details))                                       
                                         </td>                                        
                                         <td>
                                             <img src="~/files/receipt/@receipt.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
@@ -81,31 +81,7 @@
 
 @section scripts{
     <script>
-        $('#tablom').DataTable({
-            language: {
-                info: "_TOTAL_ kayıttan _START_ - _END_ kayıt gösteriliyor.",
-                infoEmpty:      "Gösterilecek hiç kayıt yok.",
-                loadingRecords: "Kayıtlar yükleniyor.",
-                zeroRecords: "Tablo boş",
-                search: "Arama:",
-                infoFiltered:   "(toplam _MAX_ kayıttan filtrelenenler)",
-                buttons: {
-                    copyTitle: "Panoya kopyalandı.",
-                    copySuccess:"Panoya %d satır kopyalandı",
-                    copy: "Kopyala",
-                    print: "Yazdır",
-                },
-
-                paginate: {
-                    first: "İlk",
-                    previous: "Önceki",
-                    next: "Sonraki",
-                    last: "Son"
-                },
-                responsive: true
-            }
-        });
-
+        
         $(document).on("change", ".custom-select", function () {
             var count = $(this).val();
             $.ajax({

@@ -78,27 +78,8 @@
 </div>
 
 <script>
-    var seoAZ = document.getElementById("seoAZ");
-    var seoRU = document.getElementById("seoRU");
-    var seoEN = document.getElementById("seoEN");
-    function langAZ() {     
-        seoAZ.style.display = "block";
-        seoRU.style.display = "none";
-        seoEN.style.display = "none";
-    }
-    function langRU() {     
-        seoAZ.style.display = "none";
-        seoRU.style.display = "block";
-        seoEN.style.display = "none";
-    }
-    function langEN() {     
-        seoAZ.style.display = "none";
-        seoRU.style.display = "none";
-        seoEN.style.display = "block";
-    }
-    
-
+   
 </script>
 @section validation{
-    <partial name="_ValidationScriptsPW" />
+    <partial name="_ValidationScriptsPartial" />
 }

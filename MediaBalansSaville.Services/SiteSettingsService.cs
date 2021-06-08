@@ -28,11 +28,7 @@ namespace MediaBalansSaville.Services
 
         public async Task UpdateSiteSettings(SiteSettings SiteSettingsToBeUpdated, SiteSettings SiteSettings)
         {
-            SiteSettingsToBeUpdated.FacebookURL = SiteSettings.FacebookURL;
-            SiteSettingsToBeUpdated.InstagramURL = SiteSettings.InstagramURL;
-            SiteSettingsToBeUpdated.PhoneNumber = SiteSettings.PhoneNumber;
-            SiteSettingsToBeUpdated.FacebookPixel = SiteSettings.FacebookPixel;
-            SiteSettingsToBeUpdated.GoogleAnalyticsCode = SiteSettings.GoogleAnalyticsCode;
+            SiteSettingsToBeUpdated = SiteSettings;
             SiteSettingsToBeUpdated.SiteSettingsLangs = SiteSettings.SiteSettingsLangs;
 
             await _unitOfWork.CommitAsync();

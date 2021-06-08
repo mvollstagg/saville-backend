@@ -15,16 +15,19 @@ namespace MediaBalansSaville.WebUI.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly ICategoryLangService _categoryLangService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<ProductController> _logger;
 
         public ProductController(IHttpContextAccessor httpContextAccessor,
                                  IProductService productService,
-                                 ILogger<ProductController> logger)
+                                 ILogger<ProductController> logger,
+                                 ICategoryLangService categoryLangService)
         {
             _httpContextAccessor = httpContextAccessor;
             MainHelper.TryToSetLang(_httpContextAccessor);
             this._productService = productService;
+            _categoryLangService = categoryLangService;
             this._logger = logger;
         }
 
@@ -36,8 +39,12 @@ namespace MediaBalansSaville.WebUI.Controllers
                 ViewBag.Lang = _lang;
                 MainHelper.SetLang(_httpContextAccessor, _lang);
                 IEnumerable<Product> products = await _productService.GetAllProducts();
-                products = products.Where(x => x.IsActive == true).OrderByDescending(x => x.RecordedAtDate).Skip(0).Take(10);
-                return View(products);
+                ProductVM pageVM = new ProductVM()
+                {      
+                    Products = products.Where(x => x.IsActive == true).OrderByDescending(x => x.RecordedAtDate).Skip(0).Take(10),
+                    ProductCategories = await _categoryLangService.GetAllCategoryLangsFor("productall")
+                };
+                return View(pageVM);
             }
             catch (Exception ex)
             {
@@ -62,6 +69,33 @@ namespace MediaBalansSaville.WebUI.Controllers
                 }
                     
                 return PartialView(products.OrderByDescending(x => x.RecordedAtDate).Skip(skipCount).Take(10));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
+            } 
+        }
+
+        [Route("/{_lang}/productfiltered")]
+        public async Task<PartialViewResult> GetFilter(string category = "", string filter = "", string _lang = "az")
+        {
+            try
+            {
+                ViewBag.Lang = _lang;
+                MainHelper.SetLang(_httpContextAccessor, _lang);
+                IEnumerable<Product> products = await _productService.GetAllProducts();
+
+                if (!String.IsNullOrEmpty(filter) )
+                {                
+                    return PartialView(products.Where(x => x.ProductLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name.ToLower().Contains(filter.ToLower())).ToList());
+                }
+                if (!String.IsNullOrEmpty(category) && category != "All")
+                {                
+                    return PartialView(products.Where(x => x.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name.ToLower().Contains(category.ToLower())).ToList());                
+                }
+                    
+                return PartialView(products);
             }
             catch (Exception ex)
             {

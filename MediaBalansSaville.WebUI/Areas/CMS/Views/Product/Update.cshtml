@@ -9,67 +9,12 @@
     <div class="col-12 my-4 mx-auto">
         <div class="card shadow mb-4">
             <div class="card-header py-4">
-                Əlavə et 
+                Düzəliş et 
                 <a asp-area="CMS" asp-controller="Product" asp-action="Index" class="float-right btn btn-outline-secondary">Geriyə get</a>
             </div>
             <div class="card-body">
                 <form asp-area="CMS" asp-controller="Product" asp-action="Update" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="kategoriSelect" class="form-group">
-                                <label class="control-label">Kateqoriya</label>
-                                <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control"></select>
-                                <span asp-validation-for="CategoryId"></span>
-                                <span class="text-danger"></span>
-                            </div>                            
-                            <div class="form-group">
-                                <strong class="control-label">Əsas şəkil</strong>
-                                <img src="~/files/product/@Model.SlugUrl/@Model.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="custom-file">
-                                    <input asp-for="MainPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
-                                    <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <strong class="control-label">Nutrition Fact şəkil</strong>
-                                <img src="~/files/product/@Model.SlugUrl/@Model.NutritionFactsPhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="custom-file">
-                                    <input asp-for="NutritionFactPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
-                                    <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
-                                </div>
-                            </div>
-                            <br>
-                            <div id="digerSekiller">
-                                <div class="input-group mb-3">
-                                    <div class="form-group">
-                                        <strong class="control-label">Digər şəkillər</strong>
-                                        <div class="d-flex">
-                                            @foreach (var photoUrl in Model.PhotoUrls)
-                                            {
-                                                <img class="ml-3" src="~/files/product/@Model.SlugUrl/@photoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
-                                            }
-                                        </div>
-                                    </div>
-                                    @* <div class="input-group mb-3">
-                                        <div class="custom-file">
-                                            <input asp-for="PhotoFiles" type="file" multiple class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
-                                            <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
-                                        </div>
-                                    </div> *@
-                                </div>
-                            </div> 
-                            
-                            <div class="form-group">
-                                <label class="control-label">Status</label>
-                                <input asp-for="IsActive" type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -128,6 +73,71 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="kategoriSelect" class="form-group">
+                                <label class="control-label">Kateqoriya</label>
+                                <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control"></select>
+                                <span asp-validation-for="CategoryId"></span>
+                                <span class="text-danger"></span>
+                            </div>                            
+                            <div class="form-group">
+                                <strong class="control-label">Əsas şəkil</strong>
+                                <img src="~/files/product/@Model.SlugUrl/@Model.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input asp-for="MainPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
+                                    <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <strong class="control-label">Nutrition Fact şəkil</strong>
+                                <img src="~/files/product/@Model.SlugUrl/@Model.NutritionFactsPhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input asp-for="NutritionFactPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
+                                    <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                                </div>
+                            </div>
+                            <br>
+                            <div id="digerSekiller">
+                                <div class="input-group mb-3">
+                                    <div class="form-group">
+                                        <strong class="control-label">Digər şəkillər</strong>
+                                        <div class="d-flex">
+                                            @foreach (var photoUrl in Model.PhotoUrls)
+                                            {
+                                                <img class="ml-3" src="~/files/product/@Model.SlugUrl/@photoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
+                                            }
+                                        </div>
+                                    </div>                                    
+                                </div>
+                                <div class="sekiller">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group mb-3">   
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="addnae">1. Şəkil</span>
+                                                </div>
+                                                <div class="custom-file">
+                                                    <input asp-for="PhotoFiles" type="file" multiple class="custom-file-input" id="file1" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
+                                                    <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-outline-success sekil-add">Şəkil Əlavə Et</button>
+                                </div>
+                            </div> 
+                            
+                            <div class="form-group">
+                                <label class="control-label">Status</label>
+                                <input asp-for="IsActive" type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
+                            </div>
+                        </div>
+                    </div>                    
                     <div class="form-group">
                         <input type="submit" value="Təsdiq et" class="btn btn-primary my-3" />
                     </div>
@@ -138,6 +148,27 @@
 </div>
 
 @section validation{
-    <partial name="_ValidationScriptsPW" />
+    <partial name="_ValidationScriptsPartial" />
 }
 
+@section Scripts{
+    <script>
+        var sekilCount = 1;
+        $(document).on("click", ".sekil-add", function() {
+            $(".sekiller > .row").append(`
+                <div class="col-md-12">
+                    <div class="input-group mb-3">   
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addnae">` + parseInt(sekilCount+1) + `. Şəkil</span>
+                        </div>
+                        <div class="custom-file">
+                            <input name="PhotoFiles" type="file" multiple class="custom-file-input" id="file` + sekilCount + `" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
+                            <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                        </div>
+                    </div>
+                </div>
+            `);
+            sekilCount++;
+        });
+    </script>
+}

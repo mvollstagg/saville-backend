@@ -9,125 +9,9 @@
     <div class="col-12 my-4 mx-auto">
         <div class="card shadow mb-4">
             <div class="card-header">
-                Sayt parametrləri bölümü 
+                Haqqımızda parametrləri bölümü 
             </div>
             <div class="card-body"> 
-                <div id="certificates">
-                    <div class="row">
-                    <div class="col-12 my-4 mx-auto">
-                        <div class="card shadow mb-4">
-                            <div class="card-header">
-                                Sertifikalar
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex justify-content-end my-3">
-                                    <a asp-area="CMS" asp-controller="AboutSettings" asp-action="CreateCertificate" class="btn btn-outline-dark"><i class="fas fa-fw fa-plus"></i>Sertifika Ekle</a>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table dataTables table-bordered table-striped table-shorting" id="dataTable">
-                                        <thead>
-                                            <tr>
-                                                <th>Şekil</th>
-                                                <th>Status</th>
-                                                <th>Əməliyyatlar</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @if (Model.Certificates == null)
-                                            {
-                                                <tr>
-                                                    <td colspan="8" class="text-center">
-                                                        Eklenmiş bir kayıt yok
-                                                    </td>
-                                                </tr>
-                                            }
-                                            else
-                                            {
-                                                @foreach (var certificate in Model.Certificates)
-                                                {
-                                                    <tr id="@certificate.Id" data-id="">
-                                                        <td>
-                                                            <img src="~/files/aboutsettings/@certificate.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
-                                                        </td>
-                                                        <td>
-                                                            @(certificate.IsActive ? "Gösteriliyor" : "Gösterilmiyor")
-                                                        </td>
-                                                        <td >
-                                                            <a asp-area="CMS" asp-controller="AboutSettings" asp-action="UpdateCertificate" asp-route-id="@certificate.Id" class="btn text-primary"><i class="fas fa-fw fa-pencil-alt"></i></a>
-                                                            <a asp-area="CMS" asp-controller="AboutSettings" asp-action="DeleteCertificate" asp-route-id="@certificate.Id" class="btn text-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="items">
-                    <div class="row">
-                    <div class="col-12 my-4 mx-auto">
-                        <div class="card shadow mb-4">
-                            <div class="card-header">
-                                Parametrler
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex justify-content-end my-3">
-                                    <a asp-area="CMS" asp-controller="AboutSettings" asp-action="CreateItem" class="btn btn-outline-dark"><i class="fas fa-fw fa-plus"></i>Parametr Ekle</a>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table dataTables table-bordered table-striped table-shorting" id="dataTable">
-                                        <thead>
-                                            <tr>
-                                                <th>Şekil</th>
-                                                <th>Başlıq</th>
-                                                <th>Detay</th>
-                                                <th>Status</th>
-                                                <th>Əməliyyatlar</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @if (Model.Certificates == null)
-                                            {
-                                                <tr>
-                                                    <td colspan="8" class="text-center">
-                                                        Eklenmiş bir kayıt yok
-                                                    </td>
-                                                </tr>
-                                            }
-                                            else
-                                            {
-                                                @foreach (var item in Model.Items)
-                                                {
-                                                    <tr id="@item.Id" data-id="">
-                                                        <td>
-                                                            <img src="~/files/aboutsettings/@item.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
-                                                        </td>
-                                                        <td>
-                                                            @item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Title
-                                                        </td>
-                                                        <td>
-                                                            @(item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Details.Length > 60 ? item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Details.Substring(0, 30) : item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Details)
-                                                        </td>     
-                                                        <td>
-                                                            @(item.IsActive ? "aktiv" : "deaktiv")
-                                                        </td>
-                                                        <td >
-                                                            <a asp-area="CMS" asp-controller="AboutSettings" asp-action="UpdateItem" asp-route-id="@item.Id" class="btn text-primary"><i class="fas fa-fw fa-pencil-alt"></i></a>
-                                                            <a asp-area="CMS" asp-controller="AboutSettings" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn text-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <form asp-area="CMS" asp-controller="AboutSettings" asp-action="Update" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div> 
                     <div class="row">
@@ -182,32 +66,130 @@
                     <div class="form-group">
                         <input type="submit" value="Təsdiq et" class="btn btn-primary" />
                     </div>
-                </form>
-                
+                </form>   
+                <div id="certificates">
+                    <div class="row">
+                        <div class="col-12 my-4 mx-auto">
+                        <div class="card shadow mb-4">
+                            <div class="card-header">
+                                Sertifikatlar
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-end my-3">
+                                    <a asp-area="CMS" asp-controller="AboutSettings" asp-action="CreateCertificate" class="btn btn-outline-dark"><i class="fas fa-fw fa-plus"></i>Sertifikat Əlavə Et</a>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table dataTables table-bordered table-striped table-shorting" id="dataTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Şəkil</th>
+                                                <th>Status</th>
+                                                <th>Əməliyyatlar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.Certificates == null)
+                                            {
+                                                <tr>
+                                                    <td colspan="8" class="text-center">
+                                                        Heç bir qeyd əlavə edilməyib
+                                                    </td>
+                                                </tr>
+                                            }
+                                            else
+                                            {
+                                                @foreach (var certificate in Model.Certificates)
+                                                {
+                                                    <tr id="@certificate.Id" data-id="">
+                                                        <td>
+                                                            <img src="~/files/aboutsettings/@certificate.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
+                                                        </td>
+                                                        <td>
+                                                            @(certificate.IsActive ? "aktiv" : "deaktiv")
+                                                        </td>
+                                                        <td >
+                                                            <a asp-area="CMS" asp-controller="AboutSettings" asp-action="UpdateCertificate" asp-route-id="@certificate.Id" class="btn text-primary"><i class="fas fa-fw fa-pencil-alt"></i></a>
+                                                            <a asp-area="CMS" asp-controller="AboutSettings" asp-action="DeleteCertificate" asp-route-id="@certificate.Id" class="btn text-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="items">
+                    <div class="row">
+                    <div class="col-12 my-4 mx-auto">
+                        <div class="card shadow mb-4">
+                            <div class="card-header">
+                                Parametrler
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-end my-3">
+                                    <a asp-area="CMS" asp-controller="AboutSettings" asp-action="CreateItem" class="btn btn-outline-dark"><i class="fas fa-fw fa-plus"></i>Parametr Ekle</a>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table dataTables table-bordered table-striped table-shorting" id="dataTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Şəkil</th>
+                                                <th>Başlıq</th>
+                                                <th>Detay</th>
+                                                <th>Status</th>
+                                                <th>Əməliyyatlar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.Certificates == null)
+                                            {
+                                                <tr>
+                                                    <td colspan="8" class="text-center">
+                                                        Heç bir qeyd əlavə edilməyib
+                                                    </td>
+                                                </tr>
+                                            }
+                                            else
+                                            {
+                                                @foreach (var item in Model.Items)
+                                                {
+                                                    <tr id="@item.Id" data-id="">
+                                                        <td>
+                                                            <img src="~/files/aboutsettings/@item.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
+                                                        </td>
+                                                        <td>
+                                                            @item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Title
+                                                        </td>
+                                                        <td>
+                                                            @(item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Details.Length > 60 ? item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Details.Substring(0, 30) : item.AboutSettingsItemLangs.FirstOrDefault(x => x.Lang.Code == "az").Details)
+                                                        </td>     
+                                                        <td>
+                                                            @(item.IsActive ? "aktiv" : "deaktiv")
+                                                        </td>
+                                                        <td >
+                                                            <a asp-area="CMS" asp-controller="AboutSettings" asp-action="UpdateItem" asp-route-id="@item.Id" class="btn text-primary"><i class="fas fa-fw fa-pencil-alt"></i></a>
+                                                            <a asp-area="CMS" asp-controller="AboutSettings" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn text-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                             
             </div>
         </div>
     </div>
 </div>
 <script>
-    var settingsAZ = document.getElementById("settingsAZ");
-    var settingsRU = document.getElementById("settingsRU");
-    var settingsEN = document.getElementById("settingsEN");
-    function langAZ() {     
-        settingsAZ.style.display = "block";
-        settingsRU.style.display = "none";
-        settingsEN.style.display = "none";
-    }
-    function langRU() {     
-        settingsAZ.style.display = "none";
-        settingsRU.style.display = "block";
-        settingsEN.style.display = "none";
-    }
-    function langEN() {     
-        settingsAZ.style.display = "none";
-        settingsRU.style.display = "none";
-        settingsEN.style.display = "block";
-    }    
+   
 </script>
 @section validation{
-    <partial name="_ValidationScriptsPW" />
+    <partial name="_ValidationScriptsPartial" />
 }

@@ -123,15 +123,15 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"></h6>
                         <a class="collapse-item" asp-area="CMS" asp-controller="Category" asp-action="Index" style='@(controller == "category" ? "background-color: #eaecf4" : "")'>Kateqoriya</a>
-                        <a class="collapse-item" asp-area="CMS" asp-controller="Slider" asp-action="Index" style='@(controller == "slider" ? "background-color: #eaecf4" : "")'>Slayder</a>
-                        <a class="collapse-item" asp-area="CMS" asp-controller="Exportation" asp-action="Index" style='@(controller == "exportation" ? "background-color: #eaecf4" : "")'>İxrac Sahifesi</a>
-                        <a class="collapse-item" asp-area="CMS" asp-controller="FAQ" asp-action="Index" style='@(controller == "faq" ? "background-color: #eaecf4" : "")'>Soru - Cevap</a>
-                        <a class="collapse-item" asp-area="CMS" asp-controller="Pomegranate" asp-action="Index" style='@(controller == "pomegranate" ? "background-color: #eaecf4" : "")'>Narın Faydaları</a>
+                        @* <a class="collapse-item" asp-area="CMS" asp-controller="Slider" asp-action="Index" style='@(controller == "slider" ? "background-color: #eaecf4" : "")'>Slayder</a> *@
+                        <a class="collapse-item" asp-area="CMS" asp-controller="AboutSettings" asp-action="Index" style='@(controller == "aboutsettings" ? "background-color: #eaecf4" : "")'>Haqqımızda Səhifəsi</a>  
                         <a class="collapse-item" asp-area="CMS" asp-controller="Product" asp-action="Index" style='@(controller == "product" ? "background-color: #eaecf4" : "")'>Mehsullar</a>
+                        <a class="collapse-item" asp-area="CMS" asp-controller="Pomegranate" asp-action="Index" style='@(controller == "pomegranate" ? "background-color: #eaecf4" : "")'>Narın Faydaları</a>
                         <a class="collapse-item" asp-area="CMS" asp-controller="Receipt" asp-action="Index" style='@(controller == "receipt" ? "background-color: #eaecf4" : "")'>Reseptler</a>
-                        <a class="collapse-item" asp-area="CMS" asp-controller="AboutSettings" asp-action="Index" style='@(controller == "aboutsettings" ? "background-color: #eaecf4" : "")'>Haqqımızda Parametrleri</a>  
-                        <a class="collapse-item" asp-area="CMS" asp-controller="Letter" asp-action="Index" style='@(controller == "letter" ? "background-color: #eaecf4" : "")'>Mektublar</a>                     
-                        <a class="collapse-item" asp-area="CMS" asp-controller="SiteSettings" asp-action="Index" style='@(controller == "sitesettings" ? "background-color: #eaecf4" : "")'>Sayt Parametrleri</a>         
+                        <a class="collapse-item" asp-area="CMS" asp-controller="Exportation" asp-action="Index" style='@(controller == "exportation" ? "background-color: #eaecf4" : "")'>İxracat Səhifəsi</a>
+                        <a class="collapse-item" asp-area="CMS" asp-controller="Letter" asp-action="Index" style='@(controller == "letter" ? "background-color: #eaecf4" : "")'>Mektublar</a>  
+                        <a class="collapse-item" asp-area="CMS" asp-controller="FAQ" asp-action="Index" style='@(controller == "faq" ? "background-color: #eaecf4" : "")'>Sual - Cavab</a>
+                        <a class="collapse-item" asp-area="CMS" asp-controller="SiteSettings" asp-action="Index" style='@(controller == "sitesettings" ? "background-color: #eaecf4" : "")'>Sayt Parametrləri</a>         
                         <a class="collapse-item" asp-area="CMS" asp-controller="Seo" asp-action="Index" style='@(controller == "seo" ? "background-color: #eaecf4" : "")'>Seo Parametrləri</a>          
                     </div>
                 </div>
@@ -247,7 +247,7 @@
 
         $('.dataTables').dataTable({
             language: {
-                info: "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor.",
+                info: "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar aktiv.",
                 infoEmpty:      "Gösterilecek hiç kayıt yok.",
                 loadingRecords: "Kayıtlar yükleniyor.",
                 zeroRecords: "Aramanızla uyuşan kayıt yok.",

@@ -69,7 +69,53 @@
                     <br>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="addnae">Mevcut Video Cover Şekil</span>
+                            <span class="input-group-text" id="addnae">Mevcut Logo Şəkil</span>
+                        </div>
+                        @if (Model.LogoUrl == "LogoPhotoUrl")
+                        {
+                            <span class="text" style="margin-left: 30px; object-fit: cover;" id="addnae">Henüz eklenmemiş</span>
+                        }
+                        else
+                        {
+                            <img src="~/files/sitesettings/@Model.LogoUrl" style="margin-left: 30px; width: 150px;height: 150px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />  
+                        }                                                 
+                    </div>
+                    <div class="input-group mb-3">                        
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addnae">Logo Şəkil </span>
+                        </div>
+                        <div class="custom-file">
+                            <input asp-for="LogoPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png, .svg">
+                            <label class="custom-file-label" for="inputGroupFile01">Şəkil yükle</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addnae">Mevcut Slayder Şəkil</span>
+                        </div>
+                        @if (Model.LogoUrl == "SliderPhotoUrl")
+                        {
+                            <span class="text" style="margin-left: 30px; object-fit: cover;" id="addnae">Henüz eklenmemiş</span>
+                        }
+                        else
+                        {
+                            <img src="~/files/sitesettings/@Model.SliderUrl" style="margin-left: 30px; width: 150px;height: 150px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />  
+                        }                                                 
+                    </div>
+                    <div class="input-group mb-3">                        
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addnae">Logo Şəkil </span>
+                        </div>
+                        <div class="custom-file">
+                            <input asp-for="SliderPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png, .svg">
+                            <label class="custom-file-label" for="inputGroupFile01">Şəkil yükle</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addnae">Mevcut Video Cover Şəkil</span>
                         </div>
                         @if (Model.VideoPhotoUrl == "CoverPhotoUrl")
                         {
@@ -82,11 +128,11 @@
                     </div>
                     <div class="input-group mb-3">                        
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="addnae">Video Cover Şekil </span>
+                            <span class="input-group-text" id="addnae">Video Cover Şəkil </span>
                         </div>
                         <div class="custom-file">
                             <input asp-for="VideoPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png, .svg">
-                            <label class="custom-file-label" for="inputGroupFile01">Fotoğraf yükle</label>
+                            <label class="custom-file-label" for="inputGroupFile01">Şəkil yükle</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -146,25 +192,8 @@
     </div>
 </div>
 <script>
-    var settingsAZ = document.getElementById("settingsAZ");
-    var settingsRU = document.getElementById("settingsRU");
-    var settingsEN = document.getElementById("settingsEN");
-    function langAZ() {     
-        settingsAZ.style.display = "block";
-        settingsRU.style.display = "none";
-        settingsEN.style.display = "none";
-    }
-    function langRU() {     
-        settingsAZ.style.display = "none";
-        settingsRU.style.display = "block";
-        settingsEN.style.display = "none";
-    }
-    function langEN() {     
-        settingsAZ.style.display = "none";
-        settingsRU.style.display = "none";
-        settingsEN.style.display = "block";
-    }    
+       
 </script>
 @section validation{
-    <partial name="_ValidationScriptsPW" />
+    <partial name="_ValidationScriptsPartial" />
 }

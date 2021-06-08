@@ -8,7 +8,7 @@
     <div class="col-12 my-4 mx-auto">
         <div class="card shadow mb-4">
             <div class="card-header py-4">
-                Ülke Əlavə et <a asp-area="CMS" asp-controller="Exportation" asp-action="Index" class="float-right btn btn-outline-secondary">Geriyə get</a>
+                Ölkə Əlavə et <a asp-area="CMS" asp-controller="Exportation" asp-action="Index" class="float-right btn btn-outline-secondary">Geriyə get</a>
             </div>
             <div class="card-body">
                 <form asp-area="CMS" asp-controller="Exportation" asp-action="CreateCountry" method="post" enctype="multipart/form-data">
@@ -22,6 +22,10 @@
                         <input asp-for="Name" type="text" class="form-control" />
                     </div>
                     <div class="form-group">
+                        <label class="control-label">Status</label>
+                        <input asp-for="IsActive" checked type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
+                    </div>
+                    <div class="form-group">
                         <input type="submit" value="Təsdiq et" class="btn btn-primary" />
                     </div>
                 </form>
@@ -31,5 +35,5 @@
 </div>
 
 @section validation{
-    <partial name="_ValidationScriptsPW" />
+    <partial name="_ValidationScriptsPartial" />
 }

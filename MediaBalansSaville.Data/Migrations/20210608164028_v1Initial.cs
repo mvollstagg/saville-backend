@@ -197,6 +197,8 @@ namespace MediaBalansSaville.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    LogoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SliderUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     VideoCoverUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FacebookURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InstagramURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -556,6 +558,8 @@ namespace MediaBalansSaville.Data.Migrations
                     AboutTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AboutDetail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AdDetail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SliderTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SliderDetails = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SiteSettingsId = table.Column<int>(type: "int", nullable: false),
                     LangId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -688,6 +692,7 @@ namespace MediaBalansSaville.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Preparation = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Ingredients = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReceiptId = table.Column<int>(type: "int", nullable: false),
@@ -737,18 +742,88 @@ namespace MediaBalansSaville.Data.Migrations
                 columns: new[] { "Id", "Code", "IsActive", "Name" },
                 values: new object[,]
                 {
-                    { 1, "", false, "Afghanistan" },
-                    { 12, "", false, "Azerbaijan" },
-                    { 11, "", false, "Austria" },
-                    { 10, "", false, "Australia" },
-                    { 8, "", false, "Armenia" },
-                    { 7, "", false, "Argentina" },
-                    { 9, "", false, "Aruba" },
-                    { 5, "", false, "Angola" },
-                    { 4, "", false, "Andorra" },
-                    { 3, "", false, "Algeria" },
-                    { 2, "", false, "Albania" },
-                    { 6, "", false, "Antigua and Barbuda" }
+                    { 1, "AF", false, "Afghanistan" },
+                    { 57, "NL", false, "Netherlands" },
+                    { 56, "MD", false, "Moldova" },
+                    { 55, "MX", false, "Mexico" },
+                    { 54, "MT", false, "Malta" },
+                    { 53, "LT", false, "Lithuania" },
+                    { 52, "LY", false, "Libya" },
+                    { 51, "LB", false, "Lebanon" },
+                    { 50, "LV", false, "Latvia" },
+                    { 49, "KG", false, "Kyrgyzstan" },
+                    { 48, "KW", false, "Kuwait" },
+                    { 47, "KZ", false, "Kazakhstan" },
+                    { 46, "JO", false, "Jordan" },
+                    { 45, "JP", false, "Japan" },
+                    { 44, "IT", false, "Italy" },
+                    { 43, "IL", false, "Israel" },
+                    { 58, "NZ", false, "New Zealand" },
+                    { 41, "IQ", false, "Iraq" },
+                    { 59, "NO", false, "Norway" },
+                    { 61, "PK", false, "Pakistan" },
+                    { 86, "YE", false, "Yemen" },
+                    { 85, "VE", false, "Venezuela" },
+                    { 84, "UZ", false, "Uzbekistan" },
+                    { 83, "US", false, "United States of America" },
+                    { 82, "GB", false, "United Kingdom" },
+                    { 81, "AE", false, "United Arab Emirates" },
+                    { 70, "UA", false, "Ukraine" },
+                    { 69, "TM", false, "Turkmenistan" },
+                    { 68, "TR", false, "Turkey" },
+                    { 67, "SE", false, "Sweden" },
+                    { 66, "E", false, "Spain" },
+                    { 65, "RU", false, "Russian Federation" },
+                    { 64, "RO", false, "Romania" },
+                    { 63, "QA", false, "Qatar" },
+                    { 62, "PT", false, "Portugal" },
+                    { 60, "OM", false, "Oman" },
+                    { 40, "IR", false, "Iran" },
+                    { 42, "IE", false, "Ireland" },
+                    { 38, "IN", false, "India" },
+                    { 39, "ID", false, "Indonesia" },
+                    { 17, "BA", false, "Bosnia and Herzegovina" },
+                    { 16, "BE", false, "Belgium" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ExportationCountries",
+                columns: new[] { "Id", "Code", "IsActive", "Name" },
+                values: new object[,]
+                {
+                    { 15, "BY", false, "Belarus" },
+                    { 14, "BD", false, "Bangladesh" },
+                    { 13, "BH", false, "Bahrain" },
+                    { 12, "AZ", false, "Azerbaijan" },
+                    { 19, "BG", false, "Bulgaria" },
+                    { 11, "AT", false, "Austria" },
+                    { 9, "AW", false, "Aruba" },
+                    { 7, "AR", false, "Argentina" },
+                    { 6, "AG", false, "Antigua and Barbuda" },
+                    { 5, "AO", false, "Angola" },
+                    { 4, "AD", false, "Andorra" },
+                    { 3, "DZ", false, "Algeria" },
+                    { 2, "AL", false, "Albania" },
+                    { 10, "AU", false, "Australia" },
+                    { 20, "CA", false, "Canada" },
+                    { 18, "BR", false, "Brazil" },
+                    { 22, "CN", false, "China" },
+                    { 37, "IS", false, "Iceland" },
+                    { 36, "HU", false, "Hungary" },
+                    { 35, "HK", false, "Hong Kong	" },
+                    { 34, "GR", false, "Greece" },
+                    { 21, "CF", false, "Central African Republic" },
+                    { 32, "GE", false, "Georgia" },
+                    { 31, "FR", false, "France" },
+                    { 33, "DE", false, "Germany" },
+                    { 29, "ET", false, "Ethiopia" },
+                    { 28, "EE", false, "Estonia" },
+                    { 27, "EG", false, "Egypt" },
+                    { 26, "DK", false, "Denmark" },
+                    { 25, "CZ", false, "Czechia" },
+                    { 24, "CY", false, "Cyprus" },
+                    { 23, "CO", false, "Colombia" },
+                    { 30, "FI", false, "Finland" }
                 });
 
             migrationBuilder.InsertData(
@@ -756,9 +831,9 @@ namespace MediaBalansSaville.Data.Migrations
                 columns: new[] { "Id", "Code", "IsActive", "IsDeleted", "Name", "RecordedAtDate", "SlugUrl", "UrlId" },
                 values: new object[,]
                 {
-                    { 1, "az", true, false, "Azərbaycan", new DateTime(2021, 6, 5, 17, 19, 57, 743, DateTimeKind.Local).AddTicks(310), "az", 1 },
-                    { 2, "ru", true, false, "Rusiya", new DateTime(2021, 6, 5, 17, 19, 57, 750, DateTimeKind.Local).AddTicks(9650), "ru", 2 },
-                    { 3, "en", true, false, "İngiltərə", new DateTime(2021, 6, 5, 17, 19, 57, 750, DateTimeKind.Local).AddTicks(9690), "en", 3 }
+                    { 1, "az", true, false, "Azərbaycan", new DateTime(2021, 6, 8, 19, 40, 27, 916, DateTimeKind.Local).AddTicks(1350), "az", 1 },
+                    { 2, "ru", true, false, "Rusiya", new DateTime(2021, 6, 8, 19, 40, 27, 924, DateTimeKind.Local).AddTicks(2850), "ru", 2 },
+                    { 3, "en", true, false, "İngiltərə", new DateTime(2021, 6, 8, 19, 40, 27, 924, DateTimeKind.Local).AddTicks(2880), "en", 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -766,14 +841,14 @@ namespace MediaBalansSaville.Data.Migrations
                 columns: new[] { "Id", "IsActive", "IsDeleted", "Name", "RecordedAtDate", "SlugUrl", "UrlId" },
                 values: new object[,]
                 {
-                    { 2, true, false, "user", new DateTime(2021, 6, 5, 17, 19, 57, 758, DateTimeKind.Local).AddTicks(4000), "user", 2 },
-                    { 1, true, false, "admin", new DateTime(2021, 6, 5, 17, 19, 57, 758, DateTimeKind.Local).AddTicks(3360), "admin", 1 }
+                    { 2, true, false, "user", new DateTime(2021, 6, 8, 19, 40, 27, 931, DateTimeKind.Local).AddTicks(7410), "user", 2 },
+                    { 1, true, false, "admin", new DateTime(2021, 6, 8, 19, 40, 27, 931, DateTimeKind.Local).AddTicks(6780), "admin", 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "FirstName", "IsActive", "IsDeleted", "LastName", "PasswordHash", "PhoneNumber", "RecordedAtDate", "SecretKey", "SlugUrl", "UrlId" },
-                values: new object[] { 1, "admin@admin.com", "Admin", true, false, "Admin", "f44ce413194ed032b1c1f3595a13eefd2428300e2e9842d9d360c2c62a53edae381ed1b54986c4248b515ac750085553650131d09f639cc6d2fb60d2b1b01cee", "0534 895 22 84", new DateTime(2021, 6, 5, 17, 19, 57, 753, DateTimeKind.Local).AddTicks(2070), "a0335949143f4a49bf99ba46a5bb83c56/5/202151957PM", null, 0 });
+                values: new object[] { 1, "admin@admin.com", "Admin", true, false, "Admin", "142b778b41109fb955c1435e19746fa5d66c3fe9fb02fcd6880dfe757945f03c0e8a287b738521682a1e949eccd72d5e59e68a8aa03093636d9167bd311c04a4", "0534 895 22 84", new DateTime(2021, 6, 8, 19, 40, 27, 926, DateTimeKind.Local).AddTicks(5370), "942f1d23356e4c588646bd5e6774a3eb6/8/202174027PM", null, 0 });
 
             migrationBuilder.InsertData(
                 table: "UserRoles",

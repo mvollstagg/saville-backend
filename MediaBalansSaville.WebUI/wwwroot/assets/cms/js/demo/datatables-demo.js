@@ -6,7 +6,7 @@ $(document).ready(function() {
         "language": {
             "sDecimal": ",",
             "sEmptyTable": "Tabloda herhangi bir veri mevcut değil",
-            "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+            "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar aktiv",
             "sInfoEmpty": "Kayıt yok",
             "sInfoFiltered": "(_MAX_ kayıt içerisinden bulunan)",
             "sInfoPostFix": "",

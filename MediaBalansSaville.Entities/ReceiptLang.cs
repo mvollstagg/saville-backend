@@ -11,6 +11,7 @@ namespace MediaBalansSaville.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Title { get; set; }
+        public string Details { get; set; }
         public string Preparation { get; set; }
         public string Ingredients { get; set; }
         [ForeignKey("Receipt")]

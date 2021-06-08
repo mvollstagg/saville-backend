@@ -48,6 +48,13 @@ namespace MediaBalansSaville.Data.Repositories
                 .Include(b => b.Lang)
                 .ToListAsync();
             }
+            if(predicate == "productall")
+            {
+                return await ApplicationDbContext.CategoryLangs
+                .Where(x => x.Category.IsActive == true && x.Category.IsProduct == true)
+                .Include(b => b.Lang)
+                .ToListAsync();
+            }
             return null;
         }
 

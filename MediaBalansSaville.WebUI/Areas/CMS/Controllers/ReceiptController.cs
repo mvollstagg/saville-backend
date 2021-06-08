@@ -147,6 +147,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 newReceipt.ReceiptLangs.Add(new ReceiptLang()
                 {
                     Title = item.Title,
+                    Details = item.Details,
                     Preparation = item.Preparation,
                     Ingredients = item.Ingredients,
                     ReceiptId = newReceipt.Id,
@@ -174,6 +175,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 PhotoUrl = receiptFromDb.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl,
                 CategoryId = receiptFromDb.CategoryId,
                 IsActive = receiptFromDb.IsActive,
+                IsBlog = receiptFromDb.IsBlog
             };
             receiptUpdateVM.Categories = await _categoyrLangService.GetAllCategoryLangsFor("receipt");
 
@@ -245,6 +247,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             receiptFromVm.ProductValues = receiptUpdateVM.ProductValuesLine;
             receiptFromVm.SlugUrl = UrlSeoHelper.UrlSeo(receiptUpdateVM.ReceiptLangs.FirstOrDefault(x => x.LangId == 1).Title.Trim());
             receiptFromVm.IsActive = receiptUpdateVM.IsActive;
+            receiptFromVm.IsBlog = receiptUpdateVM.IsBlog;
             Category category = await _categoryService.GetCategoryByCategoryLangId(receiptUpdateVM.CategoryId);
             receiptFromVm.Category = category;
             receiptFromVm.CategoryId = category.Id;
@@ -262,6 +265,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             foreach (var item in receiptFromVm.ReceiptLangs)
             {
                 item.Title = receiptUpdateVM.ReceiptLangs.ElementAt(count).Title;
+                item.Details = receiptUpdateVM.ReceiptLangs.ElementAt(count).Details;
                 item.Preparation = receiptUpdateVM.ReceiptLangs.ElementAt(count).Preparation;
                 item.Ingredients = receiptUpdateVM.ReceiptLangs.ElementAt(count).Ingredients;
                 count++;

@@ -15730,11 +15730,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Shared/_ValidationScriptsPW.cshtml",
-      "TargetPath": "Areas\\CMS\\Views\\Shared\\_ValidationScriptsPW.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Pomegranate/Index.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\Pomegranate\\Index.cshtml",
       "FileKind": "mvc"
@@ -15760,13 +15755,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Exportation copy/Index.cshtml",
-      "TargetPath": "Views\\Exportation copy\\Index.cshtml",
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Exportation/UpdateCountry.cshtml",
+      "TargetPath": "Areas\\CMS\\Views\\Exportation\\UpdateCountry.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Exportation/UpdateCountry.cshtml",
-      "TargetPath": "Areas\\CMS\\Views\\Exportation\\UpdateCountry.cshtml",
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Product/GetFilter.cshtml",
+      "TargetPath": "Views\\Product\\GetFilter.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15995,6 +15990,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/_ProductList.cshtml",
+      "TargetPath": "Views\\Shared\\_ProductList.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -16010,6 +16010,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/Shared/_ReceiptList.cshtml",
+      "TargetPath": "Views\\Shared\\_ReceiptList.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Exportation/CreateCountry.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\Exportation\\CreateCountry.cshtml",
       "FileKind": "mvc"
@@ -16022,6 +16027,16 @@
     {
       "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Seo/Update.cshtml",
       "TargetPath": "Areas\\CMS\\Views\\Seo\\Update.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Areas/CMS/Views/Shared/_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Areas\\CMS\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/Views/FAQ/Index.cshtml",
+      "TargetPath": "Views\\FAQ\\Index.cshtml",
       "FileKind": "mvc"
     },
     {

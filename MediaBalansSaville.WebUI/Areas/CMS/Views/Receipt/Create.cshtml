@@ -45,10 +45,14 @@
 
                                                             <label class="control-label">Başlıq (@item.Code.ToUpper())</label>
                                                             <input name="ReceiptLangs[@count].Title" type="text" class="form-control" />
-                                                            <label class="control-label">İçindekiler (@item.Code.ToUpper())</label>
-                                                            <textarea name="ReceiptLangs[@count].Ingredients" type="text" class="form-control texteditor" ></textarea>
-                                                            <label class="control-label">Hazırlanışı (@item.Code.ToUpper())</label>
-                                                            <textarea name="ReceiptLangs[@count].Preparation" type="text" class="form-control texteditor" ></textarea>
+                                                            <label class="control-label">Açıklama (@item.Code.ToUpper())</label>
+                                                            <textarea name="ReceiptLangs[@count].Details" type="text" class="form-control" ></textarea>
+                                                            <div id="nonBlog">
+                                                                <label class="control-label">İçindekiler (@item.Code.ToUpper())</label>
+                                                                <textarea name="ReceiptLangs[@count].Ingredients" type="text" class="form-control texteditor" ></textarea>
+                                                                <label class="control-label">Hazırlanışı (@item.Code.ToUpper())</label>
+                                                                <textarea name="ReceiptLangs[@count].Preparation" type="text" class="form-control texteditor" ></textarea>                                                                
+                                                            </div>
                                                             <label class="control-label">Seo Başlıq (@item.Code.ToUpper())</label>
                                                             <input name="SeoLangs[@count].Title" type="text" class="form-control" />
                                                             <label class="control-label">Seo Keywords (@item.Code.ToUpper())</label>
@@ -99,6 +103,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label">Blog kimi görünsün</label>
+                                <input asp-for="IsBlog" id="isBlog" type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label">Status</label>
                                 <input asp-for="IsActive" checked type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
                             </div>
@@ -115,7 +123,7 @@
                                         <table class="table dataTables table-striped table-bordered dataTable" id="dataTables-example">
                                             <thead>
                                                 <tr>
-                                                    <th>Şekil</th>
+                                                    <th>Şəkil</th>
                                                     <th>Ad</th>
                                                     <th>Kateqoriya</th>
                                                     <th>Status</th>
@@ -172,28 +180,40 @@
         </div>
     </div>
 </div>
-<script>
-    var arr = [];
-    function toggleProduct(id)
-    {       
-        if(arr.includes(id))
-        {
-            arr = arr.filter(function(ele){                     
-                    return ele != id; 
-                });
-            $('#productStatus' + id).text("Eklenmeyecek");
-        }
-        else
-        {
-            arr.push(id);
-            $('#productStatus' + id).text("Eklenecek");
-        }
 
-        $("#productValues").val(arr);
-    }
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $("#isBlog").on("change",function(){
+                if($("#isBlog").prop("checked")){				
+                    $("#nonBlog").hide();                    
+                }else{				
+                    $("#nonBlog").show();  
+                }
+            });
+        });
 
-</script>
+        var arr = [];
+        function toggleProduct(id)
+        {       
+            if(arr.includes(id))
+            {
+                arr = arr.filter(function(ele){                     
+                        return ele != id; 
+                    });
+                $('#productStatus' + id).text("Eklenmeyecek");
+            }
+            else
+            {
+                arr.push(id);
+                $('#productStatus' + id).text("Eklenecek");
+            }
+            $("#productValues").val(arr);
+        }
+    </script>    
+}
+
 @section validation{
-    <partial name="_ValidationScriptsPW" />
+    <partial name="_ValidationScriptsPartial" />
 }
 

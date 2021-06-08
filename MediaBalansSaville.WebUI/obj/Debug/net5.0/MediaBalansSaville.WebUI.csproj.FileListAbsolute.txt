@@ -168,7 +168,6 @@
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Seo/Update.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Shared/Error.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Shared/_Layout.cshtml.g.cs
-/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Shared/_ValidationScriptsPW.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/SiteSettings/Index.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Slider/Create.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Slider/Index.cshtml.g.cs
@@ -386,7 +385,7 @@ D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Area
 D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Seo/Update.cshtml.g.cs
 D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Shared/Error.cshtml.g.cs
 D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Shared/_Layout.cshtml.g.cs
-D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Shared/_ValidationScriptsPW.cshtml.g.cs
+D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Shared/_ValidationScriptsPartial.cshtml.g.cs
 D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/SiteSettings/Index.cshtml.g.cs
 D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Slider/Create.cshtml.g.cs
 D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Slider/Index.cshtml.g.cs
@@ -428,3 +427,7 @@ D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/MediaBalan
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Exportation/Index.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Contact/Index.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/FAQ/Index.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Shared/_ValidationScriptsPartial.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/_ProductList.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/_ReceiptList.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Product/GetFilter.cshtml.g.cs

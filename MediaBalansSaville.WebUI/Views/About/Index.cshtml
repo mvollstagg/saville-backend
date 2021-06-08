@@ -18,26 +18,26 @@
     <div class="haqqımızda-main">
         <div class="container">
             <span class="partner-heading">
-                Haqqımızda
+                @_configuration[$"Haqqımızda:{_lang}"]
             </span>
             <div class="row col-12 col-lg-12 col-xl-10 mx-auto gx-5">
                 <div class="col-md-12 px-0 px-md-2">
                     <div class="haqqımızda-box hikayemiz">
-                        <p class="haqqımızda-heading">HEKAYƏMİZ</p>
+                        <p class="haqqımızda-heading">@_configuration[$"HEKAYƏMİZ:{_lang}"]</p>
                         <div class="haqqımızda-text"> @Html.Raw(Model.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).OurStory) </div>
                     </div>
 
                 </div>
                 <div class="col-12 col-lg-6 mb-5 mb-lg-0  px-0 px-md-2">
                     <div class="haqqımızda-box">
-                        <p class="haqqımızda-heading">MİSYON</p>
+                        <p class="haqqımızda-heading">@_configuration[$"MİSYON:{_lang}"]</p>
                         <div class="haqqımızda-text"> @Html.Raw(Model.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).OurMission) </div>
                     </div>
 
                 </div>
                 <div class="col-12 col-lg-6  px-0 px-md-2">
                     <div class="haqqımızda-box">
-                        <p class="haqqımızda-heading">VİZYON</p>
+                        <p class="haqqımızda-heading">@_configuration[$"VİZYON:{_lang}"]</p>
                         <div class="haqqımızda-text"> @Html.Raw(Model.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).OurVision) </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
         <div class="container">
             <div class="col-md-10 mx-auto">
                 <div class="saville-heading">
-                    <h2>NİYƏ SAVİLLE?</h2>
+                    <h2>@_configuration[$"NİYƏSAVİLLE:{_lang}"]</h2>
                     <div> @Html.Raw(Model.AboutSettingsLangs.FirstOrDefault(x => x.Lang.Code == _lang).WhySaville) </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
 <section>
     <div class="sertifikalar">
         <div class="container-sm">
-                <h3>SERTİFİKATLAR</h3>
+                <h3>@_configuration[$"SERTİFİKATLAR:{_lang}"]</h3>
                 <div class="sertifika-card-main">                    
                     @foreach (var certificate in Model.Certificates)
                     {

@@ -19,13 +19,12 @@
         <div class="container-sm">
             <div class="alaqa-form-main">
                 <span class="partner-heading">
-                    Əlaqə
+                    @_configuration[$"Əlaqə:{_lang}"]
                 </span>
                 <div class="form-main">
                     <div class="left">
-                        <p class="left-heading">ƏLAQƏ</p>
-                        <p class="left-text">It is a long established fact that a reader will be distracted by the
-                            readable content of a page when looking at its layout. </p>
+                        <p class="left-heading">@_configuration[$"Əlaqə:{_lang}"].ToUpper()</p>
+                        <p class="left-text"> @_configuration[$"ƏlaqəMetn:{_lang}"] </p>
                         <a href="tel:@settings.PhoneNumber" class="info">
                             <i class="bi bi-telephone-forward"></i>
                             @settings.PhoneNumber
@@ -53,34 +52,34 @@
                         </ul>
                     </div>
                     <div class="right">
-                        <p class="right-heading">BİZƏ YAZIN</p>
-                        <p class="right-text">Bizimlə əlaqə saxlamaq üçün aşağıdakı formu doldurun.</p>
+                        <p class="right-heading">@_configuration[$"BİZƏYAZIN:{_lang}"]</p>
+                        <p class="right-text">@_configuration[$"BİZƏYAZINMetn:{_lang}"]</p>
                         <form id="contactus-form">
                             <div class="form-box">
-                                <input type="text" required id="name" class="form-control" placeholder="Ad və soyad">
+                                <input type="text" required id="name" class="form-control" placeholder="@_configuration[$"AdSoyad:{_lang}"]">
                                 <i class="bi bi-person-fill"></i>
                             </div>
                             <div class="form-box">
-                                <input type="number"required id="phone" class="form-control" placeholder="Telefon">
+                                <input type="number"required id="phone" class="form-control" placeholder="@_configuration[$"Telefon:{_lang}"]">
                                 <i class="bi bi-telephone-fill"></i>
                             </div>
                             <div class="form-box">
-                                <input type="email" required id="email" class="form-control" placeholder="E-mail">
+                                <input type="email" required id="email" class="form-control" placeholder="@_configuration[$"Email:{_lang}"]">
                                 <i class="bi bi-envelope-fill"></i>
                             </div>
                             <div class="form-box">
-                                <input type="text" required id="country" class="form-control" placeholder="olke">
+                                <input type="text" required id="country" class="form-control" placeholder="@_configuration[$"Country:{_lang}"]">
                                 <i class="bi bi-geo-alt-fill"></i>
                             </div>
                             <div class="form-box">
-                                <input type="text" required id="city" class="form-control" placeholder="Şəhər">
+                                <input type="text" required id="city" class="form-control" placeholder="@_configuration[$"City:{_lang}"]">
                                 <i class="bi bi-geo-fill"></i>
                             </div>
                             <div class="form-box">
-                                <textarea required id="message" id="message" class="form-control areas"placeholder="Mesajınız"></textarea>
+                                <textarea required id="message" id="message" class="form-control areas"placeholder="@_configuration[$"Əlavəniz:{_lang}"]"></textarea>
                                 <i class="bi bi-chat-dots-fill"></i>
                             </div>
-                            <button type="submit" class="btn btn-send">Göndər</button>
+                            <button type="submit" class="btn btn-send">@_configuration[$"Göndər:{_lang}"]</button>
                         </form>
                     </div>
                 </div>

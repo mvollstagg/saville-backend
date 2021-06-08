@@ -9,7 +9,7 @@
     <div class="col-12 my-4 mx-auto">
         <div class="card shadow mb-4">
             <div class="card-header py-4">
-                Soru Cevap Ekle <a asp-area="CMS" asp-controller="FAQ" asp-action="Index" class="float-right btn btn-outline-secondary">Geriye Git</a>
+                Sual cavab Ekle <a asp-area="CMS" asp-controller="FAQ" asp-action="Index" class="float-right btn btn-outline-secondary">Geriye Git</a>
             </div>
             <div class="card-body">
                 <form asp-area="CMS" asp-controller="FAQ" asp-action="Create" method="post" enctype="multipart/form-data">
@@ -71,5 +71,5 @@
 </div>
 
 @section validation{
-    <partial name="_ValidationScriptsPW" />
+    <partial name="_ValidationScriptsPartial" />
 }

@@ -41,6 +41,8 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
                 SiteSettingsFromDb = new SiteSettings();
                 SiteSettingsFromDb.VideoCoverUrl = "CoverPhotoUrl";
+                SiteSettingsFromDb.LogoUrl = "LogoPhotoUrl";
+                SiteSettingsFromDb.SliderUrl = "SliderPhotoUrl";
                 
                 SiteSettingsLang newSiteSettingsLangAZ = new SiteSettingsLang
                 {
@@ -68,6 +70,8 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             {
                 SiteSettingsVM settingsVM = new SiteSettingsVM
                 {
+                    LogoUrl = SiteSettingsFromDb.LogoUrl,
+                    SliderUrl = SiteSettingsFromDb.SliderUrl,
                     VideoPhotoUrl = SiteSettingsFromDb.VideoCoverUrl,
                     SiteSettingsLangs = SiteSettingsFromDb.SiteSettingsLangs.ToList(),
                     FacebookURL = SiteSettingsFromDb.FacebookURL,
@@ -92,6 +96,32 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             SiteSettings SiteSettingsFromVm = SiteSettingsFromDb;
             if (!ModelState.IsValid) return View(SiteSettingsUpdateVM);
             
+            if(SiteSettingsUpdateVM.LogoPhotoFile != null)
+            {
+                if (!_image.IsImageValid(SiteSettingsUpdateVM.LogoPhotoFile))
+                {
+                    ModelState.AddModelError("", "Dosya .jpg/.jpeg/.png formatında ve maksimum 3MB boyutunda olmalıdır!");
+                    return View(SiteSettingsUpdateVM);
+                }
+                else
+                {
+                    _image.Delete("files", "sitesettings", SiteSettingsFromVm.LogoUrl);
+                    SiteSettingsFromVm.LogoUrl = await _image.UploadAsync(SiteSettingsUpdateVM.LogoPhotoFile, "files", "sitesettings"); 
+                }
+            }
+            if(SiteSettingsUpdateVM.SliderPhotoFile != null)
+            {
+                if (!_image.IsImageValid(SiteSettingsUpdateVM.SliderPhotoFile))
+                {
+                    ModelState.AddModelError("", "Dosya .jpg/.jpeg/.png formatında ve maksimum 3MB boyutunda olmalıdır!");
+                    return View(SiteSettingsUpdateVM);
+                }
+                else
+                {
+                    _image.Delete("files", "sitesettings", SiteSettingsFromVm.SliderUrl);
+                    SiteSettingsFromVm.SliderUrl = await _image.UploadAsync(SiteSettingsUpdateVM.SliderPhotoFile, "files", "sitesettings"); 
+                }
+            }
             if(SiteSettingsUpdateVM.VideoPhotoFile != null)
             {
                 if (!_image.IsImageValid(SiteSettingsUpdateVM.VideoPhotoFile))

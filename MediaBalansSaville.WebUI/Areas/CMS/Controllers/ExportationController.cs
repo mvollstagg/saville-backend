@@ -58,7 +58,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 exportationFromDb.ExportationLangs.Add(newExportationLangEN);
                 await _exportationService.CreateExportations(exportationFromDb);
                 
-                return View(exportationUpdateVM);
+                return RedirectToAction("Index", "Exportation");
             }
             else
             {
@@ -156,6 +156,16 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             await _exportationService.DeleteCountry(exportationFromDb);
 
             return RedirectToAction("Index", "Exportation");
+        }
+
+        [Route("/cms/ulkeler/status-degistir")]
+        [HttpPost]
+        public async Task<IActionResult> StatusToggle(int id)
+        {
+            ExportationCountry exportationFromDb = await _exportationService.GetCountryById(id);
+            exportationFromDb.IsActive = !exportationFromDb.IsActive;
+            await _exportationService.UpdateCountry(exportationFromDb, exportationFromDb);
+            return Json(new { status = exportationFromDb.IsActive, title = "İşlem Başarılı", message = "Statüsü değiştirildi!" });
         }
         #endregion   
     }

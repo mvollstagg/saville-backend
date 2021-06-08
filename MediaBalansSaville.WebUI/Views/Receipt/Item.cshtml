@@ -10,140 +10,200 @@
     
 }
 
-<section>
-    <div class="maslahatlar-slider-main">
-        <div class="container">
-            <div class="col-12 col-md-12 col-lg-10 col-xl-9 mx-auto">
-                <div class="main-slider">
-                    <div class="maslahatlar-detail-slider owl-carousel owl-item">
-                        <div class="slider-item">
-                            <img src="/assets/img/image-test/maslahat-slider.png" alt="">
-                        </div>
-                        <div class="slider-item">
-                            <img src="/assets/img/image-test/maslahat-slider.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-10 col-md-6 col-lg-6 slider-text">
-                        <p>
-                            It is a long established fact that a reader
-                            will be distracted by the readable content
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-<section>
-    <div class="maslahatlar-share">
-        <div class="container">
-            <div class="col-12 col-md-12 col-lg-10 col-xl-9 mx-auto">
-                <div class="blog-info">
-                    <p class="category-name">Kateqoriya:
-                        <strong>
-                            @Model.Receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name
-                        </strong></p>
-                    <div class="share">
-                        <p class="share-text">Paylaş</p>
-                        <ul class="share-list">
-                            <li class="share-item">
-                                <i class="bi bi-facebook"></i>
-                            </li>
-                            <li class="share-item">
-                                <i class="bi bi-twitter"></i>
-                            </li>
-                            <li class="share-item">
-                                <i class="bi bi-linkedin"></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section>
-    <div class="maslahat-contents-main">
-        <div class="container">
-            <div class="col-12 col-md-12 col-lg-10 col-xl-9 mx-auto">
-                <div class="row maslahatlar-contents">
-                    <div class="col-md-12 col-lg-6">
-                        <p class="contents-heading">HAZIRLANMASI</p>
-                        <ul class="hazırlanma-list">
-                            <li class="hazırlanma-item">
-                                @Html.Raw(Model.Receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Preparation)
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-12 col-lg-4   offset-lg-2 offset-0">
-                        <div class="ingredients">
-                            <p class="contents-heading">INGREDIENTS</p>
-                            <div class="ıngredients-list">
-                                <div class="ıng-item">
-                                    @Html.Raw(Model.Receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Ingredients)
+@if(Model.Receipt.IsBlog == false)
+{
+    <section>
+        <div class="maslahatlar-slider-main">
+            <div class="container">
+                <div class="col-12 col-md-12 col-lg-10 col-xl-9 mx-auto">
+                    <div class="main-slider">
+                        <div class="maslahatlar-detail-slider owl-carousel owl-item">
+                            @foreach (var item in Model.Receipt.ReceiptPhotos.Where(x => x.IsMain == false))
+                            {
+                                <div class="slider-item">
+                                    <img src="~/files/receipt/@item.PhotoUrl" alt="">
                                 </div>
-
-                            </div>
+                            }                            
                         </div>
-                        <div class="maslahat-product">
-                            <p class="contents-heading products-heading">PRODUCTS</p>
-                            <div class="row row-cols-2 row-cols-md-4 row-cols-lg-2 row-cols-xl-3  product-card-main">
-                                @foreach (var product in Model.Products)
-                                {
-                                    <div class="col mb-2">
-                                        <a class="productcard" asp-controller="Product" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@product.SlugUrl.ToLower()" asp-route-urlid="@product.UrlId">
-                                            <div class="product-image">
-                                                <img src="~/files/product/@product.SlugUrl/@product.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl" alt="">
-                                            </div>
-                                            <p class="mahsul-name">@product.ProductLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</p>
-                                        </a>
+                        <div class="col-10 col-md-6 col-lg-6 slider-text">
+                            <p>
+                                @Model.Receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Details
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="maslahatlar-share">
+            <div class="container">
+                <div class="col-12 col-md-12 col-lg-10 col-xl-9 mx-auto">
+                    <div class="blog-info">
+                        <p class="category-name">@_configuration[$"Kateqoriya:{_lang}"]:
+                            <strong>
+                                @Model.Receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name
+                            </strong></p>
+                        <div class="share">
+                            <p class="share-text">@_configuration[$"Paylaş:{_lang}"]</p>
+                            <ul class="share-list">
+                                <li class="share-item">
+                                    <i class="bi bi-facebook"></i>
+                                </li>
+                                <li class="share-item">
+                                    <i class="bi bi-twitter"></i>
+                                </li>
+                                <li class="share-item">
+                                    <i class="bi bi-linkedin"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="maslahat-contents-main">
+            <div class="container">
+                <div class="col-12 col-md-12 col-lg-10 col-xl-9 mx-auto">
+                    <div class="row maslahatlar-contents">
+                        <div class="col-md-12 col-lg-6">
+                            <p class="contents-heading">@_configuration[$"HAZIRLANMASI:{_lang}"]</p>
+                            <ul class="hazırlanma-list">
+                                <li class="hazırlanma-item">
+                                    @Html.Raw(Model.Receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Preparation)
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-12 col-lg-4   offset-lg-2 offset-0">
+                            <div class="ingredients">
+                                <p class="contents-heading">@_configuration[$"INGREDIENTS:{_lang}"]</p>
+                                <div class="ıngredients-list">
+                                    <div class="ıng-item">
+                                        @Html.Raw(Model.Receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Ingredients)
                                     </div>
-                                }                                
+
+                                </div>
+                            </div>
+                            <div class="maslahat-product">
+                                <p class="contents-heading products-heading">@_configuration[$"PRODUCTS:{_lang}"]</p>
+                                <div class="row row-cols-2 row-cols-md-4 row-cols-lg-2 row-cols-xl-3  product-card-main">
+                                    @foreach (var product in Model.Products)
+                                    {
+                                        <div class="col mb-2">
+                                            <a class="productcard" asp-controller="Product" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@product.SlugUrl.ToLower()" asp-route-urlid="@product.UrlId">
+                                                <div class="product-image">
+                                                    <img src="~/files/product/@product.SlugUrl/@product.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl" alt="">
+                                                </div>
+                                                <p class="mahsul-name">@product.ProductLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</p>
+                                            </a>
+                                        </div>
+                                    }                                
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
+                </div>
+                <img class="maslahat-right-nar partner-images" src="/assets/img/left-right-image/maslahat-right-nar.webp" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="diger-receptler">
+            <div class="container">
+                <span class="partner-heading">
+                    @_configuration[$"DigərReseptlər:{_lang}"]
+                </span>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3  row-cols-xl-4 gy-0 gx-5 recept-card-main">
+                    @foreach (var receipt in Model.OtherReceipts)
+                    {
+                        <div class="col mb-0 mb-md-3 mb-lg-3 mb-xl-0">
+                            <a asp-controller="Receipt" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@receipt.SlugUrl.ToLower()" asp-route-urlid="@receipt.UrlId" class="partner-card">
+                                <div class="partner-card-image">
+                                    <img src="~/files/receipt/@receipt.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl" alt="">
+                                </div>
+                                <div class="card-text">
+                                    <p class="category-name">@receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</p>
+                                    <div class="card-texting">@receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Details
+                                    </div>
+                                    <span>@_configuration[$"Ətraflı:{_lang}"]</span>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    
                 </div>
             </div>
-            <img class="maslahat-right-nar partner-images" src="/assets/img/left-right-image/maslahat-right-nar.webp" alt="">
         </div>
-    </div>
-
-</section>
-
-
-<section>
-    <div class="diger-receptler">
+    </section>
+}
+else
+{
+    <section>
         <div class="container">
-            <span class="partner-heading">
-                Digər Reseptlər
-            </span>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3  row-cols-xl-4 gy-0 gx-5 recept-card-main">
-                @foreach (var receipt in Model.OtherReceipts)
-                {
-                    <div class="col mb-0 mb-md-3 mb-lg-3 mb-xl-0">
-                        <a asp-controller="Receipt" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@receipt.SlugUrl.ToLower()" asp-route-urlid="@receipt.UrlId" class="partner-card">
-                            <div class="partner-card-image">
-                                <img src="~/files/receipt/@receipt.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl" alt="">
-                            </div>
-                            <div class="card-text">
-                                <p class="category-name">@receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</p>
-                                <div class="card-texting">@Html.Raw(receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Preparation)
-                                </div>
-                                <span>Ətraflı</span>
-                            </div>
-                        </a>
+            <div class="blog-main">
+                <div class="left">
+                    <div class="blog-big-image">
+                        <img src="~/files/receipt/@Model.Receipt.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl" alt="">
                     </div>
-                }
-                
+                    <div class="blog-info">
+                        <p class="category-name">@_configuration[$"Kateqoriya:{_lang}"]:
+                            <strong>
+                                @Model.Receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name
+                            </strong></p>
+                        <div class="share">
+                            <p class="share-text">@_configuration[$"Paylaş:{_lang}"]</p>
+                            <ul class="share-list">
+                                <li class="share-item">
+                                    <i class="bi bi-facebook"></i>
+                                </li>
+                                <li class="share-item">
+                                    <i class="bi bi-twitter"></i>
+                                </li>
+                                <li class="share-item">
+                                    <i class="bi bi-linkedin"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="blog-text">
+                        <h1 class="blog-heading">@Model.Receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Title</h1>
+                        <p class="blog-text"> @Model.Receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Details </p>
+                    </div>
+                </div>
+                <div class="right">
+                    <span class="partner-heading">
+                        @_configuration[$"Digəryazılar:{_lang}"]
+                    </span>
+                    <div class="blog-card-main">
+                        @foreach (var receipt in Model.OtherReceipts)
+                        {
+                            <a asp-controller="Receipt" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@receipt.SlugUrl.ToLower()" asp-route-urlid="@receipt.UrlId" class="partner-card">
+                                <div class="partner-card-image">
+                                    <img src="~/files/receipt/@receipt.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl" alt="">
+                                </div>
+                                <div class="card-text">
+                                    <p class="category-name">@receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</p>
+                                    <p class="card-texting">
+                                        @receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Details
+                                    </p>
+                                    <span>@_configuration[$"Ətraflı:{_lang}"]</span>
+                                </div>
+                            </a>
+                        }                        
+                    </div>
+                    <a asp-controller="Receipt" asp-action="Index" asp-route-_lang="@_lang" class="btn btn-hamsinabax">@_configuration[$"Bütünyazılarabax:{_lang}"]</a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
+}
 @section Scripts{
    
 }

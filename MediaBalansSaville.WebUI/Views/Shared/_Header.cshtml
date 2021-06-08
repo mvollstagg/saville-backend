@@ -5,16 +5,26 @@
     {
         _lang = Context.Session.GetString("_lang");
     }
+    SiteSettings settings = context.SiteSettings.FirstOrDefault();
     var controller = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
     var action = ViewContext.RouteData.Values["Action"].ToString().ToLower();
+    string className = "navbar-relative";
+    if (controller == "home")
+    {
+        className = "navbar";
+    }
+    else if (controller != "home")
+    {
+        className = "navbar-relative";
+    }
 }
 
 <nav>
-    <div class="navbar">
+    <div class="@className">
         <div class="container ">
             <div class="sufre-navbar">
                 <a asp-controller="Home" asp-action="Index" asp-route-_lang="@_lang" class="navbar-logo">
-                    <img src="/assets/img/icons/logo.svg" alt="navbar-logo">
+                    <img src="~/files/sitesettings/@settings.LogoUrl" alt="navbar-logo">
                 </a>
                 <div class="menu-btn">
                     <div class="navicon"></div>

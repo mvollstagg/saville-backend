@@ -66,7 +66,7 @@
                                         <td>
                                             <a asp-area="CMS" asp-controller="Product" asp-action="Update" asp-route-id="@product.Id" class="btn text-primary"><i class="fas fa-fw fa-pencil-alt"></i></a>
                                             <a asp-area="CMS" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" class="btn text-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
-                                            <a target="_blank" class="btn text-success" href="/az/məhsullar/@product.SlugUrl-@product.UrlId"><i class="fas fa-fw fa-eye"></i></a>
+                                            <a target="_blank" class="btn text-success" href="/az/mehsullar/@product.SlugUrl-@product.UrlId"><i class="fas fa-fw fa-eye"></i></a>
                                         </td>
                                     </tr>
                                 }
@@ -81,31 +81,7 @@
 
 @section scripts{
     <script>
-        $('#tablom').DataTable({
-            language: {
-                info: "_TOTAL_ kayıttan _START_ - _END_ kayıt gösteriliyor.",
-                infoEmpty:      "Gösterilecek hiç kayıt yok.",
-                loadingRecords: "Kayıtlar yükleniyor.",
-                zeroRecords: "Tablo boş",
-                search: "Arama:",
-                infoFiltered:   "(toplam _MAX_ kayıttan filtrelenenler)",
-                buttons: {
-                    copyTitle: "Panoya kopyalandı.",
-                    copySuccess:"Panoya %d satır kopyalandı",
-                    copy: "Kopyala",
-                    print: "Yazdır",
-                },
-
-                paginate: {
-                    first: "İlk",
-                    previous: "Önceki",
-                    next: "Sonraki",
-                    last: "Son"
-                },
-                responsive: true
-            }
-        });
-        
+            
         $(document).on("change", ".custom-select", function () {
             var count = $(this).val();
             $.ajax({

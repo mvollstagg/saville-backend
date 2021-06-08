@@ -26,18 +26,18 @@ namespace MediaBalansSaville.WebUI.Controllers
             _exportationService = exportationService;
             this._logger = logger;
         }
-        [Route("/{_lang}/ixrac")]
+        [Route("/{_lang}/ixracat")]
         public async Task<IActionResult> Index(string _lang = "az")
         {  
             try
             {           
                 ViewBag.Lang = _lang;                
                 MainHelper.SetLang(_httpContextAccessor, _lang);
-                
+                var countries = await _exportationService.GetAllCountries();
                 ExportationVM exportationVM = new ExportationVM()
                 {
                     Exportation = await _exportationService.GetExportations(),
-                    Countries = await _exportationService.GetAllCountries()
+                    Countries = countries.Where(x => x.IsActive == true)
                 };             
 
                 return View(exportationVM);              

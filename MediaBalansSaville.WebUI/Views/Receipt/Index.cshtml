@@ -20,48 +20,33 @@
     <div class="maslahat-main">
         <div class="container">
             <span class="partner-heading">
-                Faydalı məsləhətlər
+                @_configuration[$"Faydalıməsləhətlər:{_lang}"]
             </span>
             <div class="col-12 col-lg-12 col-xl-9 col-xxl-8 mx-auto maslahat-search">
                 <div class="search-main">
                     <div class="search-box">
-                        <input type="text" class="form-control" placeholder="Axtarış">
+                        <input type="text" id="filter" class="form-control" placeholder="@_configuration[$"Axtarış:{_lang}"]">
                         <i class="bi bi-search"></i>
                     </div>
                     <div class="dropdown filter-search">
                         <button class="btn btn-filter" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-funnel-fill"></i>
-                            <span>Kateqoriya</span>
+                            <span>@_configuration[$"Kateqoriya:{_lang}"]</span>
                             <i class="bi bi-chevron-down"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             @foreach (var category in Model.ReceiptCategories.Where(x => x.Lang.Code == _lang))
                             {
-                                <li class="dropdown-item">@category.Name</li>
+                                <li data-filter="@category.Name" class="dropdown-item">@category.Name</li>
                             }                            
                         </ul>
                     </div>
-                    <button type="button" class="btn btn-aktarıs">Axtarış</button>
+                    <button type="button" onclick="filterReceipts()" class="btn btn-aktarıs">@_configuration[$"Axtarış:{_lang}"]</button>
                 </div>
             </div>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3  row-cols-xl-4 gy-5 gx-5 maslahatlar-card-main">
-                @foreach (var receipt in Model.Receipts)
-                {
-                    <div class="col">
-                        <a asp-controller="Receipt" asp-action="Item" asp-route-_lang="@_lang" asp-route-slugurl="@receipt.SlugUrl.ToLower()" asp-route-urlid="@receipt.UrlId" class="partner-card">
-                            <div class="partner-card-image">
-                                <img src="~/files/receipt/@receipt.ReceiptPhotos.FirstOrDefault(x => x.IsMain == true).PhotoUrl" alt="">
-                            </div>
-                            <div class="card-text">
-                                <p class="category-name">@receipt.Category.CategoryLangs.FirstOrDefault(x => x.Lang.Code == _lang).Name</p>
-                                <div class="card-texting">@Html.Raw(receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Preparation)
-                                </div>
-                                <span>Ətraflı</span>
-                            </div>
-                        </a>
-                    </div>
-                }                
+            <div id="receiptList" class="row row-cols-1 row-cols-md-2 row-cols-lg-3  row-cols-xl-4 gy-5 gx-5 maslahatlar-card-main">
+                @{ await Html.RenderPartialAsync("_ReceiptList", Model.Receipts); }                    
             </div>
         </div>
     </div>
@@ -92,8 +77,6 @@
 
        function filterReceipts()
        {
-           var loadingimg = document.getElementById("loading");
-           loadingimg.style.display = "block";
            var filterText = document.getElementById("filter").value;
            $('#receiptList').html('');
            $.ajax({
@@ -104,30 +87,26 @@
                     var tetikle = setInterval(function () {
                         $('#receiptList').append(data);
                         clearInterval(tetikle);
-                    }, 900);
-                    loadingimg.style.display = "none";  
+                    }, 900); 
                 }
             });
        }
 
        $(document).on('click','.dropdown-menu li',function  (e){
-           var loadingimg = document.getElementById("loading");
-           loadingimg.style.display = "block";
            e.preventDefault();
            let filter=$(this).attr('data-filter');
            $('#receiptList').html('');
            $.ajax({
-            url: 'receiptfiltered?category=' + filter,
-            type: 'GET',
-            dataType: 'html',
-            success: function (data) {
-                var tetikle = setInterval(function () {
-                    $('#receiptList').append(data);
-                    clearInterval(tetikle);
-                }, 900);   
-                loadingimg.style.display = "none";             
-            }
-        });
+                url: 'receiptfiltered?category=' + filter,
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    var tetikle = setInterval(function () {
+                        $('#receiptList').append(data);
+                        clearInterval(tetikle);
+                    }, 900);             
+                }
+            });
        })
        
    </script>

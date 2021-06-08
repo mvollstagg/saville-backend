@@ -35,23 +35,23 @@
                     <ul class="features">
                         <li class="features-item">
                             <img class="svg" src="/assets/img/icons/mahsuldetay-icons1.svg" alt="">
-                            100% təbii Nar şirəsi
+                            @_configuration[$"Narşirəsi:{_lang}"]
                         </li>
                         <li class="features-item">
                             <img class="svg" src="/assets/img/icons/mahsuldetay-icon2.svg" alt="">
-                            Şəkər əlavəsiz
+                            @_configuration[$"Şəkərəlavəsiz:{_lang}"]
                         </li>
                         <li class="features-item">
                             <img class="svg" src="/assets/img/icons/mahsuldetay-icon3.svg" alt="">
-                            Tərkibində GMO yoxdur
+                            @_configuration[$"Tərkibi:{_lang}"]
                         </li>
                         <li class="features-item">
                             <img class="svg" src="/assets/img/icons/mahsuldetay-icon4.svg" alt="">
-                            Konsentratdan hazırlanmayıb
+                            @_configuration[$"Konsentratdanhazırlanmayıb:{_lang}"]
                         </li>
                     </ul>
                     <div class="nutriton">
-                        <p>Nutrition Facts</p>
+                        <p>@_configuration[$"NutritionFacts:{_lang}"]</p>
                         <a href="~/files/product/@Model.SlugUrl/@Model.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl" data-lightbox="image1">
                             <img src="~/files/product/@Model.SlugUrl/@Model.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl" alt="">
                         </a>

@@ -5,6 +5,8 @@ namespace MediaBalansSaville.Entities
 {
     public class SiteSettings : BaseEntity
     {   
+        public string LogoUrl { get; set; }
+        public string SliderUrl { get; set; }
         public string VideoCoverUrl { get; set; }
         public string FacebookURL { get; set; }
         public string InstagramURL { get; set; }

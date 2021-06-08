@@ -18,7 +18,7 @@
         <div class="container">
             <div class="ixrac-main">
                 <span class="partner-heading">
-                    İxrac
+                    @_configuration[$"İxracat:{_lang}"]
                 </span>
                 <div class="ixrac-text">
                     @Html.Raw(Model.Exportation.ExportationLangs.FirstOrDefault(x => x.Lang.Code == _lang).Details)
@@ -31,7 +31,7 @@
                     <div class="col-12 col-md-4 col-lg-3">
                         <select id="select" class="form-select" onchange="selectArea(this);" multiple
                             aria-label="multiple select example">
-                            <option value="">All Country</option>
+                            <option value="">@_configuration[$"AllCountry:{_lang}"]</option>
                             @foreach (var country in Model.Countries)
                             {
                                 <option value="@country.Code">@country.Name</option>
@@ -52,7 +52,7 @@
 </section>
 
 @section Scripts{
-     <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
     <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
     <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
     <script>

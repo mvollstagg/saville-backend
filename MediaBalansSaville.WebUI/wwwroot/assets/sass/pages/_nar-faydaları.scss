@@ -85,6 +85,16 @@ main {
             }
 
             .section-list {
+                
+                ol,
+                ul{
+                    li{
+                        @extend .section-list-item;
+                    }
+                }
+
+                p,
+                li,
                 .section-list-item { display: flex; align-items: center; font-family: $regular; font-size: 17px; color: #ffffff; margin-bottom: 10px; @include mobile-display { font-size: 13px; }
 
                     i { font-size: 8px; margin-right: 10px; }
@@ -126,6 +136,15 @@ main {
             }
 
             .section-list {
+                ol,
+                ul{
+                    li{
+                        @extend .section-list-item;
+                    }
+                }
+
+                p,
+                li,
                 .section-list-item { display: flex; font-family: $regular; line-height: 22px; font-size: 17px; color: #ffffff; margin-bottom: 10px; @include mobile-display { font-size: 13px; }
 
                     i { font-size: 8px; margin-right: 10px; }
@@ -172,6 +191,15 @@ main {
             }
 
             .section-list {
+                ol,
+                ul{
+                    li{
+                        @extend .section-list-item;
+                    }
+                }
+
+                p,
+                li,
                 .section-list-item { display: flex; font-family: $regular; line-height: 22px; font-size: 17px; color: #ffffff; margin-bottom: 10px; @include mobile-display { font-size: 13px; }
                     @include mobile-l{
                         overflow: hidden; white-space: inherit; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; 
