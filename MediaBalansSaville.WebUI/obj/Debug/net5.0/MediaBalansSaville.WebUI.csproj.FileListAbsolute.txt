@@ -431,3 +431,6 @@ D:/projeler/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/MediaBalan
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/_ProductList.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Shared/_ReceiptList.cshtml.g.cs
 /Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Views/Product/GetFilter.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Product/CreatePhoto.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Product/ProductPhoto.cshtml.g.cs
+/Users/matthieuvollstagg/Documents/GitHub/saville-backend/MediaBalansSaville.WebUI/obj/Debug/net5.0/Razor/Areas/CMS/Views/Product/UpdatePhoto.cshtml.g.cs

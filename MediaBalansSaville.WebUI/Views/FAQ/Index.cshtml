@@ -5,17 +5,15 @@
 }
 @model IEnumerable<FAQ>
 @section seo{
-    @{await Html.RenderPartialAsync("_Seo", "Exportation");}
+    @{await Html.RenderPartialAsync("_Seo", "FAQ");}
 }
 
 <section>
     <div class="faq-main">
         <div class="container-sm">
             <div class="faq-heading">
-                <p class="faq-text1">FAQ</p>
-                <p class="faq-text2">There are many variations of passages of Lorem Ipsum available, but the
-                    majority have suffered alteration in some form, by injected humour, or randomised words which
-                    don't look even slightly believable.</p>
+                <p class="faq-text1">@_configuration[$"Faq:{_lang}"].ToUpper()</p>
+                <p class="faq-text2">@_configuration[$"FaqMetn:{_lang}"]</p>
             </div>
             <div class="accordion accordion-flush" id="accordionFlushExample">
                 @foreach (var faq in Model)
@@ -39,5 +37,5 @@
 </section>
 
 @section Scripts{
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 }

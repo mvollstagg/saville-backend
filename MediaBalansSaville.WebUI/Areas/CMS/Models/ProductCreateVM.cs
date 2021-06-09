@@ -10,9 +10,9 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Models
     {
         [Required(ErrorMessage = "Doldurulmalıdır")]
         public IFormFile MainPhotoFile { get; set; }
-        [Required(ErrorMessage = "Doldurulmalıdır")]
+        // [Required(ErrorMessage = "Doldurulmalıdır")]
         public List<IFormFile> PhotoFiles { get; set; }
-        [Required(ErrorMessage = "Doldurulmalıdır")]
+        // [Required(ErrorMessage = "Doldurulmalıdır")]
         public IFormFile NutritionFactPhotoFile { get; set; }
         public string PhotoUrl { get; set; }
         public string NutritionFactsPhotoUrl { get; set; }        

@@ -137,7 +137,25 @@
             }
         }
     }
-    .maslahatlar-card-main{
-        @include padding(100px 0 150px);
+    .maslahat-general-main{position: relative;
+        min-height: 800px;
+        @include mobile-l{
+            min-height: 542px;
+        }
+        .maslahatlar-card-main{
+            @include padding(100px 0 150px);
+        }
+        .loader{
+            width: 120px;
+            height: 120px;
+            border-radius: 25px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50% , -50%);
+            background-color: rgba(0, 0, 0, 0.47);
+            padding: 45px;
+        }
     }
+
 }

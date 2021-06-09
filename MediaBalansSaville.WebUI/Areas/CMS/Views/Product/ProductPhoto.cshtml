@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ProductPhoto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12 my-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                @ViewBag.Name içün Şekil bölümü <a asp-area="CMS" asp-controller="Product" asp-action="Index" class="float-right btn btn-outline-secondary">Geriyə get</a>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-end my-3">
+                    <a asp-area="CMS" asp-controller="Product" asp-action="CreatePhoto" asp-route-id="@ViewBag.ProductId" class="btn btn-outline-dark"><i class="fas fa-fw fa-plus"></i>Əlavə et</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-shorting" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Sıra</th>
+                                <th>Şəkil</th>
+                                <th>Əməliyyatlar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model == null || Model.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        Siyahı boşdur
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var productPhoto in Model)
+                                {
+                                    <tr data-id="">
+                                        <td>
+                                            @productPhoto.IndexNo
+                                        </td>
+                                        <td>
+                                            <img src="~/files/product/@productPhoto.Product.SlugUrl/@productPhoto.PhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
+                                        </td>
+                                        <td>
+                                            <a asp-area="CMS" asp-controller="Product" asp-action="UpdatePhoto" asp-route-id="@productPhoto.Id" class="btn text-primary"><i class="fas fa-fw fa-pencil-alt"></i></a>
+                                            <a asp-area="CMS" asp-controller="Product" asp-action="DeletePhoto" asp-route-id="@productPhoto.Id" class="btn text-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        
+    </script>
+}

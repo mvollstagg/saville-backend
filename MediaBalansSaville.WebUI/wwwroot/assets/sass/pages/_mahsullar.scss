@@ -127,75 +127,92 @@
             --bs-gutter-x: 2rem;
         }
     }
-    .mahsullar-card-main{ @include padding(0 0 120px);
-    
-        .mahsulcard {height: 700px;  @include padding(50px 25px 0px);  
-             border: 1px solid #e0e0e0; border-radius: 0px; display: block; text-decoration: none; position: relative;
-             @include desktop-l{
-                height: 637px;
-             }
-             @include desktop-sm{
-                height: 539px;
-             }
-             @include mobile-l{
-                height: 414px;
-                @include padding(50px 10px 0px);  
-               
-             }
-             &:hover{
-                box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
-                @extend %transition;
-             }
-            .mahsulcard-image{ height: 484px; margin: auto;  position: relative;
-                @include desktop-l{
-                    height: 409px;
-                }
-                @include desktop-sm{
-          
-                    height: 333px;
-                }
-                @include mobile-xl{
-                    height: 334px;
-                }
-                @include mobile-l{
-
-                    height: 239px;
-                    
-                }
-                img {
-                    object-fit: scale-down; 
-                    object-position: bottom;  position: absolute;    
-                     display: block; 
-                     bottom: 0px;
-                    left: 50%;
-                    transform: translate(-50%, 0);
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-              
-        
-                .mahsul-name { @include font-size(18px); line-height: 22px; font-family: $SemiBold;  color: #000; text-align: center; 
-                    overflow: hidden; white-space: inherit; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; 
-                        /* number of lines to show */
-                        -webkit-box-orient: vertical;
-                        margin-top: 35px;
-                        @include mobile-l{
-                            font-size: 14px;
-                            margin-top: 13px;
-                        }
-                    }
-        
-                .mahsul-content {  @include font-size(14px); font-family: $regular;  color: #000; text-align: center; 
-                    overflow: hidden; white-space: inherit; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; 
-                        /* number of lines to show */
-                        -webkit-box-orient: vertical;
-                        line-height: 17px;
-                        margin-top: 15px;
-                    }
-        
-        
+    .mahsul-card-general-main{position: relative;  min-height: 800px;
+        @include mobile-l{
+            min-height: 542px;
+        }
+        .mahsullar-card-main{ @include padding(0 0 120px);
            
+            .mahsulcard {height: 700px;  @include padding(50px 25px 0px);  
+                 border: 1px solid #e0e0e0; border-radius: 0px; display: block; text-decoration: none; position: relative;
+                 @include desktop-l{
+                    height: 637px;
+                 }
+                 @include desktop-sm{
+                    height: 539px;
+                 }
+                 @include mobile-l{
+                    height: 414px;
+                    @include padding(50px 10px 0px);  
+                   
+                 }
+                 &:hover{
+                    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+                    @extend %transition;
+                 }
+                .mahsulcard-image{ height: 484px; margin: auto;  position: relative;
+                    @include desktop-l{
+                        height: 409px;
+                    }
+                    @include desktop-sm{
+              
+                        height: 333px;
+                    }
+                    @include mobile-xl{
+                        height: 334px;
+                    }
+                    @include mobile-l{
+    
+                        height: 239px;
+                        
+                    }
+                    img {
+                        object-fit: scale-down; 
+                        object-position: bottom;  position: absolute;    
+                         display: block; 
+                         bottom: 0px;
+                        left: 50%;
+                        transform: translate(-50%, 0);
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                  
+            
+                    .mahsul-name { @include font-size(18px); line-height: 22px; font-family: $SemiBold;  color: #000; text-align: center; 
+                        overflow: hidden; white-space: inherit; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; 
+                            /* number of lines to show */
+                            -webkit-box-orient: vertical;
+                            margin-top: 35px;
+                            @include mobile-l{
+                                font-size: 14px;
+                                margin-top: 13px;
+                            }
+                        }
+            
+                    .mahsul-content {  @include font-size(14px); font-family: $regular;  color: #000; text-align: center; 
+                        overflow: hidden; white-space: inherit; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; 
+                            /* number of lines to show */
+                            -webkit-box-orient: vertical;
+                            line-height: 17px;
+                            margin-top: 15px;
+                        }
+            
+            
+               
+            }
+        }
+        .loader{
+            width: 120px;
+            height: 120px;
+            border-radius: 25px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50% , -50%);
+            background-color: rgba(0, 0, 0, 0.47);
+            padding: 45px;
         }
     }
+
 }

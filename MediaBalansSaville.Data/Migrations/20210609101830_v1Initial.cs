@@ -668,6 +668,7 @@ namespace MediaBalansSaville.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    IndexNo = table.Column<int>(type: "int", nullable: false),
                     PhotoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsCover = table.Column<bool>(type: "bit", nullable: false),
                     IsNutrition = table.Column<bool>(type: "bit", nullable: false),
@@ -831,9 +832,9 @@ namespace MediaBalansSaville.Data.Migrations
                 columns: new[] { "Id", "Code", "IsActive", "IsDeleted", "Name", "RecordedAtDate", "SlugUrl", "UrlId" },
                 values: new object[,]
                 {
-                    { 1, "az", true, false, "Azərbaycan", new DateTime(2021, 6, 8, 19, 40, 27, 916, DateTimeKind.Local).AddTicks(1350), "az", 1 },
-                    { 2, "ru", true, false, "Rusiya", new DateTime(2021, 6, 8, 19, 40, 27, 924, DateTimeKind.Local).AddTicks(2850), "ru", 2 },
-                    { 3, "en", true, false, "İngiltərə", new DateTime(2021, 6, 8, 19, 40, 27, 924, DateTimeKind.Local).AddTicks(2880), "en", 3 }
+                    { 1, "az", true, false, "Azərbaycan", new DateTime(2021, 6, 9, 13, 18, 28, 891, DateTimeKind.Local).AddTicks(590), "az", 1 },
+                    { 2, "ru", true, false, "Rusiya", new DateTime(2021, 6, 9, 13, 18, 28, 903, DateTimeKind.Local).AddTicks(2970), "ru", 2 },
+                    { 3, "en", true, false, "İngiltərə", new DateTime(2021, 6, 9, 13, 18, 28, 903, DateTimeKind.Local).AddTicks(3590), "en", 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -841,14 +842,14 @@ namespace MediaBalansSaville.Data.Migrations
                 columns: new[] { "Id", "IsActive", "IsDeleted", "Name", "RecordedAtDate", "SlugUrl", "UrlId" },
                 values: new object[,]
                 {
-                    { 2, true, false, "user", new DateTime(2021, 6, 8, 19, 40, 27, 931, DateTimeKind.Local).AddTicks(7410), "user", 2 },
-                    { 1, true, false, "admin", new DateTime(2021, 6, 8, 19, 40, 27, 931, DateTimeKind.Local).AddTicks(6780), "admin", 1 }
+                    { 2, true, false, "user", new DateTime(2021, 6, 9, 13, 18, 28, 915, DateTimeKind.Local).AddTicks(5790), "user", 2 },
+                    { 1, true, false, "admin", new DateTime(2021, 6, 9, 13, 18, 28, 915, DateTimeKind.Local).AddTicks(4710), "admin", 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "FirstName", "IsActive", "IsDeleted", "LastName", "PasswordHash", "PhoneNumber", "RecordedAtDate", "SecretKey", "SlugUrl", "UrlId" },
-                values: new object[] { 1, "admin@admin.com", "Admin", true, false, "Admin", "142b778b41109fb955c1435e19746fa5d66c3fe9fb02fcd6880dfe757945f03c0e8a287b738521682a1e949eccd72d5e59e68a8aa03093636d9167bd311c04a4", "0534 895 22 84", new DateTime(2021, 6, 8, 19, 40, 27, 926, DateTimeKind.Local).AddTicks(5370), "942f1d23356e4c588646bd5e6774a3eb6/8/202174027PM", null, 0 });
+                values: new object[] { 1, "admin@admin.com", "Admin", true, false, "Admin", "d69161450554370f3d82c078373590c72a2769f198d269ffe7c0c5219e875db48c6d0c211e5d3b868c1a07db20d158b73152659dc2c03a22ceca8521c819363c", "0534 895 22 84", new DateTime(2021, 6, 9, 13, 18, 28, 907, DateTimeKind.Local).AddTicks(3040), "78d2a71582944001b3efec889a671f946/9/202111828PM", null, 0 });
 
             migrationBuilder.InsertData(
                 table: "UserRoles",

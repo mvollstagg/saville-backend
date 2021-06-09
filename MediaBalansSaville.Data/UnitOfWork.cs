@@ -29,6 +29,7 @@ namespace MediaBalansSaville.Data
         private SliderRepository _sliderRepository;
         private SeoRepository _seoRepository;
         private ProductRepository _productRepository;
+        private ProductPhotoRepository _productPhotoRepository;
         
 
         public UnitOfWork(ApplicationDbContext context)
@@ -48,6 +49,7 @@ namespace MediaBalansSaville.Data
         public IReceiptRepository Receipts => _receiptRepository = _receiptRepository ?? new ReceiptRepository(_context);
         public IReceiptPhotoRepository ReceiptPhotos => _receiptPhotoRepository = _receiptPhotoRepository ?? new ReceiptPhotoRepository(_context);
         public IProductRepository Products=> _productRepository = _productRepository ?? new ProductRepository(_context);
+        public IProductPhotoRepository ProductPhotos=> _productPhotoRepository = _productPhotoRepository ?? new ProductPhotoRepository(_context);
         public ISiteSettingsRepository SiteSettings => _siteSettingsRepository = _siteSettingsRepository ?? new SiteSettingsRepository(_context);
         public ISeoRepository Seos => _seoRepository = _seoRepository ?? new SeoRepository(_context);
         public ISliderRepository Sliders => _sliderRepository = _sliderRepository ?? new SliderRepository(_context);

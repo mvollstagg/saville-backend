@@ -926,7 +926,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Azərbaycan",
-                            RecordedAtDate = new DateTime(2021, 6, 8, 19, 40, 27, 916, DateTimeKind.Local).AddTicks(1350),
+                            RecordedAtDate = new DateTime(2021, 6, 9, 13, 18, 28, 891, DateTimeKind.Local).AddTicks(590),
                             SlugUrl = "az",
                             UrlId = 1
                         },
@@ -937,7 +937,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Rusiya",
-                            RecordedAtDate = new DateTime(2021, 6, 8, 19, 40, 27, 924, DateTimeKind.Local).AddTicks(2850),
+                            RecordedAtDate = new DateTime(2021, 6, 9, 13, 18, 28, 903, DateTimeKind.Local).AddTicks(2970),
                             SlugUrl = "ru",
                             UrlId = 2
                         },
@@ -948,7 +948,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "İngiltərə",
-                            RecordedAtDate = new DateTime(2021, 6, 8, 19, 40, 27, 924, DateTimeKind.Local).AddTicks(2880),
+                            RecordedAtDate = new DateTime(2021, 6, 9, 13, 18, 28, 903, DateTimeKind.Local).AddTicks(3590),
                             SlugUrl = "en",
                             UrlId = 3
                         });
@@ -1147,6 +1147,9 @@ namespace MediaBalansSaville.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("IndexNo")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsCover")
                         .HasColumnType("bit");
 
@@ -1311,7 +1314,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "admin",
-                            RecordedAtDate = new DateTime(2021, 6, 8, 19, 40, 27, 931, DateTimeKind.Local).AddTicks(6780),
+                            RecordedAtDate = new DateTime(2021, 6, 9, 13, 18, 28, 915, DateTimeKind.Local).AddTicks(4710),
                             SlugUrl = "admin",
                             UrlId = 1
                         },
@@ -1321,7 +1324,7 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "user",
-                            RecordedAtDate = new DateTime(2021, 6, 8, 19, 40, 27, 931, DateTimeKind.Local).AddTicks(7410),
+                            RecordedAtDate = new DateTime(2021, 6, 9, 13, 18, 28, 915, DateTimeKind.Local).AddTicks(5790),
                             SlugUrl = "user",
                             UrlId = 2
                         });
@@ -1591,10 +1594,10 @@ namespace MediaBalansSaville.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             LastName = "Admin",
-                            PasswordHash = "142b778b41109fb955c1435e19746fa5d66c3fe9fb02fcd6880dfe757945f03c0e8a287b738521682a1e949eccd72d5e59e68a8aa03093636d9167bd311c04a4",
+                            PasswordHash = "d69161450554370f3d82c078373590c72a2769f198d269ffe7c0c5219e875db48c6d0c211e5d3b868c1a07db20d158b73152659dc2c03a22ceca8521c819363c",
                             PhoneNumber = "0534 895 22 84",
-                            RecordedAtDate = new DateTime(2021, 6, 8, 19, 40, 27, 926, DateTimeKind.Local).AddTicks(5370),
-                            SecretKey = "942f1d23356e4c588646bd5e6774a3eb6/8/202174027PM",
+                            RecordedAtDate = new DateTime(2021, 6, 9, 13, 18, 28, 907, DateTimeKind.Local).AddTicks(3040),
+                            SecretKey = "78d2a71582944001b3efec889a671f946/9/202111828PM",
                             UrlId = 0
                         });
                 });

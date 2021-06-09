@@ -10,6 +10,7 @@ namespace MediaBalansSaville.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public int IndexNo { get; set; }
         public string PhotoUrl { get; set; }
         public bool IsCover { get; set; }
         public bool IsNutrition { get; set; }

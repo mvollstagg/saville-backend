@@ -12,5 +12,12 @@ namespace MediaBalansSaville.Core.Services
         Task<Product> CreateProduct(Product newProduct);
         Task UpdateProduct(Product productToBeUpdated, Product product);
         Task DeleteProduct(Product product);
+
+
+
+        Task<ProductPhoto> GetProductPhotoById(int id);
+        Task<ProductPhoto> CreateProductPhoto(ProductPhoto newProductPhoto);
+        Task UpdateProductPhoto(ProductPhoto ProductPhotoToBeUpdated, ProductPhoto ProductPhoto);
+        Task DeleteProductPhoto(ProductPhoto ProductPhoto);
     }
 }

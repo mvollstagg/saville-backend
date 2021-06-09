@@ -31,7 +31,7 @@ namespace MediaBalansSaville.WebUI.Controllers
             this._logger = logger;
         }
         [Route("/{_lang}/elaqe")]
-        public IActionResult Index(string _lang = "az")
+        public IActionResult Index(string _lang = "en")
         {  
             try
             {           
@@ -48,7 +48,7 @@ namespace MediaBalansSaville.WebUI.Controllers
 
         [Route("/elaqeForm")]
         [Route("/{_lang}/elaqeForm")]
-        public async Task<JsonResult> ContactUsPost(string fullName, string phone, string email, string country, string city, string message, string _lang = "az")
+        public async Task<JsonResult> ContactUsPost(string fullName, string phone, string email, string country, string city, string message, string _lang = "en")
         {
             try
             {

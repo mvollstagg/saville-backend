@@ -55,7 +55,7 @@ footer { background-image: url(/assets/img/background/footer-back.png); backgrou
                 }
             }
 
-            .down-lang { display: inline-block; margin-left: auto; 
+            .down-lang { display: inline-block; margin-left: auto;  margin-right: 10px;
                 @include desktop-sm{
                     margin: 0px  auto 20px;
                     
@@ -63,13 +63,14 @@ footer { background-image: url(/assets/img/background/footer-back.png); backgrou
                 @include mobile-display{
                     margin: 0px  auto 20px;
                 }
-                .btn-lang { color: #fff; 
+                .btn-lang { color: #fff;      padding: 0px;
                
                     span { color: #fff; }
 
                 }
 
                 .dropdown-menu { min-width: 0; border: 1px solid #fff; background-color: transparent; 
+                    width: 100%;
                     @include desktop-sm{
                      background-color: #831212;
                         
@@ -77,7 +78,6 @@ footer { background-image: url(/assets/img/background/footer-back.png); backgrou
                     @include mobile-display{
                         background-color: #831212;
                     }
-                    &.show { transform: translate(15px, 40px) !important; }
 
                     .dropdown-item { color: #fff; text-align: center; cursor: pointer; 
 

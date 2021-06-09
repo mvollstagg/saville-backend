@@ -8,6 +8,7 @@
 }
 @section Styles{
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.1/lity.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
 }
 
 <section>
@@ -18,7 +19,7 @@
                     <div class="mahsul-detay-image">
                         <div class="cloudimage-360" data-folder="/files/product/@Model.SlugUrl/" 
                         data-image-list=''
-                        data-filename="img{index}.jpeg"
+                        data-filename="img{index}.jpg"
                             data-amount="@Model.ProductPhotos.Where(x => x.IsCover == false && x.IsNutrition == false).Count()">
                             <button class="btn cloudimage-360-prev">
                                 <img class="svg" src="/assets/img/icons/curved-prev.svg" alt="">
@@ -50,12 +51,15 @@
                             @_configuration[$"Konsentratdanhazırlanmayıb:{_lang}"]
                         </li>
                     </ul>
-                    <div class="nutriton">
-                        <p>@_configuration[$"NutritionFacts:{_lang}"]</p>
-                        <a href="~/files/product/@Model.SlugUrl/@Model.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl" data-lightbox="image1">
-                            <img src="~/files/product/@Model.SlugUrl/@Model.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl" alt="">
-                        </a>
-                    </div>
+                    @if(Model.ProductPhotos.Any(x => x.IsNutrition == true))
+                    {
+                        <div class="nutriton">
+                            <p>@_configuration[$"NutritionFacts:{_lang}"]</p>
+                            <a href="~/files/product/@Model.SlugUrl/@Model.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl" data-lightbox="image1">
+                                <img src="~/files/product/@Model.SlugUrl/@Model.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl" alt="">
+                            </a>
+                        </div>
+                    }
                 </div>
                 <img class="mahsul-detay-right-nar partner-images" src="/assets/img/left-right-image/mahsuldetay-right.webp"
                     alt="">
@@ -67,5 +71,7 @@
 </section>
 
 @section Scripts{
-   <script src="https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/2.6.0/js-cloudimage-360-view.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/2.6.0/js-cloudimage-360-view.min.js"></script>
 }

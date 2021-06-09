@@ -5,7 +5,7 @@
 }
 @* @model SiteSettings *@
 @section seo{
-    @{await Html.RenderPartialAsync("_Seo", "About");}
+    @{await Html.RenderPartialAsync("_Seo", "Contact");}
 }
 
 <section>
@@ -94,5 +94,6 @@
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
 @section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 }

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using MediaBalansSaville.Core.Services;
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 {
@@ -88,14 +89,16 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
                 ProductId = newProduct.Id
             };
             productPhotos.Add(newMainProductPhoto);
-            ProductPhoto newNutritionProductPhoto = new ProductPhoto
+            if (productCreateVM.NutritionFactPhotoFile != null)
             {
-                PhotoUrl = await _image.UploadForProductAsync(productCreateVM.NutritionFactPhotoFile, -1, newProduct.SlugUrl, false, "files", "product"),
-                IsNutrition = true,
-                ProductId = newProduct.Id
-            };
-            productPhotos.Add(newNutritionProductPhoto);
-
+                ProductPhoto newNutritionProductPhoto = new ProductPhoto
+                {
+                    PhotoUrl = await _image.UploadForProductAsync(productCreateVM.NutritionFactPhotoFile, -1, newProduct.SlugUrl, false, "files", "product"),
+                    IsNutrition = true,
+                    ProductId = newProduct.Id
+                };
+                productPhotos.Add(newNutritionProductPhoto);
+            }
             if (productCreateVM.PhotoFiles != null)
             {
                 for (int i = 0; i < productCreateVM.PhotoFiles.Count; i++)
@@ -162,12 +165,14 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             {
                 SlugUrl = productFromDb.SlugUrl,
                 PhotoUrl = productFromDb.ProductPhotos.FirstOrDefault(x => x.IsCover == true).PhotoUrl,
-                NutritionFactsPhotoUrl = productFromDb.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl,
                 Categories = await _categoyrLangService.GetAllCategoryLangsFor("product"),
                 ProductLangs = productFromDb.ProductLangs.ToList(),
                 SeoLangs = productFromDb.ProductSeo.SeoLangs.ToList(),
                 IsActive = productFromDb.IsActive
             };
+            
+            if(productFromDb.ProductPhotos.Any(x => x.IsNutrition == true))
+                productUpdateVM.NutritionFactsPhotoUrl = productFromDb.ProductPhotos.FirstOrDefault(x => x.IsNutrition == true).PhotoUrl;
             foreach (var item in productFromDb.ProductPhotos.Where(x => x.IsCover == false && x.IsNutrition == false).ToList())
                 productUpdateVM.PhotoUrls.Add(item.PhotoUrl);
             return View(productUpdateVM);
@@ -264,7 +269,7 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
             Product productFromDb = await _productService.GetProductById(id);
             if (id == 0 && productFromDb != null) return BadRequest();
             
-            foreach (var item in productFromDb.ProductPhotos)
+            foreach (var item in productFromDb.ProductPhotos.Where(x => x.IsCover == false && x.IsNutrition == false))
             {
                 _image.DeleteForProduct("files", "product", productFromDb.SlugUrl ,item.PhotoUrl);
             }
@@ -272,5 +277,100 @@ namespace MediaBalansSaville.WebUI.Areas.CMS.Controllers
 
             return RedirectToAction("Index", "Product");
         }
+
+        #region 3D Pictures of Product
+        
+        [Route("/cms/mehsullar/sekiller/{id}")]
+        public async Task<IActionResult> ProductPhoto(int id)
+        {            
+            Product product = await _productService.GetProductById(id);
+            ViewBag.ProductId = product.Id;
+            ViewBag.Name = product.ProductLangs.FirstOrDefault(x => x.Lang.Code == "az").Name;
+            return View(product.ProductPhotos.Where(x => x.IsCover == false && x.IsNutrition == false));
+        }
+        [Route("/cms/mehsullar/sekiller/yarat/{id}")]
+        public IActionResult CreatePhoto(int id)
+        {
+            ProductPhotoVM photoVM = new ProductPhotoVM() { ProductId = id };
+            return View(photoVM);
+        }
+
+        [Route("/cms/mehsullar/sekiller/yarat/{id}")]
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreatePhoto(int id, ProductPhotoVM photoVM)
+        {
+            if (!ModelState.IsValid) return View(photoVM);
+
+            if (!_image.IsImageValid(photoVM.MainPhotoFile))
+            {
+                ModelState.AddModelError("", "Fayl .jpg/jpeg formatında və maksimum 3MB həcmində olmalıdır !");
+                return View(photoVM);
+            }
+
+            Product productFromDb = await _productService.GetProductById(id);
+            var index = productFromDb.ProductPhotos.Where(x => x.IsCover == false && x.IsNutrition == false).Count();
+            ProductPhoto newProductPhoto = new ProductPhoto
+            {
+                IndexNo = index + 1,
+                PhotoUrl = await _image.UploadForProductAsync(photoVM.MainPhotoFile, index + 1, productFromDb.SlugUrl, true, "files", "product"),
+                ProductId = productFromDb.Id
+            };
+
+            await _productService.CreateProductPhoto(newProductPhoto);
+
+            return RedirectToAction("ProductPhoto", "Product", new {@id=productFromDb.Id});
+        }
+
+        [Route("/cms/mehsullar/sekiller/duzeliset/{id}")]
+        public async Task<IActionResult> UpdatePhoto(int id)
+        {
+            if (id == 0) return BadRequest();
+            ProductPhoto productFromDb = await _productService.GetProductPhotoById(id);
+            if (productFromDb == null) return NotFound();
+            ProductPhotoVM photoVM = new ProductPhotoVM() { ProductId = productFromDb.ProductId };
+            return View(photoVM);
+        }
+
+        [Route("/cms/mehsullar/sekiller/duzeliset/{id}")]
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdatePhoto(int id, ProductPhotoVM photoVM)
+        {
+            if (id == 0) return BadRequest();
+            ProductPhoto productFromDb = await _productService.GetProductPhotoById(id);
+            if (productFromDb == null) return NotFound();
+
+            if (!ModelState.IsValid) return View(photoVM);
+
+            if (photoVM.MainPhotoFile != null)
+            {
+                if (!_image.IsImageValid(photoVM.MainPhotoFile))
+                {
+                    ModelState.AddModelError("", "Fayl .jpg/jpeg formatında və maksimum 3MB həcmində olmalıdır !");
+                    return View(photoVM);
+                }
+                else
+                {
+                    _image.DeleteForProduct("files", "product", productFromDb.Product.SlugUrl, productFromDb.PhotoUrl);
+                    productFromDb.PhotoUrl = await _image.UploadForProductAsync(photoVM.MainPhotoFile, productFromDb.IndexNo, productFromDb.Product.SlugUrl, true, "files", "product");
+                }
+            }
+            
+            await _productService.UpdateProductPhoto(productFromDb, productFromDb);
+
+            return RedirectToAction("ProductPhoto", "Product", new {@id=productFromDb.Product.Id});
+        }
+
+        [Route("/cms/mehsullar/sekiller/kaldir/{id}")]
+        public async Task<IActionResult> DeletePhoto(int id)
+        {
+            if (id == 0) return BadRequest();
+            ProductPhoto productFromDb = await _productService.GetProductPhotoById(id);
+            _image.DeleteForProduct("files", "product", productFromDb.Product.SlugUrl, productFromDb.PhotoUrl);
+            await _productService.DeleteProductPhoto(productFromDb);
+            
+
+            return RedirectToAction("ProductPhoto", "Product", new {@id=productFromDb.ProductId});
+        }
+        #endregion
     }
 }

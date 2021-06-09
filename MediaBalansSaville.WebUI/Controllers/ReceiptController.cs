@@ -35,7 +35,7 @@ namespace MediaBalansSaville.WebUI.Controllers
             this._logger = logger;
         }
         [Route("/{_lang}/reseptler")]
-        public async Task<IActionResult> Index( string _lang = "az", int page = 1)
+        public async Task<IActionResult> Index( string _lang = "en", int page = 1)
         {    
             try
             {       
@@ -57,7 +57,7 @@ namespace MediaBalansSaville.WebUI.Controllers
         }
 
         [Route("/{_lang}/morereceipt")]
-        public async Task<PartialViewResult> LoadMoreReceipt(int skipCount, string _lang = "az")
+        public async Task<PartialViewResult> LoadMoreReceipt(int skipCount, string _lang = "en")
         {
             try
             {
@@ -80,7 +80,7 @@ namespace MediaBalansSaville.WebUI.Controllers
         }
 
         [Route("/{_lang}/receiptfiltered")]
-        public async Task<PartialViewResult> GetFilter(string category = "", string filter = "", string _lang = "az")
+        public async Task<PartialViewResult> GetFilter(string category = "", string filter = "", string _lang = "en")
         {
             try
             {
@@ -107,7 +107,7 @@ namespace MediaBalansSaville.WebUI.Controllers
         }
 
         [Route("/{_lang}/reseptler/{slugurl}-{urlid}")]
-        public async Task<IActionResult> Item(string slugurl, int urlid, string _lang = "az")
+        public async Task<IActionResult> Item(string slugurl, int urlid, string _lang = "en")
         {
             try
             {

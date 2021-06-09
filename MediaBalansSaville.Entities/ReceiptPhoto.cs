@@ -8,7 +8,7 @@ namespace MediaBalansSaville.Entities
     {   
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int Id { get; set; }        
         public string PhotoUrl { get; set; }
         public bool IsMain { get; set; } = false;
         public bool IsCover { get; set; } = false;

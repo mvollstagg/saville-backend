@@ -27,7 +27,7 @@ namespace MediaBalansSaville.WebUI.Controllers
             this._logger = logger;
         }
         [Route("/{_lang}/ixracat")]
-        public async Task<IActionResult> Index(string _lang = "az")
+        public async Task<IActionResult> Index(string _lang = "en")
         {  
             try
             {           

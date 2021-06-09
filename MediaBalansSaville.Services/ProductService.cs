@@ -23,10 +23,24 @@ namespace MediaBalansSaville.Services
             return newProduct;
         }
 
+        public async Task<ProductPhoto> CreateProductPhoto(ProductPhoto newProductPhoto)
+        {
+            await _unitOfWork.ProductPhotos.AddAsync(newProductPhoto);
+            await _unitOfWork.CommitAsync();
+            return newProductPhoto;
+        }
+
         public async Task DeleteProduct(Product product)
         {
             _unitOfWork.Seos.Remove(product.ProductSeo);
             _unitOfWork.Products.Remove(product);
+
+            await _unitOfWork.CommitAsync();
+        }
+
+        public async Task DeleteProductPhoto(ProductPhoto ProductPhoto)
+        {
+            _unitOfWork.ProductPhotos.Remove(ProductPhoto);
 
             await _unitOfWork.CommitAsync();
         }
@@ -39,6 +53,10 @@ namespace MediaBalansSaville.Services
         public async Task<Product> GetProductById(int id)
         {
             return await _unitOfWork.Products.GetProductById(id);
+        }
+        public async Task<ProductPhoto> GetProductPhotoById(int id)
+        {
+            return await _unitOfWork.ProductPhotos.GetByIdAsync(id);
         }
 
         public async Task<Product> GetProductBySlugUrlAndUrlId(string slugurl, int urlid)
@@ -53,6 +71,13 @@ namespace MediaBalansSaville.Services
             productToBeUpdated = product;
             productToBeUpdated.SlugUrl = product.SlugUrl;
             productToBeUpdated.IsActive = product.IsActive;
+
+            await _unitOfWork.CommitAsync();
+        }
+
+        public async Task UpdateProductPhoto(ProductPhoto ProductPhotoToBeUpdated, ProductPhoto ProductPhoto)
+        {
+            ProductPhotoToBeUpdated = ProductPhoto;
 
             await _unitOfWork.CommitAsync();
         }

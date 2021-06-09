@@ -32,7 +32,7 @@ namespace MediaBalansSaville.WebUI.Controllers
         }
 
         [Route("/{_lang}/mehsullar")]
-        public async Task<IActionResult> Index(string _lang = "az")
+        public async Task<IActionResult> Index(string _lang = "en")
         {   
             try
             {         
@@ -54,7 +54,7 @@ namespace MediaBalansSaville.WebUI.Controllers
         }
 
         [Route("/{_lang}/mehsullar/moreproduct")]
-        public async Task<PartialViewResult> LoadMoreProduct(int skipCount, string category, string _lang = "az")
+        public async Task<PartialViewResult> LoadMoreProduct(int skipCount, string category, string _lang = "en")
         {
             try
             {
@@ -78,7 +78,7 @@ namespace MediaBalansSaville.WebUI.Controllers
         }
 
         [Route("/{_lang}/productfiltered")]
-        public async Task<PartialViewResult> GetFilter(string category = "", string filter = "", string _lang = "az")
+        public async Task<PartialViewResult> GetFilter(string category = "", string filter = "", string _lang = "en")
         {
             try
             {
@@ -105,7 +105,7 @@ namespace MediaBalansSaville.WebUI.Controllers
         }
 
         [Route("/{_lang}/mehsullar/{slugurl}-{urlid}")]
-        public async Task<IActionResult> Item(string slugurl, int urlid, string _lang = "az")
+        public async Task<IActionResult> Item(string slugurl, int urlid, string _lang = "en")
         {
             try
             {

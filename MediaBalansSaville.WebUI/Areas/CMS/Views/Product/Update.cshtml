@@ -88,17 +88,20 @@
                             <div class="input-group mb-3">
                                 <div class="custom-file">
                                     <input asp-for="MainPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
-                                    <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                                    <label class="custom-file-label" for="inputGroupFile01">Əsas Şəkil yüklə</label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <strong class="control-label">Nutrition Fact şəkil</strong>
-                                <img src="~/files/product/@Model.SlugUrl/@Model.NutritionFactsPhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
-                            </div>
+                            @if(!String.IsNullOrEmpty(@Model.NutritionFactsPhotoUrl))
+                            {
+                                <div class="form-group">
+                                    <strong class="control-label">Nutrition Fact şəkil</strong>
+                                    <img src="~/files/product/@Model.SlugUrl/@Model.NutritionFactsPhotoUrl" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;" />
+                                </div>
+                            }                            
                             <div class="input-group mb-3">
                                 <div class="custom-file">
                                     <input asp-for="NutritionFactPhotoFile" type="file" class="custom-file-input" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png">
-                                    <label class="custom-file-label" for="inputGroupFile01">Şəkil yüklə</label>
+                                    <label class="custom-file-label" for="inputGroupFile01">Nutrition Fact Şəkil yüklə</label>
                                 </div>
                             </div>
                             <br>
@@ -114,7 +117,7 @@
                                         </div>
                                     </div>                                    
                                 </div>
-                                <div class="sekiller">
+                                @* <div class="sekiller">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="input-group mb-3">   
@@ -129,7 +132,7 @@
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-outline-success sekil-add">Şəkil Əlavə Et</button>
-                                </div>
+                                </div> *@
                             </div> 
                             
                             <div class="form-group">
@@ -153,7 +156,7 @@
 
 @section Scripts{
     <script>
-        var sekilCount = 1;
+        @* var sekilCount = 1;
         $(document).on("click", ".sekil-add", function() {
             $(".sekiller > .row").append(`
                 <div class="col-md-12">
@@ -169,6 +172,6 @@
                 </div>
             `);
             sekilCount++;
-        });
+        }); *@
     </script>
 }

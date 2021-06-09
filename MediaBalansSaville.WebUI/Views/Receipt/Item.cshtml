@@ -7,7 +7,9 @@
     @{await Html.RenderPartialAsync("_SeoOther", @Model.Receipt.UniqueId);}
 }
 @section Styles{
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.1/lity.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
 }
 
 @if(Model.Receipt.IsBlog == false)
@@ -50,13 +52,20 @@
                             <p class="share-text">@_configuration[$"Paylaş:{_lang}"]</p>
                             <ul class="share-list">
                                 <li class="share-item">
-                                    <i class="bi bi-facebook"></i>
+                                    <a href="https://www.facebook.com/share.php?u=https://@Context.Request.Host@Context.Request.Path">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+                                </li>
+                                
+                                <li class="share-item">
+                                    <a href="https://twitter.com/share?text=@Model.Receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Title &url=https://@Context.Request.Host@Context.Request.Path">
+                                        <i class="bi bi-twitter"></i>   
+                                    </a>
                                 </li>
                                 <li class="share-item">
-                                    <i class="bi bi-twitter"></i>
-                                </li>
-                                <li class="share-item">
-                                    <i class="bi bi-linkedin"></i>
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://@Context.Request.Host@Context.Request.Path">
+                                        <i class="bi bi-linkedin"></i>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -159,15 +168,22 @@ else
                             </strong></p>
                         <div class="share">
                             <p class="share-text">@_configuration[$"Paylaş:{_lang}"]</p>
-                            <ul class="share-list">
+                            <ul class="share-list">                                
                                 <li class="share-item">
-                                    <i class="bi bi-facebook"></i>
+                                    <a href="https://www.facebook.com/share.php?u=https://@Context.Request.Host@Context.Request.Path">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+                                </li>
+                                
+                                <li class="share-item">
+                                    <a href="https://twitter.com/share?text=@Model.Receipt.ReceiptLangs.FirstOrDefault(x => x.Lang.Code == _lang).Title &url=https://@Context.Request.Host@Context.Request.Path">
+                                        <i class="bi bi-twitter"></i>   
+                                    </a>
                                 </li>
                                 <li class="share-item">
-                                    <i class="bi bi-twitter"></i>
-                                </li>
-                                <li class="share-item">
-                                    <i class="bi bi-linkedin"></i>
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://@Context.Request.Host@Context.Request.Path">
+                                        <i class="bi bi-linkedin"></i>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -205,5 +221,7 @@ else
     </section>
 }
 @section Scripts{
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/2.6.0/js-cloudimage-360-view.min.js"></script>
 }

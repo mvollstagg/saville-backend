@@ -33,7 +33,7 @@ namespace MediaBalansSaville.Services.Utilities
                                     
             string fileName;
             if(Is3D)
-                fileName = "img" +  (index +1) +  "." + fileExtension;
+                fileName = "img" +  (index) +  ".jpg";
             else
                 fileName = Guid.NewGuid().ToString() + "_" + "Saville" +  "." + fileExtension;
             string filePath = Path.Combine(folderPath, fileName);

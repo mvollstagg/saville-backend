@@ -45,8 +45,15 @@
                     <button type="button" onclick="filterReceipts()" class="btn btn-aktarıs">@_configuration[$"Axtarış:{_lang}"]</button>
                 </div>
             </div>
-            <div id="receiptList" class="row row-cols-1 row-cols-md-2 row-cols-lg-3  row-cols-xl-4 gy-5 gx-5 maslahatlar-card-main">
-                @{ await Html.RenderPartialAsync("_ReceiptList", Model.Receipts); }                    
+            <div class="maslahat-general-main">
+                <div id="receiptList" class="row row-cols-1 row-cols-md-2 row-cols-lg-3  row-cols-xl-4 gy-5 gx-5 maslahatlar-card-main">
+                    @{ await Html.RenderPartialAsync("_ReceiptList", Model.Receipts); }                                        
+                </div>
+                <div style="display: none;" id="loader" class="loader">
+                    <div class="spinner-border text-danger" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -54,12 +61,12 @@
 
 
 @section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
    <script>    
        var skipCount = 8;
        function moreReceipt()
        {
-           var loadingimg = document.getElementById("loadingMore");
-           loadingimg.style.display = "block";
+           $('#loader').show();
            $.ajax({
                 url: 'morereceipt?skipCount=' + skipCount,
                 type: 'GET',
@@ -70,15 +77,17 @@
                         clearInterval(tetikle);
                     }, 900); 
                     skipCount += 8;
-                    loadingimg.style.display = "none"; 
+                    $('#loader').hide();
                 }
             });
        }       
 
        function filterReceipts()
        {
+           $('#loader').show();
            var filterText = document.getElementById("filter").value;
            $('#receiptList').html('');
+           $('#loader').show();
            $.ajax({
                 url: 'receiptfiltered?filter=' + filterText,
                 type: 'GET',
@@ -88,11 +97,13 @@
                         $('#receiptList').append(data);
                         clearInterval(tetikle);
                     }, 900); 
+                    $('#loader').hide();
                 }
             });
        }
 
        $(document).on('click','.dropdown-menu li',function  (e){
+           $('#loader').show();
            e.preventDefault();
            let filter=$(this).attr('data-filter');
            $('#receiptList').html('');
@@ -105,6 +116,7 @@
                         $('#receiptList').append(data);
                         clearInterval(tetikle);
                     }, 900);             
+                    $('#loader').hide();
                 }
             });
        })

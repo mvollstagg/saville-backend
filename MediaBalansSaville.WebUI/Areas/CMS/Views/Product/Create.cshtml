@@ -95,7 +95,7 @@
                                 <span asp-validation-for="NutritionFactPhotoFile"></span>
                                 <span class="text-danger"></span>
                             </div>
-                            <div id="digerSekiller">
+                            @* <div id="digerSekiller">
                                 <div class="sekiller">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -112,7 +112,7 @@
                                     </div>
                                     <button type="button" class="btn btn-outline-success sekil-add">Şəkil Əlavə Et</button>
                                 </div>
-                            </div>
+                            </div> *@
                             <div class="form-group">
                                 <label class="control-label">Status</label>
                                 <input asp-for="IsActive" checked type="checkbox" style="width: 20px; height: 20px; margin-left: 20px; position: relative; top: 5px;" />
@@ -134,7 +134,7 @@
 
 @section Scripts{
     <script>
-        var sekilCount = 1;
+        @* var sekilCount = 1;
         $(document).on("click", ".sekil-add", function() {
             $(".sekiller > .row").append(`
                 <div class="col-md-12">
@@ -150,6 +150,6 @@
                 </div>
             `);
             sekilCount++;
-        });
+        }); *@
     </script>
 }

@@ -17,6 +17,7 @@ namespace MediaBalansSaville.Core
         ILetterRepository Letters { get; }
         IPomegranateRepository PomegranateSettings { get; }
         IProductRepository Products { get; }
+        IProductPhotoRepository ProductPhotos { get; }
         IReceiptRepository Receipts { get; }
         IReceiptPhotoRepository ReceiptPhotos { get; }
         IRoleRepository Roles { get; }

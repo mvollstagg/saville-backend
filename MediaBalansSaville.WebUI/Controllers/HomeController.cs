@@ -36,7 +36,7 @@ namespace MediaBalansSaville.WebUI.Controllers
         [Route("/")]
         [Route("/{_lang}")]
         [Route("/{_lang}/anasehife")]
-        public async Task<IActionResult> Index(string _lang = "az")
+        public async Task<IActionResult> Index(string _lang = "en")
         {   
             try
             {
